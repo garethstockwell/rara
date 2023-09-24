@@ -1,5 +1,5 @@
 /* Astra sticky header */
-.site-header {
+.ast-theme-transparent-header #masthead {
     width: 100%;
     position: fixed;
     top: 0;
@@ -30,6 +30,7 @@
   color: var(--ast-global-color-7);
 }
 
+/* Fix text colour in footer */
 .site-footer .wp-block-heading {
 	color: var(--ast-global-color-7);
 }
