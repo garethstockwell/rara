@@ -1,0 +1,35 @@
+/* Astra sticky header */
+.site-header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    transition: 0.3s ease;  
+}
+
+/* Fix content padding */
+.site-content {
+    padding-top: 95px;
+}
+
+/* Fix content padding in mobile */
+@media (max-width: 800px) {
+    .site-content {
+        padding-top: 175px;
+    }
+}
+
+/* Fix content padding in mobile */
+@media (max-width: 650px) {
+    .site-content {
+        padding-top: 100px;
+    }
+}
+
+/* Fix text colour in footer */
+.site-footer {
+  color: var(--ast-global-color-7);
+}
+
+.site-footer .wp-block-heading {
+	color: var(--ast-global-color-7);
+}
