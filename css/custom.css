@@ -1,14 +1,19 @@
+/* Start of custom CSS */
+
 /* Astra sticky header */
 .ast-theme-transparent-header #masthead {
     width: 100%;
     position: fixed;
     top: 0;
-    transition: 0.3s ease;  
+    transition: 0.5s ease;  
 }
 
 /* Fix content padding */
 .site-content {
     padding-top: 95px;
+}
+.site-main {
+	margin-top: 30px;
 }
 
 /* Fix content padding in mobile */
@@ -34,3 +39,43 @@
 .site-footer .wp-block-heading {
 	color: var(--ast-global-color-7);
 }
+
+/* Fix email address colour */
+.email-white {
+	color: var(--ast-global-color-7);
+}
+
+/*
+ * Highlight target when scrolled to
+ * Adapted from https://codepen.io/anon/pen/xfjrh
+ */
+
+:target {
+	-webkit-animation: target-fade 3s;
+	-moz-animation: target-fade 3s;
+	-o-animation: target-fade 3s;
+	animation: target-fade 3s;
+}
+
+@-webkit-keyframes target-fade {
+	from { background-color: red; }
+	to { background-color: transparent; }
+}
+
+@-moz-keyframes target-fade {
+	from { background-color: red; }
+	to { background-color: transparent; }
+}
+
+@-o-keyframes target-fade {
+	from { background-color: red; }
+	to { background-color: transparent; }
+}
+
+@keyframes target-fade {
+	from { background-color: red; }
+	to { background-color: transparent; }
+}
+*/
+
+/* End of custom CSS */
