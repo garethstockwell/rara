@@ -1,6 +1,7 @@
 /* Start of custom CSS */
 
 /* Astra sticky header */
+
 .ast-theme-transparent-header #masthead {
     width: 100%;
     position: fixed;
@@ -9,21 +10,21 @@
 }
 
 /* Fix content padding */
+
 .site-content {
     padding-top: 95px;
 }
+
 .site-main {
 	margin-top: 30px;
 }
 
-/* Fix content padding in mobile */
 @media (max-width: 800px) {
     .site-content {
         padding-top: 175px;
     }
 }
 
-/* Fix content padding in mobile */
 @media (max-width: 650px) {
     .site-content {
         padding-top: 100px;
@@ -31,17 +32,20 @@
 }
 
 /* Fix text colour in footer */
-.site-footer {
-  color: var(--ast-global-color-7);
-}
 
-/* Fix text colour in footer */
-.site-footer .wp-block-heading {
+.site-footer {
 	color: var(--ast-global-color-7);
 }
 
-/* Fix email address colour */
-.email-white {
+.site-footer a {
+	color: var(--ast-global-color-7);
+}
+
+.site-footer a:hover {
+	color: white;
+}
+
+.site-footer .wp-block-heading {
 	color: var(--ast-global-color-7);
 }
 
@@ -58,22 +62,22 @@
 }
 
 @-webkit-keyframes target-fade {
-	from { background-color: red; }
+	from { background-color: var(--ast-global-color-0); }
 	to { background-color: transparent; }
 }
 
 @-moz-keyframes target-fade {
-	from { background-color: red; }
+	from { background-color: var(--ast-global-color-0); }
 	to { background-color: transparent; }
 }
 
 @-o-keyframes target-fade {
-	from { background-color: red; }
+	from { background-color: var(--ast-global-color-0); }
 	to { background-color: transparent; }
 }
 
 @keyframes target-fade {
-	from { background-color: red; }
+	from { background-color: var(--ast-global-color-0); }
 	to { background-color: transparent; }
 }
 */
