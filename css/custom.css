@@ -80,6 +80,13 @@
 	from { background-color: var(--ast-global-color-0); }
 	to { background-color: transparent; }
 }
-*/
+
+/* Tweak layout of post date in "Local issues" page */
+
+.page-id-17 .wp-block-latest-posts__post-date {
+	display: inline;
+	font-style: italic;
+	margin-left: 20px;
+}
 
 /* End of custom CSS */
