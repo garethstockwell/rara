@@ -3,16 +3,16 @@
 /* Astra sticky header */
 
 .ast-theme-transparent-header #masthead {
-    width: 100%;
-    position: fixed;
-    top: 0;
-    transition: 0.5s ease;  
+	width: 100%;
+	position: fixed;
+	top: 0;
+	transition: 0.5s ease;  
 }
 
 /* Fix content padding */
 
 .site-content {
-    padding-top: 95px;
+	padding-top: 95px;
 }
 
 .site-main {
@@ -20,15 +20,15 @@
 }
 
 @media (max-width: 800px) {
-    .site-content {
-        padding-top: 175px;
-    }
+	.site-content {
+		padding-top: 175px;
+	}
 }
 
 @media (max-width: 650px) {
-    .site-content {
-        padding-top: 100px;
-    }
+	.site-content {
+		padding-top: 100px;
+	}
 }
 
 /* Fix text colour in footer */
@@ -47,6 +47,13 @@
 
 .site-footer .wp-block-heading {
 	color: var(--ast-global-color-7);
+}
+
+/* Reduce height of footer */
+
+.site-primary-footer-wrap {
+	padding-top: 0px;
+	padding-bottom: 0px;
 }
 
 /*
