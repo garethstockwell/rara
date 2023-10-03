@@ -12,7 +12,7 @@
    viewBox="0 0 211.66667 211.66667"
    version="1.1"
    id="svg8"
-   sodipodi:docname="logo_curve_inkscape.svg"
+   sodipodi:docname="logo_curve.svg"
    inkscape:version="1.0.2 (e86c8708, 2021-01-15)"
    inkscape:export-filename="/Users/gareth/Desktop/RARA/logo/logo_acronym.png"
    inkscape:export-xdpi="25.4"
@@ -78,17 +78,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.57303533"
-     inkscape:cx="370.91133"
-     inkscape:cy="387.28408"
+     inkscape:zoom="0.97531385"
+     inkscape:cx="413.16972"
+     inkscape:cy="456.21353"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="true"
-     inkscape:window-width="1246"
-     inkscape:window-height="847"
+     inkscape:window-width="1440"
+     inkscape:window-height="900"
      inkscape:window-x="0"
-     inkscape:window-y="25"
+     inkscape:window-y="0"
      inkscape:window-maximized="0"
      inkscape:snap-global="true"
      inkscape:pagecheckerboard="true"
@@ -105,7 +105,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -121,8 +121,9 @@
     <path
        id="path856-7"
        style="fill:#69bb56;fill-opacity:1;stroke:none;stroke-width:1.32587;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 776.5918 20 C 761.69266 51.295874 743.42414 87.710251 720.82227 130.33398 C 703.90512 162.23716 676.37333 197.60731 640 229.66016 L 640 779.7832 L 680 779.7832 A 100.67512 100.67512 0 0 0 780.67578 679.10938 L 780.67578 20 L 776.5918 20 z "
-       transform="scale(0.26458333)" />
+       d="M 780.00001,20 C 765.10087,51.295874 743.42414,87.710251 720.82227,130.33398 703.90512,162.23716 676.37333,197.60731 640,229.66016 V 779.7832 l 10e-6,0.21681 c 100,0 140.67505,-45.28955 140.67577,-100.89063 V 20 Z"
+       transform="scale(0.26458333)"
+       sodipodi:nodetypes="cscccccc" />
     <path
        id="rect1587"
        style="opacity:0.97;fill:#4170ad;fill-opacity:1;stroke:none;stroke-width:0.999999;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:stroke fill markers"
