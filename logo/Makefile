@@ -4,7 +4,7 @@ root := $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 OUTPUT ?= $(root)/output
 SCRIPTS ?= $(root)/scripts
-SRC ?= $(root)/src/logo_curve.svg
+SRC ?= $(root)/../svg/logo_curve.svg
 
 default: build
 
