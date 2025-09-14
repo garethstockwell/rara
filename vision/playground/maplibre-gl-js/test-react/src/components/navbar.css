@@ -21,9 +21,16 @@
   display: inline;
 }
 
-.heading a {
+.heading button {
+  font-size: large;
+  background-color: transparent;
   color: white;
   text-decoration: none;
   padding-left: 1.0em;
   padding-right: 1.0em;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
 }
