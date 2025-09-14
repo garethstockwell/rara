@@ -1,0 +1,29 @@
+.heading {
+  margin: 0;
+  padding: 0px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.heading > h1 {
+  padding: 0;
+  margin: 0;
+}
+
+.heading ul {
+  list-style: none;
+  padding: 10px 0 10px 0;
+  margin: 0;
+}
+
+.heading li {
+  display: inline;
+}
+
+.heading a {
+  color: white;
+  text-decoration: none;
+  padding-left: 1.0em;
+  padding-right: 1.0em;
+}
