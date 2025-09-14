@@ -3,12 +3,13 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import './map.css';
 
 export default function Map({
-  createMap
+  createMap,
+  locations
 }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
 
-  const data = {
+  const config = {
     style: {
       "version": 8,
       "sources": {
@@ -31,13 +32,13 @@ export default function Map({
       ]
     },
     center: [0.142112, 52.2105086], // [lng, lat]
-    zoom: 16.5
+    zoom: 16.25
   };
 
   useEffect(() => {
     if (map.current) map.current.remove();
 
-    map.current = createMap(mapContainer.current, data);
+    map.current = createMap(mapContainer.current, config, locations);
   });
 
   return (
