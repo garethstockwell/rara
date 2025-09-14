@@ -8,10 +8,36 @@ export default function Map({
   const mapContainer = useRef(null);
   const map = useRef(null);
 
+  const data = {
+    style: {
+      "version": 8,
+      "sources": {
+        "osm": {
+          "type": "raster",
+          "tiles": [
+            "https://tile.openstreetmap.org/{z}/{x}/{y}.png"  // OpenStreetMap Tile URL
+          ],
+          "tileSize": 256
+        }
+      },
+      "layers": [
+        {
+          "id": "osm-layer",
+          "type": "raster",
+          "source": "osm",
+          "minzoom": 0,
+          "maxzoom": 19
+        }
+      ]
+    },
+    center: [0.142112, 52.2105086], // [lng, lat]
+    zoom: 16.5
+  };
+
   useEffect(() => {
     if (map.current) map.current.remove();
 
-    map.current = createMap(mapContainer.current);
+    map.current = createMap(mapContainer.current, data);
   });
 
   return (

@@ -7,8 +7,8 @@ import './App.css';
 
 export default function App() {
   const maps = {
-    "Globe": globe,
-    "Flat": flat
+    "Flat": flat,
+    "Globe": globe
   };
 
   const [activeMap, setActiveMap] = useState(Object.keys(maps)[0]);

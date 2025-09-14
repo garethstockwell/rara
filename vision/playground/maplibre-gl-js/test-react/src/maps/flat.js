@@ -1,10 +1,7 @@
 import maplibregl from 'maplibre-gl';
 
-export default function createMap(container) {
-  return new maplibregl.Map({
-    container: container,
-    style: 'https://demotiles.maplibre.org/style.json', // style URL
-    center: [0, 0], // starting position [lng, lat]
-    zoom: 1 // starting zoom
-  });
+export default function createMap(container, data) {
+  return new maplibregl.Map(Object.assign({}, data, {
+    container: container
+  }));
 }
