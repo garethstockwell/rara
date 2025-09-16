@@ -4,6 +4,7 @@ import Info from '../info.js';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import '../map.css';
 import locations from "../../data/locations.json"
+import boundary from "../../data/boundary.json"
 
 export default function Flat() {
   const mapContainer = useRef(null);
@@ -39,16 +40,37 @@ export default function Flat() {
           }
         ]
       },
-      center: [0.142112, 52.2105086], // [lng, lat]
-      zoom: 16.25,
+      center: [0.144843, 52.212231], // [lng, lat]
+      zoom: 15.5,
       container: mapContainer.current
     };
 
     var map = new maplibregl.Map(config);
 
-    // Add markers
-
     map.on('load', async () => {
+      // Add boundary
+
+      map.addSource('route', {
+        'type': 'geojson',
+        'data': boundary
+      });
+
+      map.addLayer({
+        'id': 'route',
+        'type': 'line',
+        'source': 'route',
+        'layout': {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        'paint': {
+          'line-color': '#ff0000',
+          'line-width': 3
+        }
+      });
+
+      // Add markers
+
       const image = await map.loadImage('https://maplibre.org/maplibre-gl-js/docs/assets/custom_marker.png');
       // Add an image to use as a custom marker
       map.addImage('custom-marker', image.data);
