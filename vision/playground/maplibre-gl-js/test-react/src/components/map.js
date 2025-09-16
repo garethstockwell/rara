@@ -4,7 +4,6 @@ import './map.css';
 
 export default function Map({
   createMap,
-  locations
 }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -12,7 +11,7 @@ export default function Map({
   useEffect(() => {
     if (map.current) map.current.remove();
 
-    map.current = createMap(mapContainer.current, locations);
+    map.current = createMap(mapContainer.current);
   });
 
   return (

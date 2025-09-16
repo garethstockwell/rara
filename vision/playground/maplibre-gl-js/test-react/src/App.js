@@ -11,24 +11,6 @@ export default function App() {
     "ML globe": maplibre_globe
   };
 
-  const locations = [
-    {
-      title: "St Andrew the Less",
-      description: "Blah blah",
-      coordinates: [0.139667, 52.208968]
-    },
-    {
-      title: "Dinky Doors Emailerator",
-      description: "Blah blah",
-      coordinates: [0.138785, 52.210923]
-    },
-    {
-      title: "Dinky Doors Flysing Saucer",
-      description: "Blah blah",
-      coordinates: [0.142605, 52.212513]
-    }
-  ];
-
   const [activeMap, setActiveMap] = useState(Object.keys(maps)[0]);
 
   return (
@@ -39,7 +21,6 @@ export default function App() {
       />
       <Map
         createMap={maps[activeMap]}
-        locations={locations}
       />
       <pre id="info"></pre>
     </div>

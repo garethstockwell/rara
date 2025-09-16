@@ -1,6 +1,7 @@
 import maplibregl from 'maplibre-gl';
+import locations from "../data/locations.json"
 
-export default function createMap(container, locations) {
+export default function createMap(container) {
   const config = {
     style: {
       "version": 8,
