@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import Map from './components/map.js';
 import Navbar from './components/navbar.js';
-import flat from './maps/flat.js';
-import globe from './maps/globe.js';
+import maplibre_flat from './maps/maplibre_flat.js';
+import maplibre_globe from './maps/maplibre_globe.js';
 import './App.css';
 
 export default function App() {
   const maps = {
-    "Flat": flat,
-    "Globe": globe
+    "ML flat": maplibre_flat,
+    "ML globe": maplibre_globe
   };
 
   const locations = [
