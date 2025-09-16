@@ -1,9 +1,34 @@
 import maplibregl from 'maplibre-gl';
 
-export default function createMap(container, config, locations) {
-  const map = new maplibregl.Map(Object.assign({}, config, {
+export default function createMap(container, locations) {
+  const config = {
+    style: {
+      "version": 8,
+      "sources": {
+        "osm": {
+          "type": "raster",
+          "tiles": [
+            "https://tile.openstreetmap.org/{z}/{x}/{y}.png"  // OpenStreetMap Tile URL
+          ],
+          "tileSize": 256
+        }
+      },
+      "layers": [
+        {
+          "id": "osm-layer",
+          "type": "raster",
+          "source": "osm",
+          "minzoom": 0,
+          "maxzoom": 19
+        }
+      ]
+    },
+    center: [0.142112, 52.2105086], // [lng, lat]
+    zoom: 16.25,
     container: container
-  }));
+  };
+
+  const map = new maplibregl.Map(config);
 
   map.on('load', async () => {
         const image = await map.loadImage('https://maplibre.org/maplibre-gl-js/docs/assets/custom_marker.png');
