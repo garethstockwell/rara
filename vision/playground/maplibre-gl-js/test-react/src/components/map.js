@@ -1,22 +1,14 @@
-import { useRef, useEffect } from 'react';
-import 'maplibre-gl/dist/maplibre-gl.css';
+import MapLibreFlat from './maplibre/flat.js';
+import MapLibreGlobe from './maplibre/globe.js';
 import './map.css';
 
 export default function Map({
-  createMap,
+  activeMap,
 }) {
-  const mapContainer = useRef(null);
-  const map = useRef(null);
-
-  useEffect(() => {
-    if (map.current) map.current.remove();
-
-    map.current = createMap(mapContainer.current);
-  });
-
   return (
     <div className="map-wrap">
-      <div ref={mapContainer} className="map" />
+      { activeMap === 'ML flat' ? <MapLibreFlat /> : null }
+      { activeMap === 'ML globe' ? <MapLibreGlobe /> : null }
     </div>
   );
 }
