@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { createContext, useState } from 'react';
 import Map from './components/map.js';
 import Navbar from './components/navbar.js';
-import maplibre_flat from './maps/maplibre_flat.js';
-import maplibre_globe from './maps/maplibre_globe.js';
+import maplibre_flat from './components/maplibre/flat.js';
+import maplibre_globe from './components/maplibre/globe.js';
 import './App.css';
+
+export const AppContext = createContext(null);
 
 export default function App() {
   const maps = {
@@ -12,7 +14,7 @@ export default function App() {
   };
 
   const [activeMap, setActiveMap] = useState(Object.keys(maps)[0]);
-
+  
   return (
     <div className="App">
       <Navbar
@@ -22,7 +24,6 @@ export default function App() {
       <Map
         createMap={maps[activeMap]}
       />
-      <pre id="info"></pre>
     </div>
   );
 }
