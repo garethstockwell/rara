@@ -47,9 +47,15 @@ export default function Flat() {
 
     var map = new maplibregl.Map(config);
 
-    map.on('load', async () => {
-      // Add boundary
+    addBoundary(map);
+    addMarkers(map);
+    addCoordinateTracking(map);
 
+    return map;
+  }
+
+  function addBoundary(map) {
+    map.on('load', async () => {
       map.addSource('route', {
         'type': 'geojson',
         'data': boundary
@@ -68,7 +74,11 @@ export default function Flat() {
           'line-width': 3
         }
       });
+    });
+  }
 
+  function addMarkers(map) {
+    map.on('load', async () => {
       // Add markers
 
       const image = await map.loadImage('https://maplibre.org/maplibre-gl-js/docs/assets/custom_marker.png');
@@ -142,9 +152,9 @@ export default function Flat() {
           popup.remove();
       });
     });
-    
-    // Show coordinates in info box
+  }
 
+  function addCoordinateTracking(map) {
     function updateInfo(e) {
       setInfoContents(
         // e.point is the x, y coordinates of the mousemove event relative
@@ -157,8 +167,6 @@ export default function Flat() {
     }
 
     map.on('mousemove', updateInfo);
-
-    return map;
   }
 
   return (
