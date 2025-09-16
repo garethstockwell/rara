@@ -6,15 +6,51 @@ import '../map.css';
 import locations from "../../data/locations.json"
 import boundary from "../../data/boundary.json"
 
+
+const updateInfo = (e) => {
+  console.log(e);
+
+  var x = 
+    // e.point is the x, y coordinates of the mousemove event relative
+    // to the top-left corner of the map
+    `${JSON.stringify(e.point)
+    }<br />${
+        // e.lngLat is the longitude, latitude geographical position of the event
+        JSON.stringify(e.lngLat.wrap())}`;
+}
+
 export default function Flat() {
   const mapContainer = useRef(null);
   const map = useRef(null);
 
   const [infoContents, setInfoContents] = useState(null);
-  
+  const [freezeInfo, setFreezeInfo] = useState(false);
+
   useEffect(() => {
-    if (map.current) return;
-    map.current = createMap();
+    if (!map.current) {
+      map.current = createMap();
+    }
+
+    const handleKeyDown = (e) => {
+      if (e.key === "f") {
+
+        if (freezeInfo) {
+          console.log('off');
+          map.current.off('mousemove', updateInfo);
+        } else {
+          console.log('on');
+          map.current.on('mousemove', updateInfo);
+        }
+
+        setFreezeInfo((freezeInfo) => !freezeInfo);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   });
 
   function createMap() {
@@ -49,7 +85,6 @@ export default function Flat() {
 
     addBoundary(map);
     addMarkers(map);
-    addCoordinateTracking(map);
 
     return map;
   }
@@ -152,21 +187,6 @@ export default function Flat() {
           popup.remove();
       });
     });
-  }
-
-  function addCoordinateTracking(map) {
-    function updateInfo(e) {
-      setInfoContents(
-        // e.point is the x, y coordinates of the mousemove event relative
-        // to the top-left corner of the map
-        `${JSON.stringify(e.point)
-        }<br />${
-            // e.lngLat is the longitude, latitude geographical position of the event
-            JSON.stringify(e.lngLat.wrap())}`
-      );
-    }
-
-    map.on('mousemove', updateInfo);
   }
 
   return (
