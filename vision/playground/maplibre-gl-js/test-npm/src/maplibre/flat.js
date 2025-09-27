@@ -1,5 +1,7 @@
 // From https://maplibre.org/maplibre-gl-js/docs/
 
+import addBoundaryLayer from "./boundary.js";
+
 export var name = "ML flat";
 
 export function createMap() {
@@ -32,8 +34,10 @@ export function createMap() {
 
     var map = new maplibregl.Map(config);
 
-    //addBoundary(map);
-    //addMarkers(map);
+    map.on('load', function() {
+        addBoundaryLayer(map);
+        //addMarkers(map);
+    });
 
     return map;
 }
