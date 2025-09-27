@@ -20,11 +20,11 @@ function showMap(name) {
 function registerMap(module) {
     createMap[module.name] = module.createMap;
     
-    var button = document.createElement("button");
+    const button = document.createElement("button");
     button.innerHTML = module.name;
     button.onclick = function() { showMap(module.name); };
 
-    var nav = document.getElementById("nav");
+    const nav = document.getElementById("nav");
     nav.appendChild(button);
 }
 

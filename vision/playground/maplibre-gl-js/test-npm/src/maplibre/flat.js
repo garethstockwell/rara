@@ -1,8 +1,45 @@
 // From https://maplibre.org/maplibre-gl-js/docs/
 
-import addBoundaryLayer from "./boundary.js";
+import * as boundary from "./boundary.js";
+import * as locations from "./locations.js";
 
 export var name = "ML flat";
+
+function addLayer(module, map, visible) {
+    module.addLayer(map, visible);
+
+    const link = document.createElement('a');
+    link.id = module.name;
+    link.href = '#';
+    link.textContent = module.name;
+    link.className = visible ? 'active' : '';
+
+    link.onclick = function (e) {
+        const clickedLayer = this.textContent;
+        e.preventDefault();
+        e.stopPropagation();
+
+        const visibility = map.getLayoutProperty(
+            clickedLayer,
+            'visibility'
+        );
+
+        if (visibility === 'visible') {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+            this.className = '';
+        } else {
+            this.className = 'active';
+            map.setLayoutProperty(
+                clickedLayer,
+                'visibility',
+                'visible'
+            );
+        }
+    };
+
+    const menu = document.getElementById('menu');
+    menu.appendChild(link);
+}
 
 export function createMap() {
     const config = {
@@ -34,10 +71,8 @@ export function createMap() {
 
     var map = new maplibregl.Map(config);
 
-    map.on('load', function() {
-        addBoundaryLayer(map);
-        //addMarkers(map);
-    });
+    addLayer(boundary, map, true);
+    addLayer(locations, map, true);
 
     return map;
 }
