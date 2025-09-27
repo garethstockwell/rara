@@ -8,10 +8,27 @@
   <head>
     <script src='node_modules/maplibre-gl/dist/maplibre-gl.js'></script>
     <link href='node_modules/maplibre-gl/dist/maplibre-gl.css' rel='stylesheet' />
+    <link href='index.css' rel='stylesheet' />
+
+    <script type="module">
+      import main from "./src/index.js";
+      main();
+    </script>
   </head>
 
   <body>
+    <div class="heading">
+      <h1>
+        <ul id="nav">
+          <!--
+          <button onClick="onSelected('ML flat');">ML flat</button>
+          <button onClick="onSelected('ML globe');">ML globe</button>
+        -->
+        </ul>
+      </h1>
+
+    </div>
+
     <div id='map' style='width: 400px; height: 300px;'></div>
-    <script src="index.js"></script>
   </body>
 </html>
