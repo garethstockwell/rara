@@ -3,8 +3,6 @@
 export var name = "ML globe";
 
 export function createMap() {
-    console.log("globe.createMap");
-
     const map = new maplibregl.Map({
         container: 'map', // container id
         style: 'https://demotiles.maplibre.org/globe.json', // style URL

@@ -3,14 +3,37 @@
 export var name = "ML flat";
 
 export function createMap() {
-    console.log("flat.createMap");
+    const config = {
+        style: {
+        "version": 8,
+        "sources": {
+            "osm": {
+            "type": "raster",
+            "tiles": [
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png"  // OpenStreetMap Tile URL
+            ],
+            "tileSize": 256
+            }
+        },
+        "layers": [
+            {
+            "id": "osm-layer",
+            "type": "raster",
+            "source": "osm",
+            "minzoom": 0,
+            "maxzoom": 19
+            }
+        ]
+        },
+        center: [0.144843, 52.212231], // [lng, lat]
+        zoom: 15.5,
+        container: "map"
+    };
 
-    const map = new maplibregl.Map({
-        container: 'map', // container id
-        style: 'https://demotiles.maplibre.org/globe.json', // style URL
-        center: [90, 90], // starting position [lng, lat]
-        zoom: 1 // starting zoom
-    });
+    var map = new maplibregl.Map(config);
+
+    //addBoundary(map);
+    //addMarkers(map);
 
     return map;
 }
