@@ -1,5 +1,8 @@
 // From https://maplibre.org/maplibre-gl-js/docs/
 
+import * as coordinates from "../coordinates.js";
+import * as menu from "../menu.js";
+
 import * as boundary from "./boundary.js";
 import * as locations from "./locations.js";
 
@@ -8,13 +11,7 @@ export var name = "ML flat";
 function addLayer(module, map, visible) {
     module.addLayer(map, visible);
 
-    const link = document.createElement('a');
-    link.id = module.name;
-    link.href = '#';
-    link.textContent = module.name;
-    link.className = visible ? 'active' : '';
-
-    link.onclick = function (e) {
+    function toggle (e) {
         const clickedLayer = this.textContent;
         e.preventDefault();
         e.stopPropagation();
@@ -37,8 +34,17 @@ function addLayer(module, map, visible) {
         }
     };
 
-    const menu = document.getElementById('menu');
-    menu.appendChild(link);
+    menu.add(module.name, toggle, visible);
+}
+
+function addCoordInfo(map) {
+    coordinates.track(map);
+
+    function toggle (e) {
+        this.className = coordinates.toggle() ? 'active' : '';
+    };
+
+    menu.add("coordinates", toggle, false);
 }
 
 export function createMap() {
@@ -73,6 +79,7 @@ export function createMap() {
 
     addLayer(boundary, map, true);
     addLayer(locations, map, true);
+    addCoordInfo(map);
 
     return map;
 }

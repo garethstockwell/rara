@@ -2,16 +2,17 @@
 
 import * as flat from './maplibre/flat.js'
 import * as globe from './maplibre/globe.js'
+import * as menu from './menu.js'
 
 var createMap = {};
 var map = null;
 
 function showMap(name) {
-    console.log("showMap " + name)
-
     if (map) {
         map.remove();
         map = null;
+
+        menu.reset();
     }
 
     map = createMap[name]();
