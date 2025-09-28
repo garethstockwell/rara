@@ -1,3 +1,5 @@
+// Add a map layer which shows locations
+
 export var name = 'locations';
 
 export function addLayer(map, visible) {

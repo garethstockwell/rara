@@ -1,51 +1,11 @@
-// From https://maplibre.org/maplibre-gl-js/docs/
-
-import * as coordinates from "../coordinates.js";
-import * as menu from "../menu.js";
+// Render a flat map
 
 import * as boundary from "./boundary.js";
+import * as info from "./info.js";
+import * as layer from "./layer.js";
 import * as locations from "./locations.js";
 
 export var name = "ML flat";
-
-function addLayer(module, map, visible) {
-    module.addLayer(map, visible);
-
-    function toggle (e) {
-        const clickedLayer = this.textContent;
-        e.preventDefault();
-        e.stopPropagation();
-
-        const visibility = map.getLayoutProperty(
-            clickedLayer,
-            'visibility'
-        );
-
-        if (visibility === 'visible') {
-            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-            this.className = '';
-        } else {
-            this.className = 'active';
-            map.setLayoutProperty(
-                clickedLayer,
-                'visibility',
-                'visible'
-            );
-        }
-    };
-
-    menu.add(module.name, toggle, visible);
-}
-
-function addCoordInfo(map) {
-    coordinates.track(map);
-
-    function toggle (e) {
-        this.className = coordinates.toggle() ? 'active' : '';
-    };
-
-    menu.add("coordinates", toggle, false);
-}
 
 export function createMap() {
     const config = {
@@ -77,9 +37,9 @@ export function createMap() {
 
     var map = new maplibregl.Map(config);
 
-    addLayer(boundary, map, true);
-    addLayer(locations, map, true);
-    addCoordInfo(map);
+    layer.add(boundary, map, true);
+    layer.add(locations, map, true);
+    info.setUp(map);
 
     return map;
 }

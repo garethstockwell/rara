@@ -1,3 +1,5 @@
+// Add a map layer which shows an area boundary
+
 export var name = 'boundary';
 
 export function addLayer(map, visible) {

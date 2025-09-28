@@ -1,7 +1,8 @@
-// From https://maplibre.org/maplibre-gl-js/docs/
+// Top-level script
 
 import * as flat from './maplibre/flat.js'
 import * as globe from './maplibre/globe.js'
+import * as info from './maplibre/info.js'
 import * as menu from './menu.js'
 
 var createMap = {};
@@ -13,6 +14,7 @@ function showMap(name) {
         map = null;
 
         menu.reset();
+        info.hide();
     }
 
     map = createMap[name]();
