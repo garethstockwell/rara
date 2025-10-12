@@ -1,6 +1,7 @@
 // Top-level script
 
 import * as flat from './maplibre/flat.js'
+import * as fly from './maplibre/fly.js'
 import * as globe from './maplibre/globe.js'
 import * as info from './maplibre/info.js'
 import * as menu from './menu.js'
@@ -33,7 +34,8 @@ function registerMap(module) {
 
 export default function main() {
     registerMap(flat);
+    registerMap(fly);
     registerMap(globe);
 
-    showMap("ML flat");
+    showMap("ML fly");
 }

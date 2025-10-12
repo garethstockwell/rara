@@ -2,12 +2,11 @@
 
 export var name = 'boundary';
 
-export function addLayer(map, visible) {
+export function addLayer(map, visible, callback) {
   map.on('load', async () => {
     fetch('../../data/boundary.json')
       .then(res => res.json())
       .then(data => {
-
         map.addSource(name, {
           'type': 'geojson',
           'data': data
@@ -27,6 +26,10 @@ export function addLayer(map, visible) {
             'line-width': 6
           }
         });
+
+        if (callback) {
+          callback(name);
+        }
       }
     );
   });

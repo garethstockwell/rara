@@ -2,7 +2,7 @@
 
 export var name = 'locations';
 
-export function addLayer(map, visible) {
+export function addLayer(map, visible, callback) {
   map.on('load', async () => {
     const image = await map.loadImage('../../assets/pin.png');
     map.addImage('custom-marker', image.data);
@@ -78,6 +78,10 @@ export function addLayer(map, visible) {
             map.getCanvas().style.cursor = '';
             popup.remove();
         });
+
+        if (callback) {
+          callback(name);
+        }
       }
     );
   });
