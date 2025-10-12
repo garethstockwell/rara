@@ -3,6 +3,7 @@
 import * as boundary from "./boundary.js";
 import * as info from "./info.js";
 import * as layer from "./layer.js";
+import * as locations from "./locations.js";
 
 export var name = "ML fly";
 
@@ -11,13 +12,28 @@ export function createMap() {
         style: {
         "version": 8,
         "sources": {
-            "osm": {
+            "sat": {
+                "type": "raster",
+                "tiles": [
+                    "https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2020_3857/default/g/{z}/{y}/{x}.jpg" // Satellite map
+                ],
+                "tileSize": 256
+            },
+            "osm-raster": {
                 "type": "raster",
                 "tiles": [
                     "https://tile.openstreetmap.org/{z}/{x}/{y}.png"  // OpenStreetMap Tile URL
                 ],
                 "tileSize": 256
             },
+        /*
+            "osm-vector": {
+                "type": "vector",
+                "tiles": [
+                    'https://api.maptiler.com/tiles/v3-openmaptiles/{z}/{x}/{y}.pbf?key=zsAKnM69p5uDhfEeaTCu'
+                ],
+            },
+        */
             "point": {
                 "type": "geojson",
                 "data": {
@@ -31,23 +47,52 @@ export function createMap() {
             }
         },
         "layers": [
+        /*
             {
-                "id": "osm-layer",
+                "id": "sat",
                 "type": "raster",
-                "source": "osm",
+                "source": "sat",
                 "minzoom": 0,
                 "maxzoom": 19
             },
+        */
+            {
+                "id": "osm-raster",
+                "type": "raster",
+                "source": "osm-raster",
+                "minzoom": 0,
+                "maxzoom": 19
+            },
+        /*
+            {
+                'id': 'road-labels',
+                'type': 'symbol',
+                'source': 'osm-vector',
+                'source-layer': 'road',
+                'minzoom': 10,
+                'layout': {
+                    'text-field': '{name}',
+                    'text-font': ['Open Sans Bold'],
+                    'text-size': 12
+                },
+                'paint': {
+                    'text-color': '#FFFFFF', // White text for visibility on satellite imagery
+                    'text-halo-color': '#000000', // Black halo for contrast
+                    'text-halo-width': 1
+                }
+            },
+        */
             {
                 "id": "point",
                 "source": "point",
                 "type": "circle",
                 "paint": { 'circle-radius': 10, 'circle-color': '#ff0000', 'circle-stroke-width': 2, 'circle-stroke-color': 'white' }
             }
-        ]
+        ],
+        glyphs: "https://fonts.openmaptiles.org/{fontstack}/{range}.pbf"
         },
         center: [0.144843, 52.212231], // [lng, lat]
-        zoom: 15.5,
+        zoom: 12,
         container: "map"
     };
 
@@ -106,6 +151,7 @@ export function createMap() {
     }
 
     layer.add(boundary, map, true, init);
+    layer.add(locations, map, true);
     info.setUp(map);
 
     // The 'building' layer in the streets vector source contains building-height
