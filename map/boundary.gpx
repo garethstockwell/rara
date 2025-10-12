@@ -1,11 +1,8 @@
-<?xml version="1.0"?>
-<gpx version="1.1" creator="GDAL 2.2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ogr="http://osgeo.org/gdal" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
-<metadata><bounds minlat="52.208592500000002" minlon="0.136464400000000" maxlat="52.215073599999997" maxlon="0.149812000000000"/></metadata>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gpx version="1.1" creator="GPS Visualizer https://www.gpsvisualizer.com/" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v2 http://www.garmin.com/xmlschemas/TrackPointExtensionv2.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v2" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3">
 <trk>
   <name>Track 1</name>
-  <extensions>
-    <ogr:Distance>1.5 miles</ogr:Distance>
-  </extensions>
+  <desc>Statistics computed from imported data&lt;br&gt;&lt;br&gt;Distance: 1.6 miles</desc>
   <trkseg>
     <trkpt lat="52.2110036" lon="0.1369164"></trkpt>
     <trkpt lat="52.2110743" lon="0.1371967"></trkpt>
@@ -54,7 +51,17 @@
     <trkpt lat="52.2161413" lon="0.1505044"></trkpt>
     <trkpt lat="52.216274" lon="0.1518432"></trkpt>
     <trkpt lat="52.2158871" lon="0.1534186"></trkpt>
-    <trkpt lat="52.2144576" lon="0.1523616"></trkpt>
+    <trkpt lat="52.2147863" lon="0.1526191"></trkpt>
+    <trkpt lat="52.214313" lon="0.1523035"></trkpt>
+    <trkpt lat="52.2141512" lon="0.1525801"></trkpt>
+    <trkpt lat="52.2139794" lon="0.1534645"></trkpt>
+    <trkpt lat="52.2137765" lon="0.1531685"></trkpt>
+    <trkpt lat="52.2137416" lon="0.1531117"></trkpt>
+    <trkpt lat="52.2137266" lon="0.1530738"></trkpt>
+    <trkpt lat="52.2137199" lon="0.1529852"></trkpt>
+    <trkpt lat="52.2136685" lon="0.1528973"></trkpt>
+    <trkpt lat="52.2136898" lon="0.1527075"></trkpt>
+    <trkpt lat="52.2137375" lon="0.1522133"></trkpt>
     <trkpt lat="52.2137149" lon="0.1518089"></trkpt>
     <trkpt lat="52.213675" lon="0.1514957"></trkpt>
     <trkpt lat="52.2135646" lon="0.151049"></trkpt>
