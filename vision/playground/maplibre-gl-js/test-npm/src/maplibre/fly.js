@@ -9,88 +9,7 @@ export var name = "ML fly";
 
 export function createMap() {
     const config = {
-        style: {
-        "version": 8,
-        "sources": {
-            "sat": {
-                "type": "raster",
-                "tiles": [
-                    "https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2020_3857/default/g/{z}/{y}/{x}.jpg" // Satellite map
-                ],
-                "tileSize": 256
-            },
-            "osm-raster": {
-                "type": "raster",
-                "tiles": [
-                    "https://tile.openstreetmap.org/{z}/{x}/{y}.png"  // OpenStreetMap Tile URL
-                ],
-                "tileSize": 256
-            },
-        /*
-            "osm-vector": {
-                "type": "vector",
-                "tiles": [
-                    'https://api.maptiler.com/tiles/v3-openmaptiles/{z}/{x}/{y}.pbf?key=zsAKnM69p5uDhfEeaTCu'
-                ],
-            },
-        */
-            "point": {
-                "type": "geojson",
-                "data": {
-                    "type": "Feature",
-                    "properties": {},
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [0.0, 0.0]
-                    }
-                }
-            }
-        },
-        "layers": [
-        /*
-            {
-                "id": "sat",
-                "type": "raster",
-                "source": "sat",
-                "minzoom": 0,
-                "maxzoom": 19
-            },
-        */
-            {
-                "id": "osm-raster",
-                "type": "raster",
-                "source": "osm-raster",
-                "minzoom": 0,
-                "maxzoom": 19
-            },
-        /*
-            {
-                'id': 'road-labels',
-                'type': 'symbol',
-                'source': 'osm-vector',
-                'source-layer': 'road',
-                'minzoom': 10,
-                'layout': {
-                    'text-field': '{name}',
-                    'text-font': ['Open Sans Bold'],
-                    'text-size': 12
-                },
-                'paint': {
-                    'text-color': '#FFFFFF', // White text for visibility on satellite imagery
-                    'text-halo-color': '#000000', // Black halo for contrast
-                    'text-halo-width': 1
-                }
-            },
-        */
-            {
-                "id": "point",
-                "source": "point",
-                "type": "circle",
-                "paint": { 'circle-radius': 10, 'circle-color': '#ff0000', 'circle-stroke-width': 2, 'circle-stroke-color': 'white' }
-            }
-        ],
-        glyphs: "https://fonts.openmaptiles.org/{fontstack}/{range}.pbf"
-        },
+        style: "https://api.maptiler.com/maps/openstreetmap/style.json?key=zsAKnM69p5uDhfEeaTCu",
         center: [0.144843, 52.212231], // [lng, lat]
         zoom: 12,
         container: "map"
@@ -157,6 +76,29 @@ export function createMap() {
     // The 'building' layer in the streets vector source contains building-height
     // data from OpenStreetMap.
     map.on('load', () => {
+        map.addSource("point", {
+            type: "geojson",
+            data: {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                    type: "Point",
+                    coordinates: [0.0, 0.0]
+                }
+            }
+        });
+
+        map.addLayer({
+            id: "point",
+            source: "point",
+            type: "circle",
+            paint: {
+                "circle-radius": 10,
+                "circle-color": '#ff0000',
+                "circle-stroke-width": 2,
+                "circle-stroke-color": 'white' }
+        });
+
         // Insert the layer beneath any symbol layer.
         const layers = map.getStyle().layers;
 
@@ -175,13 +117,13 @@ export function createMap() {
 
         map.addLayer(
             {
-                'id': '3d-buildings',
-                'source': 'openfreemap',
+                id: '3d-buildings',
+                source: 'openfreemap',
                 'source-layer': 'building',
-                'type': 'fill-extrusion',
-                'minzoom': 15,
-                'filter': ['!=', ['get', 'hide_3d'], true],
-                'paint': {
+                type: 'fill-extrusion',
+                minzoom: 15,
+                filter: ['!=', ['get', 'hide_3d'], true],
+                paint: {
                     'fill-extrusion-color': [
                         'interpolate',
                         ['linear'],
