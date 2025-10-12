@@ -23,8 +23,8 @@ export function addLayer(map, visible) {
             'visibility': visible ? 'visible' : 'none'
           },
           'paint': {
-            'line-color': '#ff0000',
-            'line-width': 3
+            'line-color': '#334155',
+            'line-width': 6
           }
         });
       }
