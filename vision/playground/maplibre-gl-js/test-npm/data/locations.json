@@ -1,8 +1,38 @@
 [
   {
+    "title": "Stourbridge Common",
+    "description": "Blah blah",
+    "coordinates": [0.150095, 52.217236],
+    "era": "historical"
+  },
+  {
     "title": "St Andrew the Less",
     "description": "Blah blah",
     "coordinates": [0.139667, 52.208968],
+    "era": "historical"
+  },
+  {
+    "title": "Leper Chapel",
+    "description": "Blah blah",
+    "coordinates": [0.152569, 52.213920],
+    "era": "historical"
+  },
+  {
+    "title": "Cellarer's Chequer",
+    "description": "Blah blah",
+    "coordinates": [0.139045, 52.209589],
+    "era": "historical"
+  },
+  {
+    "title": "Abbey House",
+    "description": "Blah blah",
+    "coordinates": [0.138523, 52.209092],
+    "era": "historical"
+  },
+  {
+    "title": "Cambridge Museum of Technology",
+    "description": "Blah blah",
+    "coordinates": [0.143660, 52.212458],
     "era": "historical"
   },
   {
@@ -12,9 +42,39 @@
     "era": "contemporary"
   },
   {
+    "title": "Cambridge Gas Company War Memorial",
+    "description": "Blah blah",
+    "coordinates": [0.144123, 52.210016],
+    "era": "contemporary"
+  },
+  {
     "title": "Dinky Doors Flysing Saucer",
     "description": "Blah blah",
     "coordinates": [0.142605, 52.212513],
+    "era": "contemporary"
+  },
+  {
+    "title": "Equiano Bridge",
+    "description": "Blah blah",
+    "coordinates": [0.142986, 52.213628],
+    "era": "contemporary"
+  },
+  {
+    "title": "Engineer's House",
+    "description": "Blah blah",
+    "coordinates": [0.142851, 52.212454],
+    "era": "contemporary"
+  },
+  {
+    "title": "Kerb Kollective",
+    "description": "Blah blah",
+    "coordinates": [0.143076, 52.212559],
+    "era": "contemporary"
+  },
+  {
+    "title": "Logan's Meadow Nature Reserve",
+    "description": "Blah blah",
+    "coordinates": [0.141562, 52.213629],
     "era": "contemporary"
   }
 ]

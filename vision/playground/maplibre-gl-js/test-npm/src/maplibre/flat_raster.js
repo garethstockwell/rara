@@ -31,7 +31,7 @@ export function createMap() {
     ]
     },
     center: [0.144843, 52.212231], // [lng, lat]
-    zoom: 16,
+    zoom: 15,
     maxZoom: 18,
     container: "map"
   };
