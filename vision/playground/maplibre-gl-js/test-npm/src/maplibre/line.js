@@ -1,25 +1,23 @@
-// Add a map layer which shows an area boundary
+// Add a map layer which shows a line
 
-export var name = 'boundary';
-
-export function addLayer(map, visible, callback) {
+export function addLayer(map, options) {
   map.on('load', async () => {
-    fetch('../../data/boundary.json')
+    fetch('../../data/' + options.name + '.json')
       .then(res => res.json())
       .then(data => {
-        map.addSource(name, {
+        map.addSource(options.name, {
           'type': 'geojson',
           'data': data
         });
 
         map.addLayer({
-          'id': name,
+          'id': options.name,
           'type': 'line',
-          'source': name,
+          'source': options.name,
           'layout': {
             'line-join': 'round',
             'line-cap': 'round',
-            'visibility': visible ? 'visible' : 'none'
+            'visibility': options.visible ? 'visible' : 'none'
           },
           'paint': {
             'line-color': '#334155',
@@ -27,8 +25,8 @@ export function addLayer(map, visible, callback) {
           }
         });
 
-        if (callback) {
-          callback(name);
+        if (options.callback) {
+          options.callback(arguments);
         }
       }
     );

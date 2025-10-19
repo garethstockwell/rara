@@ -1,8 +1,6 @@
 // Add a map layer which shows locations
 
-export var name = 'locations';
-
-export function addLayer(map, visible, callback) {
+export function addLayer(map, options) {
   map.on('load', async () => {
     const image = await map.loadImage('../../assets/pin.png');
     map.addImage('custom-marker', image.data);
@@ -10,7 +8,7 @@ export function addLayer(map, visible, callback) {
     fetch('../../data/locations.json')
       .then(res => res.json())
       .then(data => {
-        map.addSource(name, {
+        map.addSource(options.name, {
           'type': 'geojson',
           'data': {
             'type': 'FeatureCollection',
@@ -29,14 +27,14 @@ export function addLayer(map, visible, callback) {
 
         // Add a layer showing the places.
         map.addLayer({
-          'id': name,
+          'id': options.name,
           'type': 'symbol',
-          'source': name,
+          'source': options.name,
           'layout': {
             'icon-image': 'custom-marker',
             'icon-size': 1.0,
             'icon-allow-overlap': true,
-            'visibility': visible ? 'visible' : 'none'
+            'visibility': options.visible ? 'visible' : 'none'
           }
         });
 
@@ -49,7 +47,7 @@ export function addLayer(map, visible, callback) {
         // Make sure to detect marker change for overlapping markers
         // and use mousemove instead of mouseenter event
         let currentFeatureCoordinates = undefined;
-        map.on('mousemove', name, (e) => {
+        map.on('mousemove', options.name, (e) => {
           const featureCoordinates = e.features[0].geometry.coordinates.toString();
           if (currentFeatureCoordinates !== featureCoordinates) {
             currentFeatureCoordinates = featureCoordinates;
@@ -73,14 +71,14 @@ export function addLayer(map, visible, callback) {
           }
         });
 
-        map.on('mouseleave', name, () => {
+        map.on('mouseleave', options.name, () => {
             currentFeatureCoordinates = undefined;
             map.getCanvas().style.cursor = '';
             popup.remove();
         });
 
-        if (callback) {
-          callback(name);
+        if (options.callback) {
+          options.callback(arguments);
         }
       }
     );

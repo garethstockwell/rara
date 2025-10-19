@@ -17,8 +17,10 @@ function toggleVisible(map, name) {
   return visibility != 'visible';
 }
 
-export function add(module, map, visible, callback) {
-  module.addLayer(map, visible, callback);
+export function add(map, module, options) {
+  options.visible = options.visible ?? true;
+
+  module.addLayer(map, options);
 
   function toggle (e) {
     const name = this.textContent;
@@ -28,5 +30,5 @@ export function add(module, map, visible, callback) {
     this.className = toggleVisible(map, name) ? 'active' : '';
   };
 
-  menu.add(module.name, toggle, visible);
+  menu.add(options.name, toggle, options.visible);
 }

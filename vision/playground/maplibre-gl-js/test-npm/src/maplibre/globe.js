@@ -1,8 +1,8 @@
 // Render a globe map
 
-import * as boundary from "./boundary.js";
 import * as info from "./info.js";
 import * as layer from "./layer.js";
+import * as line from "./line.js";
 import * as locations from "./locations.js";
 import * as nav_control from "./nav_control.js";
 
@@ -16,8 +16,8 @@ export function createMap() {
     zoom: 1 // starting zoom
   });
 
-  layer.add(boundary, map, true);
-  layer.add(locations, map, true);
+  layer.add(map, line, {name: 'boundary'});
+  layer.add(map, locations, {name: 'locations'});
   nav_control.add(map);
   info.setUp(map);
 

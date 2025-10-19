@@ -1,8 +1,8 @@
 // Render a flat map
 
-import * as boundary from "./boundary.js";
 import * as info from "./info.js";
 import * as layer from "./layer.js";
+import * as line from "./line.js";
 import * as locations from "./locations.js";
 import * as nav_control from "./nav_control.js";
 
@@ -44,9 +44,7 @@ export function createMap() {
      requestAnimationFrame(animate);
   }
 
-  let init = (name) => {
-    console.log("start", name);
-
+  let init = (_arguments) => {
     var boundary = map.getSource('boundary');
     boundary.getData().then((data) => {
       var coordinates = data["features"][0]["geometry"]["coordinates"];
@@ -144,8 +142,13 @@ export function createMap() {
     );
   });
 
-  layer.add(boundary, map, true, init);
-  layer.add(locations, map, true);
+  layer.add(map, line, {
+    name: 'boundary',
+    callback: init
+  });
+
+  layer.add(map, locations, {name: 'locations'});
+
   nav_control.add(map, false);
   info.setUp(map);
 
