@@ -4,6 +4,7 @@ import * as boundary from "./boundary.js";
 import * as info from "./info.js";
 import * as layer from "./layer.js";
 import * as locations from "./locations.js";
+import * as nav_control from "./nav_control.js";
 
 export var name = "ML fly";
 
@@ -11,7 +12,6 @@ export function createMap() {
     const config = {
         style: "https://api.maptiler.com/maps/openstreetmap/style.json?key=zsAKnM69p5uDhfEeaTCu",
         center: [0.144843, 52.212231], // [lng, lat]
-        zoom: 12,
         container: "map"
     };
 
@@ -68,10 +68,6 @@ export function createMap() {
         });
 
     }
-
-    layer.add(boundary, map, true, init);
-    layer.add(locations, map, true);
-    info.setUp(map);
 
     // The 'building' layer in the streets vector source contains building-height
     // data from OpenStreetMap.
@@ -147,6 +143,11 @@ export function createMap() {
             labelLayerId
         );
     });
+
+    layer.add(boundary, map, true, init);
+    layer.add(locations, map, true);
+    nav_control.add(map, false);
+    info.setUp(map);
 
     return map;
 }

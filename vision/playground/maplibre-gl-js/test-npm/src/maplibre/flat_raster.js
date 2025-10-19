@@ -4,8 +4,9 @@ import * as boundary from "./boundary.js";
 import * as info from "./info.js";
 import * as layer from "./layer.js";
 import * as locations from "./locations.js";
+import * as nav_control from "./nav_control.js";
 
-export var name = "ML flat";
+export var name = "ML flat raster";
 
 export function createMap() {
     const config = {
@@ -26,12 +27,12 @@ export function createMap() {
             "type": "raster",
             "source": "osm",
             "minzoom": 0,
-            "maxzoom": 19
             }
         ]
         },
         center: [0.144843, 52.212231], // [lng, lat]
-        zoom: 15.5,
+        zoom: 16,
+        maxZoom: 18,
         container: "map"
     };
 
@@ -39,6 +40,7 @@ export function createMap() {
 
     layer.add(boundary, map, true);
     layer.add(locations, map, true);
+    nav_control.add(map);
     info.setUp(map);
 
     return map;

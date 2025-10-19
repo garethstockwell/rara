@@ -30,17 +30,30 @@ function toggleVisible() {
   return isVisible();
 }
 
+var event = null;
+
+export function update(map) {
+  if (!freeze) {
+    info().innerHTML =
+        `${
+          // e.point is the x, y coordinates of the mousemove event relative
+          // to the top-left corner of the map
+          event ? JSON.stringify(event.point) : ''} zoom:${map.getZoom()}<br />
+        ${
+          // e.lngLat is the longitude, latitude geographical position of the event
+          event ? JSON.stringify(event.lngLat.wrap()) : ''}`;
+    }
+}
+
+export function setZoom(value) {
+  zoom = value;
+  update();
+}
+
 export function setUp(map) {
   map.on('mousemove', (e) => {
-    if (!freeze) {
-      info().innerHTML =
-        // e.point is the x, y coordinates of the mousemove event relative
-        // to the top-left corner of the map
-        `${JSON.stringify(e.point)
-        }<br />${
-          // e.lngLat is the longitude, latitude geographical position of the event
-          JSON.stringify(e.lngLat.wrap())}`;
-    }
+    event = e;
+    update(map);
   });
 
   function toggle (e) {

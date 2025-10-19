@@ -1,6 +1,7 @@
 // Top-level script
 
-import * as flat from './maplibre/flat.js'
+import * as flat_raster from './maplibre/flat_raster.js'
+import * as flat_vector from './maplibre/flat_vector.js'
 import * as fly from './maplibre/fly.js'
 import * as globe from './maplibre/globe.js'
 import * as info from './maplibre/info.js'
@@ -33,9 +34,10 @@ function registerMap(module) {
 }
 
 export default function main() {
-    registerMap(flat);
+    registerMap(flat_raster);
+    registerMap(flat_vector);
     registerMap(fly);
     registerMap(globe);
 
-    showMap("ML fly");
+    showMap("ML flat vector");
 }
