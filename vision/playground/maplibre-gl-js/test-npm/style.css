@@ -56,13 +56,16 @@ code {
 .map-wrap {
   position: relative;
   width: 100%;
-  height: calc(100vh - 77px);
+  height: 100%;
 }
 
 .map {
-  position: absolute;
   width: 100%;
   height: 100%;
+}
+
+.half {
+  width: 50%;
 }
 
 /* menu */
@@ -142,4 +145,17 @@ code {
   border-radius: 5px;
   padding: 7px;
   box-shadow: 0 3px 3px rgba(0, 0, 0, .5);
+}
+
+/* commentary */
+
+#commentary-wrap {
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+#commentary-wrap h1 {
+  font-size: 24px;
 }

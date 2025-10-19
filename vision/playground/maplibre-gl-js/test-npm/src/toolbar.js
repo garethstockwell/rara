@@ -14,6 +14,7 @@ export function createToolbar(name) {
   new Map([
     ['flat_raster', 'Flat raster'],
     ['flat_vector', 'Flat vector'],
+    ['commentary', 'Commentary'],
     ['fly_boundary', 'Fly boundary'],
     ['globe', 'Globe'],
   ]).forEach(function(value, key) {
