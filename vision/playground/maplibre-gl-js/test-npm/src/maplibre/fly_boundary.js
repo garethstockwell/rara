@@ -155,6 +155,7 @@ export function createMap() {
     name: 'historical',
     era: 'historical',
     color: 'yellow',
+    static_popups: true,
   });
 
   layer.add(map, locations, {
@@ -162,6 +163,7 @@ export function createMap() {
     name: 'contemporary',
     era: 'contemporary',
     color: 'red',
+    static_popups: true,
   });
 
   nav_control.add(map, false);

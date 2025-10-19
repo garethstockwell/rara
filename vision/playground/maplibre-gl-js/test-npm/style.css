@@ -135,3 +135,11 @@ code {
   color: green;
   background: black;
 }
+
+/* popup */
+
+.maplibregl-popup-content {
+  border-radius: 5px;
+  padding: 7px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, .5);
+}
