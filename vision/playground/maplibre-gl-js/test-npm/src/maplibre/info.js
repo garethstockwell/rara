@@ -63,7 +63,7 @@ export function setUp(map) {
     this.className = toggleVisible() ? 'active' : '';
   };
 
-  menu.add("info", toggle, false);
+  menu.add('info', 'Debugging', toggle, false);
 
   const handleKeyDown = (e) => {
     if (e.key === "f") {

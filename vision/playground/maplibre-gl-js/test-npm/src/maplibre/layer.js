@@ -23,12 +23,12 @@ export function add(map, module, options) {
   module.addLayer(map, options);
 
   function toggle (e) {
-    const name = this.textContent;
+    const name = this.name;
     e.preventDefault();
     e.stopPropagation();
 
     this.className = toggleVisible(map, name) ? 'active' : '';
   };
 
-  menu.add(options.name, toggle, options.visible);
+  menu.add(options.name, options.display_name, toggle, options.visible, options.color);
 }

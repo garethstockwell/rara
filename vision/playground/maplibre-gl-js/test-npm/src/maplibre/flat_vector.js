@@ -18,8 +18,27 @@ export function createMap() {
 
   var map = new maplibregl.Map(config);
 
-  layer.add(map, line, {name: 'boundary'});
-  layer.add(map, locations, {name: 'locations'});
+  layer.add(map, line, {
+    display_name: 'Riverside area boundary',
+    name: 'boundary',
+    filename: 'boundary.json',
+    color: 'black'
+  });
+
+  layer.add(map, locations, {
+    display_name: 'Historical locations',
+    name: 'historical',
+    era: 'historical',
+    color: 'yellow',
+  });
+
+  layer.add(map, locations, {
+    display_name: 'Contemporary locations',
+    name: 'contemporary',
+    era: 'contemporary',
+    color: 'red',
+  });
+
   nav_control.add(map);
   info.setUp(map);
 

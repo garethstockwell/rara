@@ -1,26 +1,28 @@
 // Add a map layer which shows a line
 
 export function addLayer(map, options) {
+  var name = options.name;
+
   map.on('load', async () => {
-    fetch('../../data/' + options.name + '.json')
+    fetch('../../data/' + options.filename)
       .then(res => res.json())
       .then(data => {
-        map.addSource(options.name, {
+        map.addSource(name, {
           'type': 'geojson',
           'data': data
         });
 
         map.addLayer({
-          'id': options.name,
+          'id': name,
           'type': 'line',
-          'source': options.name,
+          'source': name,
           'layout': {
             'line-join': 'round',
             'line-cap': 'round',
             'visibility': options.visible ? 'visible' : 'none'
           },
           'paint': {
-            'line-color': '#334155',
+            'line-color': options.color,
             'line-width': 6
           }
         });

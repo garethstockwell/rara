@@ -1,9 +1,6 @@
 // Render a globe map
 
 import * as info from "./info.js";
-import * as layer from "./layer.js";
-import * as line from "./line.js";
-import * as locations from "./locations.js";
 import * as nav_control from "./nav_control.js";
 
 export var name = "ML globe";
@@ -16,8 +13,6 @@ export function createMap() {
     zoom: 1 // starting zoom
   });
 
-  layer.add(map, line, {name: 'boundary'});
-  layer.add(map, locations, {name: 'locations'});
   nav_control.add(map);
   info.setUp(map);
 

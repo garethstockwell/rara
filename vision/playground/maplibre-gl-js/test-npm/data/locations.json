@@ -2,16 +2,19 @@
   {
     "title": "St Andrew the Less",
     "description": "Blah blah",
-    "coordinates": [0.139667, 52.208968]
+    "coordinates": [0.139667, 52.208968],
+    "era": "historical"
   },
   {
     "title": "Dinky Doors Emailerator",
     "description": "Blah blah",
-    "coordinates": [0.138785, 52.210923]
+    "coordinates": [0.138785, 52.210923],
+    "era": "contemporary"
   },
   {
     "title": "Dinky Doors Flysing Saucer",
     "description": "Blah blah",
-    "coordinates": [0.142605, 52.212513]
+    "coordinates": [0.142605, 52.212513],
+    "era": "contemporary"
   }
 ]

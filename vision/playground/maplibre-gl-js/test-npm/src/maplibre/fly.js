@@ -143,11 +143,26 @@ export function createMap() {
   });
 
   layer.add(map, line, {
+    display_name: 'Riverside area boundary',
     name: 'boundary',
+    filename: 'boundary.json',
+    color: 'black',
     callback: init
   });
 
-  layer.add(map, locations, {name: 'locations'});
+  layer.add(map, locations, {
+    display_name: 'Historical locations',
+    name: 'historical',
+    era: 'historical',
+    color: 'yellow',
+  });
+
+  layer.add(map, locations, {
+    display_name: 'Contemporary locations',
+    name: 'contemporary',
+    era: 'contemporary',
+    color: 'red',
+  });
 
   nav_control.add(map, false);
   info.setUp(map);
