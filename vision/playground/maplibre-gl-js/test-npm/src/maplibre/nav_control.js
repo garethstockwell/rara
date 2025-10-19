@@ -15,6 +15,8 @@ export function add(map, showZoom = true) {
         setTimeout(function() { info.update(map); }, 700);
     }
 
-    document.getElementsByClassName('maplibregl-ctrl-zoom-in')[0].addEventListener('click', onZoom);
-    document.getElementsByClassName('maplibregl-ctrl-zoom-out')[0].addEventListener('click', onZoom);
+    if (showZoom) {
+        document.getElementsByClassName('maplibregl-ctrl-zoom-in')[0].addEventListener('click', onZoom);
+        document.getElementsByClassName('maplibregl-ctrl-zoom-out')[0].addEventListener('click', onZoom);
+    }
 }
