@@ -1,3 +1,7 @@
+:root {
+  --color-blue:#3887be;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -16,7 +20,8 @@ code {
 
 .heading {
   margin: 0;
-  padding: 0px;
+  padding-bottom: 10px;
+  padding-top: 10px;
   background-color: black;
   color: white;
   text-align: center;
@@ -37,7 +42,7 @@ code {
   display: inline;
 }
 
-.heading button {
+.heading a {
   font-size: large;
   background-color: transparent;
   color: white;
@@ -51,9 +56,14 @@ code {
   outline: none;
 }
 
-.heading button:hover {
+.heading a:hover {
   background-color: #fff;
   color: #000;
+}
+
+.heading a.active {
+  background-color: var(--color-blue);
+  color: #ffffff;
 }
 
 /* map */
@@ -106,12 +116,12 @@ code {
 }
 
 #menu a.active {
-  background-color: #3887be;
+  background-color: var(--color-blue);
   color: #ffffff;
 }
 
 #menu a.active:hover {
-  background: #3074a4;
+  background: var(--color-blue);
 }
 
 /* info */
