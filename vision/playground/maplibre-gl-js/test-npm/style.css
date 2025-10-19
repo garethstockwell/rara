@@ -16,9 +16,9 @@ code {
     monospace;
 }
 
-/* navbar */
+/* toolbar */
 
-.heading {
+.toolbar {
   margin: 0;
   padding-bottom: 10px;
   padding-top: 10px;
@@ -27,22 +27,7 @@ code {
   text-align: center;
 }
 
-.heading > h1 {
-  padding: 0;
-  margin: 0;
-}
-
-.heading ul {
-  list-style: none;
-  padding: 10px 0 10px 0;
-  margin: 0;
-}
-
-.heading li {
-  display: inline;
-}
-
-.heading a {
+.toolbar a {
   font-size: large;
   background-color: transparent;
   color: white;
@@ -56,12 +41,12 @@ code {
   outline: none;
 }
 
-.heading a:hover {
+.toolbar a:hover {
   background-color: #fff;
   color: #000;
 }
 
-.heading a.active {
+.toolbar a.active {
   background-color: var(--color-blue);
   color: #ffffff;
 }
