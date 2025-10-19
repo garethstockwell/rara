@@ -32,17 +32,17 @@ function toggleVisible() {
 
 var event = null;
 
-export function update(map) {
+function update(map) {
   if (!freeze) {
-    info().innerHTML =
-        `${
-          // e.point is the x, y coordinates of the mousemove event relative
-          // to the top-left corner of the map
-          event ? JSON.stringify(event.point) : ''} zoom:${map.getZoom()}<br />
-        ${
-          // e.lngLat is the longitude, latitude geographical position of the event
-          event ? JSON.stringify(event.lngLat.wrap()) : ''}`;
-    }
+  info().innerHTML =
+    `${
+      // e.point is the x, y coordinates of the mousemove event relative
+      // to the top-left corner of the map
+      event ? JSON.stringify(event.point) : ''} zoom:${map.getZoom()}<br />
+    ${
+      // e.lngLat is the longitude, latitude geographical position of the event
+      event ? JSON.stringify(event.lngLat.wrap()) : ''}`;
+  }
 }
 
 export function setZoom(value) {
