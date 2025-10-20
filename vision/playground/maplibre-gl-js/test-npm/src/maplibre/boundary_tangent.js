@@ -1,5 +1,6 @@
 // Fly around the boundary, with camera pointing along the boundary
 
+import * as buildings from "./buildings.js";
 import * as info from "./info.js";
 import * as layer from "./layer.js";
 import * as line from "./line.js";
@@ -65,11 +66,8 @@ export function createMap() {
 
       animate();
     });
-
   }
 
-  // The 'building' layer in the streets vector source contains building-height
-  // data from OpenStreetMap.
   map.on('load', () => {
     map.addSource("point", {
       type: "geojson",
@@ -93,54 +91,12 @@ export function createMap() {
         "circle-stroke-width": 2,
         "circle-stroke-color": 'white' }
     });
+  });
 
-    // Insert the layer beneath any symbol layer.
-    const layers = map.getStyle().layers;
-
-    let labelLayerId;
-    for (let i = 0; i < layers.length; i++) {
-      if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
-        labelLayerId = layers[i].id;
-        break;
-      }
-    }
-
-    map.addSource('openfreemap', {
-      url: `https://tiles.openfreemap.org/planet`,
-      type: 'vector',
-    });
-
-    map.addLayer(
-      {
-        id: '3d-buildings',
-        source: 'openfreemap',
-        'source-layer': 'building',
-        type: 'fill-extrusion',
-        minzoom: 15,
-        filter: ['!=', ['get', 'hide_3d'], true],
-        paint: {
-          'fill-extrusion-color': [
-            'interpolate',
-            ['linear'],
-            ['get', 'render_height'], 0, 'lightgray', 200, 'royalblue', 400, 'lightblue'
-          ],
-          'fill-extrusion-height': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            15,
-            0,
-            16,
-            ['get', 'render_height']
-          ],
-          'fill-extrusion-base': ['case',
-            ['>=', ['get', 'zoom'], 16],
-            ['get', 'render_min_height'], 0
-          ]
-        }
-      },
-      labelLayerId
-    );
+  layer.add(map, buildings, {
+    display_name: '3D buildings',
+    name: '3d_buildings',
+    color: '#aaaaaa'
   });
 
   layer.add(map, line, {
