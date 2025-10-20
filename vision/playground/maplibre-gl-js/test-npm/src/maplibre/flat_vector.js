@@ -23,7 +23,8 @@ export function createMap() {
     display_name: 'Riverside area boundary',
     name: 'boundary',
     filename: 'boundary.json',
-    color: 'black'
+    color: 'black',
+    visible: true
   });
 
   layer.add(map, locations, {
@@ -49,7 +50,8 @@ export function createMap() {
   layer.add(map, overlay, {
     display_name: 'Map circa 1910',
     name: 'g4_bac_cam',
-    opacity: 0.75
+    opacity: 0.75,
+    visible: false
   });
 
   nav_control.add(map);

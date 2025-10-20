@@ -30,6 +30,9 @@ export function addLayer(map, options) {
         source: name,
         paint: {
           'raster-opacity': options.opacity ?? 1.0
+        },
+        layout: {
+          visibility: options.visible ? 'visible' : 'none'
         }
       });
     });
