@@ -1,12 +1,12 @@
 // Fly around the boundary, with camera pointing along the boundary
 
-import * as buildings from "./buildings.js";
-import * as info from "./info.js";
-import * as layer from "./layer.js";
-import * as line from "./line.js";
-import * as locations from "./locations.js";
-import * as nav_control from "./nav_control.js";
-import * as overlay from "./overlay.js";
+import * as info from "../control/info.js";
+import * as nav from "../control/nav.js";
+import * as buildings from "../layer/buildings.js";
+import * as layer from "../layer/layer.js";
+import * as line from "../layer/line.js";
+import * as locations from "../layer/locations.js";
+import * as overlay from "../layer/overlay.js";
 
 export var name = "ML fly";
 
@@ -136,7 +136,7 @@ export function createMap() {
     visible: false
   });
 
-  nav_control.add(map, false);
+  nav.add(map, false);
   info.setUp(map);
 
   return map;

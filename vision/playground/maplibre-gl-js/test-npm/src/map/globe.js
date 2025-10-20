@@ -1,7 +1,7 @@
 // Render a globe map
 
-import * as info from "./info.js";
-import * as nav_control from "./nav_control.js";
+import * as info from "../control/info.js";
+import * as nav from "../control/nav.js";
 
 export var name = "ML globe";
 
@@ -13,7 +13,7 @@ export function createMap() {
     zoom: 1 // starting zoom
   });
 
-  nav_control.add(map);
+  nav.add(map);
   info.setUp(map);
 
   return map;

@@ -1,6 +1,6 @@
 // Add an overlay which shows coordinates of the mouse pointer
 
-import * as menu from "../menu.js";
+import * as menu from "./menu.js";
 
 var freeze = false;
 

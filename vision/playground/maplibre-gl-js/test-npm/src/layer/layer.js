@@ -1,6 +1,6 @@
 // Helpers for adding map layers
 
-import * as menu from "../menu.js";
+import * as menu from "../control/menu.js";
 
 function toggleVisible(map, name) {
   const visibility = map.getLayoutProperty(

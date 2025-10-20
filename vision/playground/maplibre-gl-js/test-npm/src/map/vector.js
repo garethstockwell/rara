@@ -1,39 +1,19 @@
 // Render a flat map
 
-import * as info from "./info.js";
-import * as layer from "./layer.js";
-import * as line from "./line.js";
-import * as locations from "./locations.js";
-import * as nav_control from "./nav_control.js";
-import * as overlay from "./overlay.js";
+import * as info from "../control/info.js";
+import * as nav from "../control/nav.js";
+import * as layer from "../layer/layer.js";
+import * as line from "../layer/line.js";
+import * as locations from "../layer/locations.js";
+import * as overlay from "../layer/overlay.js";
 
-export var name = "ML flat raster";
+export var name = "ML flat vector";
 
 export function createMap() {
   const config = {
-    style: {
-    "version": 8,
-    "sources": {
-      "osm": {
-      "type": "raster",
-      "tiles": [
-        "https://tile.openstreetmap.org/{z}/{x}/{y}.png"  // OpenStreetMap Tile URL
-      ],
-      "tileSize": 256
-      }
-    },
-    "layers": [
-      {
-      "id": "osm-layer",
-      "type": "raster",
-      "source": "osm",
-      "minzoom": 0,
-      }
-    ]
-    },
+    style: "https://api.maptiler.com/maps/openstreetmap/style.json?key=zsAKnM69p5uDhfEeaTCu",
     center: [0.144843, 52.212231], // [lng, lat]
     zoom: 15,
-    maxZoom: 18,
     container: "map"
   };
 
@@ -43,7 +23,8 @@ export function createMap() {
     display_name: 'Riverside area boundary',
     name: 'boundary',
     filename: 'boundary.json',
-    color: 'black'
+    color: 'black',
+    visible: true
   });
 
   layer.add(map, locations, {
@@ -73,7 +54,7 @@ export function createMap() {
     visible: false
   });
 
-  nav_control.add(map);
+  nav.add(map);
   info.setUp(map);
 
   return map;
