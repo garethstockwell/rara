@@ -43,13 +43,6 @@ export function createMap() {
   layer.add(map, overlay, {
     display_name: 'Barnwell Priory (historical)',
     name: 'barnwell_priory',
-    filename: 'assets/barnwell_priory.png',
-    bounds: [
-      [0.138073, 52.210018],
-      [0.140431, 52.210018],
-      [0.140431, 52.208740],
-      [0.138073, 52.208740]
-    ],
     color: 'orange',
   });
 

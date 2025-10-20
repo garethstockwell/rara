@@ -5,6 +5,7 @@ import * as layer from "./layer.js";
 import * as line from "./line.js";
 import * as locations from "./locations.js";
 import * as nav_control from "./nav_control.js";
+import * as overlay from "./overlay.js";
 
 export var name = "ML fly";
 
@@ -17,7 +18,7 @@ export function createMap() {
 
   var map = new maplibregl.Map(config);
 
-  let start = null, playtime = 50000;
+  let start = null, playtime = 30000;
   let route = null;
 
   const center = new maplibregl.LngLat(0.14547600132800653, 52.212610097321885);
@@ -154,6 +155,12 @@ export function createMap() {
     era: 'contemporary',
     color: 'red',
     static_popups: true,
+  });
+
+  layer.add(map, overlay, {
+    display_name: 'Barnwell Priory (historical)',
+    name: 'barnwell_priory',
+    color: 'orange',
   });
 
   nav_control.add(map, false);

@@ -5,6 +5,7 @@ import * as layer from "./layer.js";
 import * as line from "./line.js";
 import * as locations from "./locations.js";
 import * as nav_control from "./nav_control.js";
+import * as overlay from "./overlay.js";
 
 export var name = "ML flat raster";
 
@@ -57,6 +58,12 @@ export function createMap() {
     name: 'contemporary',
     era: 'contemporary',
     color: 'red',
+  });
+
+  layer.add(map, overlay, {
+    display_name: 'Barnwell Priory (historical)',
+    name: 'barnwell_priory',
+    color: 'orange',
   });
 
   nav_control.add(map);
