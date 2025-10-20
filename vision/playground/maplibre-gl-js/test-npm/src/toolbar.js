@@ -15,8 +15,8 @@ export function createToolbar(name) {
     ['commentary', 'Commentary'],
     ['boundary_tangent', 'Boundary tangent'],
     ['boundary_radius', 'Boundary radius'],
-    ['flat_raster', 'Flat raster'],
-    ['flat_vector', 'Flat vector'],
+    ['raster', 'Raster'],
+    ['vector', 'Vector'],
     ['globe', 'Globe'],
   ]).forEach(function(value, key) {
     add(key, value, key == name)
