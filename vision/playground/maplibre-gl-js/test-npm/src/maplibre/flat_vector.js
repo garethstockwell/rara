@@ -46,6 +46,12 @@ export function createMap() {
     color: 'orange',
   });
 
+  layer.add(map, overlay, {
+    display_name: 'Map circa 1910',
+    name: 'g4_bac_cam',
+    opacity: 0.75
+  });
+
   nav_control.add(map);
   info.setUp(map);
 
