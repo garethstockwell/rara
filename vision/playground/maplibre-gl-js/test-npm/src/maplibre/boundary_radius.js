@@ -52,29 +52,6 @@ export function createMap() {
   }
 
   map.on('load', async () => {
-    map.addSource("point", {
-      type: "geojson",
-      data: {
-        type: "Feature",
-        properties: {},
-        geometry: {
-          type: "Point",
-          coordinates: maplibregl.MercatorCoordinate.fromLngLat(center)
-        }
-      }
-    });
-
-    map.addLayer({
-      id: "point",
-      source: "point",
-      type: "circle",
-      paint: {
-        "circle-radius": 10,
-        "circle-color": '#ff0000',
-        "circle-stroke-width": 2,
-        "circle-stroke-color": 'white' }
-    });
-
     fetch('../../data/boundary_smooth.json')
       .then(res => res.json())
       .then(data => {
