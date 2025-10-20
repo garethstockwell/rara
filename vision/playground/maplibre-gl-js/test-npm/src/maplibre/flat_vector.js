@@ -5,6 +5,7 @@ import * as layer from "./layer.js";
 import * as line from "./line.js";
 import * as locations from "./locations.js";
 import * as nav_control from "./nav_control.js";
+import * as overlay from "./overlay.js";
 
 export var name = "ML flat vector";
 
@@ -37,6 +38,19 @@ export function createMap() {
     name: 'contemporary',
     era: 'contemporary',
     color: 'red',
+  });
+
+  layer.add(map, overlay, {
+    display_name: 'Barnwell Priory (historical)',
+    name: 'barnwell_priory',
+    filename: 'assets/barnwell_priory.png',
+    bounds: [
+      [0.138073, 52.210018],
+      [0.140431, 52.210018],
+      [0.140431, 52.208740],
+      [0.138073, 52.208740]
+    ],
+    color: 'orange',
   });
 
   nav_control.add(map);
