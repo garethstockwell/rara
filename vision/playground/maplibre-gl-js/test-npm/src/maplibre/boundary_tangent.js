@@ -1,4 +1,4 @@
-// Render a flat map
+// Fly around the boundary, with camera pointing along the boundary
 
 import * as info from "./info.js";
 import * as layer from "./layer.js";
@@ -22,26 +22,26 @@ export function createMap() {
   let route = null;
 
   let animate = () => {
-     start = start || Date.now();
+    start = start || Date.now();
 
-     // calculate route progress and visualize a marker at the current progress
-     let progress = (Date.now() - start) % playtime;
-     let lngLat = turf.along(route, turf.lineDistance(route) * progress / playtime).geometry.coordinates;
-     map.getSource('point').setData({ type: 'Point', coordinates: lngLat });
+    // calculate route progress and visualize a marker at the current progress
+    let progress = (Date.now() - start) % playtime;
+    let lngLat = turf.along(route, turf.lineDistance(route) * progress / playtime).geometry.coordinates;
+    map.getSource('point').setData({ type: 'Point', coordinates: lngLat });
 
-     // let the camera follow the route
-     let coord = maplibregl.MercatorCoordinate.fromLngLat(lngLat);
-     let dx = coord.x - camera.coord.x, dy = coord.y - camera.coord.y;
-     let delta = Math.hypot(dx, dy) - camera.distance;
-     if (delta > 0) {
+    // let the camera follow the route
+    let coord = maplibregl.MercatorCoordinate.fromLngLat(lngLat);
+    let dx = coord.x - camera.coord.x, dy = coord.y - camera.coord.y;
+    let delta = Math.hypot(dx, dy) - camera.distance;
+    if (delta > 0) {
       let a = Math.atan2(dy, dx);
       camera.coord.x += Math.cos(a) * delta;
       camera.coord.y += Math.sin(a) * delta;
-     }
-     // FIXME! when using easeTo the positioning is not correct
-     map.jumpTo(map.calculateCameraOptionsFromTo(camera.coord.toLngLat(), camera.altitude, lngLat));
+    }
+    // FIXME! when using easeTo the positioning is not correct
+    map.jumpTo(map.calculateCameraOptionsFromTo(camera.coord.toLngLat(), camera.altitude, lngLat));
 
-     requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
   }
 
   let init = (_arguments) => {

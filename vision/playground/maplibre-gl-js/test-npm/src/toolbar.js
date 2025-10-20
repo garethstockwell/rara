@@ -12,10 +12,11 @@ function add(name, text, active) {
 
 export function createToolbar(name) {
   new Map([
+    ['commentary', 'Commentary'],
+    ['boundary_tangent', 'Boundary tangent'],
+    ['boundary_radius', 'Boundary radius'],
     ['flat_raster', 'Flat raster'],
     ['flat_vector', 'Flat vector'],
-    ['commentary', 'Commentary'],
-    ['fly_boundary', 'Fly boundary'],
     ['globe', 'Globe'],
   ]).forEach(function(value, key) {
     add(key, value, key == name)
