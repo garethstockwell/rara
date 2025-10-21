@@ -4,8 +4,11 @@ function menu() {
   return document.getElementById('menu');
 }
 
-export function reset() {
-  menu().innerHTML = '';
+export function show() {
+  menu().hidden = false;
+}
+
+export function hide() {
   menu().hidden = true;
 }
 
@@ -25,5 +28,14 @@ export function add(name, text, onclick, active, color) {
   link.appendChild(box);
 
   menu().appendChild(link);
-  menu().hidden = false;
+  show();
 }
+
+const handleKeyDown = (e) => {
+  if (e.key === "m") {
+    toggleVisible();
+  }
+};
+
+document.addEventListener('keydown', handleKeyDown, true);
+
