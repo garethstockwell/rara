@@ -3,7 +3,7 @@
 export function addLayer(map, options) {
   var id = options.id;
 
-  map.on('load', async () => {
+  map.on('load', () => {
     fetch('../../data/' + options.filename)
       .then(res => res.json())
       .then(data => {
@@ -28,7 +28,7 @@ export function addLayer(map, options) {
         });
 
         if (options.callback) {
-          options.callback(arguments);
+          options.callback(['line', id]);
         }
       }
     );

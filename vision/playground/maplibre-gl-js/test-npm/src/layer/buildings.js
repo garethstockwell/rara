@@ -3,7 +3,7 @@
 export function addLayer(map, options) {
   var id = options.id;
 
-  map.on('load', async () => {
+  map.on('load', () => {
     // Insert the layer beneath any symbol layer.
     const layers = map.getStyle().layers;
 
@@ -51,5 +51,9 @@ export function addLayer(map, options) {
       },
       labelLayerId
     );
+
+    if (options.callback) {
+      options.callback(['buildings', id]);
+    }
   });
 }

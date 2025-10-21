@@ -95,7 +95,7 @@ export function addLayer(map, options) {
         }
 
         if (options.callback) {
-          options.callback(arguments);
+          options.callback(['locations', id]);
         }
       }
     );

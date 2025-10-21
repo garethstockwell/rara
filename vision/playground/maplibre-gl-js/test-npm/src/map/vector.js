@@ -17,12 +17,38 @@ export function createMap() {
 
   var map = new maplibregl.Map(config);
 
+/*
+  const layers = [];
+
+  function callback(args) {
+    console.log(args);
+    layers.push(args[1]);
+    console.log(layers);
+
+    if (layers.includes('boundary') && layers.includes('g4_bac_cam')) {
+      map.moveLayer('g4_bac_cam', 'boundary');
+    }
+
+    if (layers.includes('boundary') && layers.includes('barnwell_priory')) {
+      map.moveLayer('barnwell_priory', 'boundary');
+    }
+
+    if (layers.includes('barnwell_priory') && layers.includes('g4_bac_cam')) {
+      map.moveLayer('g4_bac_cam', 'barnwell_priory');
+    }
+  }
+*/
+  function callback(args) {
+    console.log(args);
+  }
+
   layer.add(map, line, {
     id: 'boundary',
     text: 'Riverside area boundary',
     filename: 'boundary.json',
     color: 'black',
-    visible: true
+    visible: true,
+    callback: callback
   });
 
   layer.add(map, locations, {
@@ -30,6 +56,7 @@ export function createMap() {
     text: 'Historical locations',
     era: 'historical',
     color: 'yellow',
+    callback: callback,
   });
 
   layer.add(map, locations, {
@@ -37,19 +64,22 @@ export function createMap() {
     text: 'Contemporary locations',
     era: 'contemporary',
     color: 'red',
+    callback: callback,
   });
 
   layer.add(map, overlay, {
     id: 'barnwell_priory',
     text: 'Barnwell Priory (historical)',
     color: 'orange',
+    callback: callback,
   });
 
   layer.add(map, overlay, {
     id: 'g4_bac_cam',
     text: 'Map circa 1910',
     opacity: 0.75,
-    visible: false
+    visible: false,
+    callback: callback,
   });
 
   nav.add(map);
