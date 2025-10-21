@@ -9,7 +9,7 @@ export function addLayer(map, options) {
 
     let labelLayerId;
     for (let i = 0; i < layers.length; i++) {
-      if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+      if (layers[i].type === 'symbol' && 'layout' in layers[i] && layers[i].layout['text-field']) {
         labelLayerId = layers[i].id;
         break;
       }
@@ -28,6 +28,9 @@ export function addLayer(map, options) {
         type: 'fill-extrusion',
         minzoom: 15,
         filter: ['!=', ['get', 'hide_3d'], true],
+        layout: {
+          'visibility': options.visible ? 'visible' : 'none'
+        },
         paint: {
           'fill-extrusion-color': [
             'interpolate',

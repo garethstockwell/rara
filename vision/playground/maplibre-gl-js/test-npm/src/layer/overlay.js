@@ -34,7 +34,7 @@ export function addLayer(map, options) {
           layout: {
             visibility: options.visible ? 'visible' : 'none'
           }
-        });
+        }, options.z_order ? options.z_order.myPosition(id) : null);
       });
 
     if (options.callback) {

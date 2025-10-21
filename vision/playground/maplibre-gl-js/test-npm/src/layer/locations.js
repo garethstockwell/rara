@@ -40,7 +40,7 @@ export function addLayer(map, options) {
             'icon-allow-overlap': true,
             'visibility': options.visible ? 'visible' : 'none'
           }
-        });
+        }, options.z_order ? options.z_order.myPosition(id) : null);
 
         if (options.static_popups) {
           // Display all popups

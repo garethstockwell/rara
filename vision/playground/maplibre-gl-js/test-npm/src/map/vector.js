@@ -2,6 +2,7 @@
 
 import * as info from "../control/info.js";
 import * as nav from "../control/nav.js";
+import * as buildings from "../layer/buildings.js";
 import * as layer from "../layer/layer.js";
 import * as line from "../layer/line.js";
 import * as locations from "../layer/locations.js";
@@ -17,30 +18,25 @@ export function createMap() {
 
   var map = new maplibregl.Map(config);
 
-/*
-  const layers = [];
+  const z_order = layer.zOrder([
+    'g4_bac_cam',
+    'barnwell_priory',
+    'historical',
+    'contemporary',
+    'boundary'
+  ]);
 
-  function callback(args) {
-    console.log(args);
-    layers.push(args[1]);
-    console.log(layers);
+  map.on('load', () => {
+    z_order.load(map)
+  });
 
-    if (layers.includes('boundary') && layers.includes('g4_bac_cam')) {
-      map.moveLayer('g4_bac_cam', 'boundary');
-    }
-
-    if (layers.includes('boundary') && layers.includes('barnwell_priory')) {
-      map.moveLayer('barnwell_priory', 'boundary');
-    }
-
-    if (layers.includes('barnwell_priory') && layers.includes('g4_bac_cam')) {
-      map.moveLayer('g4_bac_cam', 'barnwell_priory');
-    }
-  }
-*/
-  function callback(args) {
-    console.log(args);
-  }
+  layer.add(map, buildings, {
+    id: '3d_buildings',
+    text: '3D buildings',
+    color: '#aaaaaa',
+    z_order: z_order,
+    visible: false
+  });
 
   layer.add(map, line, {
     id: 'boundary',
@@ -48,7 +44,7 @@ export function createMap() {
     filename: 'boundary.json',
     color: 'black',
     visible: true,
-    callback: callback
+    z_order: z_order,
   });
 
   layer.add(map, locations, {
@@ -56,7 +52,7 @@ export function createMap() {
     text: 'Historical locations',
     era: 'historical',
     color: 'yellow',
-    callback: callback,
+    z_order: z_order,
   });
 
   layer.add(map, locations, {
@@ -64,14 +60,14 @@ export function createMap() {
     text: 'Contemporary locations',
     era: 'contemporary',
     color: 'red',
-    callback: callback,
+    z_order: z_order,
   });
 
   layer.add(map, overlay, {
     id: 'barnwell_priory',
     text: 'Barnwell Priory (historical)',
     color: 'orange',
-    callback: callback,
+    z_order: z_order,
   });
 
   layer.add(map, overlay, {
@@ -79,7 +75,7 @@ export function createMap() {
     text: 'Map circa 1910',
     opacity: 0.75,
     visible: false,
-    callback: callback,
+    z_order: z_order,
   });
 
   nav.add(map);

@@ -66,7 +66,18 @@ export function createMap() {
     });
   }
 
+  const z_order = layer.zOrder([
+    'g4_bac_cam',
+    'barnwell_priory',
+    'historical',
+    'contemporary',
+    'boundary',
+    'point'
+  ]);
+
   map.on('load', () => {
+    z_order.load(map)
+
     map.addSource("point", {
       type: "geojson",
       data: {
@@ -88,13 +99,14 @@ export function createMap() {
         "circle-color": '#ff0000',
         "circle-stroke-width": 2,
         "circle-stroke-color": 'white' }
-    });
+    }, z_order.myPosition('point'));
   });
 
   layer.add(map, buildings, {
     id: '3d_buildings',
     text: '3D buildings',
-    color: '#aaaaaa'
+    color: '#aaaaaa',
+    z_order: z_order,
   });
 
   layer.add(map, line, {
@@ -102,7 +114,8 @@ export function createMap() {
     text: 'Riverside area boundary',
     filename: 'boundary.json',
     color: 'black',
-    callback: init
+    z_order: z_order,
+    callback: init,
   });
 
   layer.add(map, locations, {
@@ -111,6 +124,7 @@ export function createMap() {
     era: 'historical',
     color: 'yellow',
     static_popups: true,
+    z_order: z_order,
   });
 
   layer.add(map, locations, {
@@ -119,19 +133,22 @@ export function createMap() {
     era: 'contemporary',
     color: 'red',
     static_popups: true,
+    z_order: z_order,
   });
 
   layer.add(map, overlay, {
     id: 'barnwell_priory',
     text: 'Barnwell Priory (historical)',
     color: 'orange',
+    z_order: z_order,
   });
 
   layer.add(map, overlay, {
     id: 'g4_bac_cam',
     text: 'Map circa 1910',
     opacity: 0.75,
-    visible: false
+    visible: false,
+    z_order: z_order,
   });
 
   nav.add(map, false);

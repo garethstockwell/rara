@@ -2,6 +2,7 @@
 
 import * as info from "../control/info.js";
 import * as nav from "../control/nav.js";
+import * as buildings from "../layer/buildings.js";
 import * as layer from "../layer/layer.js";
 import * as line from "../layer/line.js";
 import * as locations from "../layer/locations.js";
@@ -37,11 +38,32 @@ export function createMap() {
 
   var map = new maplibregl.Map(config);
 
+  const z_order = layer.zOrder([
+    'g4_bac_cam',
+    'barnwell_priory',
+    'historical',
+    'contemporary',
+    'boundary'
+  ]);
+
+  map.on('load', () => {
+    z_order.load(map)
+  });
+
+  layer.add(map, buildings, {
+    id: '3d_buildings',
+    text: '3D buildings',
+    color: '#aaaaaa',
+    z_order: z_order,
+    visible: false
+  });
+
   layer.add(map, line, {
     id: 'boundary',
     text: 'Riverside area boundary',
     filename: 'boundary.json',
-    color: 'black'
+    color: 'black',
+    z_order: z_order,
   });
 
   layer.add(map, locations, {
@@ -49,6 +71,7 @@ export function createMap() {
     text: 'Historical locations',
     era: 'historical',
     color: 'yellow',
+    z_order: z_order,
   });
 
   layer.add(map, locations, {
@@ -56,19 +79,22 @@ export function createMap() {
     text: 'Contemporary locations',
     era: 'contemporary',
     color: 'red',
+    z_order: z_order,
   });
 
   layer.add(map, overlay, {
     id: 'barnwell_priory',
     text: 'Barnwell Priory (historical)',
     color: 'orange',
+    z_order: z_order,
   });
 
   layer.add(map, overlay, {
     id: 'g4_bac_cam',
     text: 'Map circa 1910',
     opacity: 0.75,
-    visible: false
+    visible: false,
+    z_order: z_order,
   });
 
   nav.add(map);
