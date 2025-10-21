@@ -8,8 +8,6 @@ import * as line from "../layer/line.js";
 import * as locations from "../layer/locations.js";
 import * as overlay from "../layer/overlay.js";
 
-export var name = "ML fly";
-
 export function createMap() {
   const config = {
     style: "https://api.maptiler.com/maps/openstreetmap/style.json?key=zsAKnM69p5uDhfEeaTCu",
@@ -62,43 +60,43 @@ export function createMap() {
   });
 
   layer.add(map, buildings, {
-    display_name: '3D buildings',
-    name: '3d_buildings',
+    id: '3d_buildings',
+    text: '3D buildings',
     color: '#aaaaaa'
   });
 
   layer.add(map, line, {
-    display_name: 'Riverside area boundary',
-    name: 'boundary',
+    id: 'boundary',
+    text: 'Riverside area boundary',
     filename: 'boundary.json',
     color: 'black'
   });
 
   layer.add(map, locations, {
-    display_name: 'Historical locations',
-    name: 'historical',
+    id: 'historical',
+    text: 'Historical locations',
     era: 'historical',
     color: 'yellow',
     static_popups: true,
   });
 
   layer.add(map, locations, {
-    display_name: 'Contemporary locations',
-    name: 'contemporary',
+    id: 'contemporary',
+    text: 'Contemporary locations',
     era: 'contemporary',
     color: 'red',
     static_popups: true,
   });
 
   layer.add(map, overlay, {
-    display_name: 'Barnwell Priory (historical)',
-    name: 'barnwell_priory',
+    id: 'barnwell_priory',
+    text: 'Barnwell Priory (historical)',
     color: 'orange',
   });
 
   layer.add(map, overlay, {
-    display_name: 'Map circa 1910',
-    name: 'g4_bac_cam',
+    id: 'g4_bac_cam',
+    text: 'Map circa 1910',
     opacity: 0.75,
     visible: false
   });

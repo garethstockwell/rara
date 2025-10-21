@@ -1,90 +1,90 @@
 [
   {
-    "key": "stourbridge_common",
+    "id": "stourbridge_common",
     "title": "Stourbridge Common",
     "description": "Blah blah",
     "coordinates": [0.150095, 52.217236],
     "era": "historical"
   },
   {
-    "key": "st_andrew_the_less",
+    "id": "st_andrew_the_less",
     "title": "St Andrew the Less",
     "description": "Blah blah",
     "coordinates": [0.139667, 52.208968],
     "era": "historical"
   },
   {
-    "key": "leper_chapel",
+    "id": "leper_chapel",
     "title": "Leper Chapel",
     "description": "Blah blah",
     "coordinates": [0.152569, 52.213920],
     "era": "historical"
   },
   {
-    "key": "cellarers_chequer",
+    "id": "cellarers_chequer",
     "title": "Cellarer's Chequer",
     "description": "Blah blah",
     "coordinates": [0.139045, 52.209589],
     "era": "historical"
   },
   {
-    "key": "abbey_house",
+    "id": "abbey_house",
     "title": "Abbey House",
     "description": "Blah blah",
     "coordinates": [0.138523, 52.209092],
     "era": "historical"
   },
   {
-    "key": "cmot",
+    "id": "cmot",
     "title": "Cambridge Museum of Technology",
     "description": "Blah blah",
     "coordinates": [0.143660, 52.212458],
     "era": "historical"
   },
   {
-    "key": "emailerator",
+    "id": "emailerator",
     "title": "Dinky Doors Emailerator",
     "description": "Blah blah",
     "coordinates": [0.138785, 52.210923],
     "era": "contemporary"
   },
   {
-    "key": "war_memorial",
+    "id": "war_memorial",
     "title": "Cambridge Gas Company War Memorial",
     "description": "Blah blah",
     "coordinates": [0.144123, 52.210016],
     "era": "contemporary"
   },
   {
-    "key": "flying_saucer",
+    "id": "flying_saucer",
     "title": "Dinky Doors Flying Saucer",
     "description": "Blah blah",
     "coordinates": [0.142605, 52.212513],
     "era": "contemporary"
   },
   {
-    "key": "equiano_bridge",
+    "id": "equiano_bridge",
     "title": "Equiano Bridge",
     "description": "Blah blah",
     "coordinates": [0.142986, 52.213628],
     "era": "contemporary"
   },
   {
-    "key": "engineers_house",
+    "id": "engineers_house",
     "title": "Engineer's House",
     "description": "Blah blah",
     "coordinates": [0.142851, 52.212454],
     "era": "contemporary"
   },
   {
-    "key": "kerb_kollective",
+    "id": "kerb_kollective",
     "title": "Kerb Kollective",
     "description": "Blah blah",
     "coordinates": [0.143076, 52.212559],
     "era": "contemporary"
   },
   {
-    "key": "logans_meadow",
+    "id": "logans_meadow",
     "title": "Logan's Meadow Nature Reserve",
     "description": "Blah blah",
     "coordinates": [0.141562, 52.213629],

@@ -2,16 +2,16 @@
 
 import * as menu from "../control/menu.js";
 
-function toggleVisible(map, name) {
+function toggleVisible(map, id) {
   const visibility = map.getLayoutProperty(
-    name,
+    id,
     'visibility'
   );
 
   if (visibility === 'visible') {
-    map.setLayoutProperty(name, 'visibility', 'none');
+    map.setLayoutProperty(id, 'visibility', 'none');
   } else {
-    map.setLayoutProperty(name, 'visibility', 'visible');
+    map.setLayoutProperty(id, 'visibility', 'visible');
   }
 
   return visibility != 'visible';
@@ -23,12 +23,12 @@ export function add(map, module, options) {
   module.addLayer(map, options);
 
   function toggle (e) {
-    const name = this.name;
+    const id = this.layer_id;
     e.preventDefault();
     e.stopPropagation();
 
-    this.className = toggleVisible(map, name) ? 'active' : '';
+    this.classid = toggleVisible(map, id) ? 'active' : '';
   };
 
-  menu.add(options.name, options.display_name, toggle, options.visible, options.color);
+  menu.add(options.id, options.text, toggle, options.visible, options.color);
 }

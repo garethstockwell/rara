@@ -12,10 +12,10 @@ export function hide() {
   menu().hidden = true;
 }
 
-export function add(name, text, onclick, active, color) {
+export function add(id, text, onclick, active, color) {
   const link = document.createElement('a');
-  link.id = 'menu_' + name;
-  link.name = name;
+  link.id = 'menu_' + id;
+  link.layer_id = id;
   link.href = '#';
   link.textContent = text;
   link.className = active ? 'active' : '';

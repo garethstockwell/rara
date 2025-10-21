@@ -7,8 +7,6 @@ import * as line from "../layer/line.js";
 import * as locations from "../layer/locations.js";
 import * as overlay from "../layer/overlay.js";
 
-export var name = "ML flat raster";
-
 export function createMap() {
   const config = {
     style: {
@@ -40,35 +38,35 @@ export function createMap() {
   var map = new maplibregl.Map(config);
 
   layer.add(map, line, {
-    display_name: 'Riverside area boundary',
-    name: 'boundary',
+    id: 'boundary',
+    text: 'Riverside area boundary',
     filename: 'boundary.json',
     color: 'black'
   });
 
   layer.add(map, locations, {
-    display_name: 'Historical locations',
-    name: 'historical',
+    id: 'historical',
+    text: 'Historical locations',
     era: 'historical',
     color: 'yellow',
   });
 
   layer.add(map, locations, {
-    display_name: 'Contemporary locations',
-    name: 'contemporary',
+    id: 'contemporary',
+    text: 'Contemporary locations',
     era: 'contemporary',
     color: 'red',
   });
 
   layer.add(map, overlay, {
-    display_name: 'Barnwell Priory (historical)',
-    name: 'barnwell_priory',
+    id: 'barnwell_priory',
+    text: 'Barnwell Priory (historical)',
     color: 'orange',
   });
 
   layer.add(map, overlay, {
-    display_name: 'Map circa 1910',
-    name: 'g4_bac_cam',
+    id: 'g4_bac_cam',
+    text: 'Map circa 1910',
     opacity: 0.75,
     visible: false
   });

@@ -1,7 +1,7 @@
 // Add 3D buildings
 
 export function addLayer(map, options) {
-  var name = options.name;
+  var id = options.id;
 
   map.on('load', async () => {
     // Insert the layer beneath any symbol layer.
@@ -15,15 +15,15 @@ export function addLayer(map, options) {
       }
     }
 
-    map.addSource(name, {
+    map.addSource(id, {
       url: `https://tiles.openfreemap.org/planet`,
       type: 'vector',
     });
 
     map.addLayer(
       {
-        id: name,
-        source: name,
+        id: id,
+        source: id,
         'source-layer': 'building',
         type: 'fill-extrusion',
         minzoom: 15,

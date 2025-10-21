@@ -1,18 +1,18 @@
 // Add a map layer which shows locations
 
 export function addLayer(map, options) {
-  var name = options.name;
+  var id = options.id;
 
   map.on('load', async () => {
     const image = await map.loadImage('../../assets/pin-' + options.color + '.png');
-    map.addImage(name, image.data);
+    map.addImage(id, image.data);
 
     fetch('../../data/locations.json')
       .then(res => res.json())
       .then(data => {
         var items = data.filter(item => item.era == options.era);
 
-        map.addSource(name, {
+        map.addSource(id, {
           'type': 'geojson',
           'data': {
             'type': 'FeatureCollection',
@@ -31,11 +31,11 @@ export function addLayer(map, options) {
 
         // Add a layer showing the places.
         map.addLayer({
-          'id': name,
+          'id': id,
           'type': 'symbol',
-          'source': name,
+          'source': id,
           'layout': {
-            'icon-image': name,
+            'icon-image': id,
             'icon-size': 1.0,
             'icon-allow-overlap': true,
             'visibility': options.visible ? 'visible' : 'none'
@@ -63,7 +63,7 @@ export function addLayer(map, options) {
           // Make sure to detect marker change for overlapping markers
           // and use mousemove instead of mouseenter event
           let currentFeatureCoordinates = undefined;
-          map.on('mousemove', name, (e) => {
+          map.on('mousemove', id, (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
             if (currentFeatureCoordinates !== featureCoordinates) {
               currentFeatureCoordinates = featureCoordinates;
@@ -87,7 +87,7 @@ export function addLayer(map, options) {
             }
           });
 
-          map.on('mouseleave', name, () => {
+          map.on('mouseleave', id, () => {
               currentFeatureCoordinates = undefined;
               map.getCanvas().style.cursor = '';
               popup.remove();

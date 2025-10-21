@@ -1,13 +1,13 @@
 // Add a map layer which shows an image
 
 export function addLayer(map, options) {
-  var name = options.name;
+  var id = options.id;
 
   map.on('load', async () => {
   fetch('../../data/overlays.json')
     .then(res => res.json())
     .then(data => {
-      const entry = data.find(item => item.key === name);
+      const entry = data.find(item => item.id === id);
 
       const bounds = [
         entry.bounds[0],
@@ -17,7 +17,7 @@ export function addLayer(map, options) {
       ]
 
       // Add image source
-      map.addSource(name, {
+      map.addSource(id, {
         type: 'image',
         url: '../../' + entry.filename,
         coordinates: bounds
@@ -25,9 +25,9 @@ export function addLayer(map, options) {
 
       // Add raster layer using that source
       map.addLayer({
-        id: name,
+        id: id,
         type: 'raster',
-        source: name,
+        source: id,
         paint: {
           'raster-opacity': options.opacity ?? 1.0
         },

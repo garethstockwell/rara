@@ -3,8 +3,6 @@
 import * as info from "../control/info.js";
 import * as nav from "../control/nav.js";
 
-export var name = "ML globe";
-
 export function createMap() {
   const map = new maplibregl.Map({
     container: 'map', // container id
