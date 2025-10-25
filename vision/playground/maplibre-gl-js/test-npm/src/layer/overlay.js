@@ -1,5 +1,7 @@
 // Add a map layer which shows an image
 
+import * as attribution from "../control/attribution.js";
+
 export function addLayer(map, options) {
   var id = options.id;
 
@@ -35,6 +37,10 @@ export function addLayer(map, options) {
             visibility: options.visible ? 'visible' : 'none'
           }
         }, options.z_order ? options.z_order.myPosition(id) : null);
+
+        if (entry.attribution) {
+          attribution.addAttribution(map, options.text, entry.attribution);
+        }
       });
 
     if (options.callback) {

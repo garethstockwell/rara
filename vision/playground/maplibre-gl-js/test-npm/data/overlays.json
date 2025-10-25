@@ -5,10 +5,7 @@
     "description": [
       "Footprint of Barnwell Priory"
     ],
-    "source": [
-      "© Copyright The Historic Towns Trust 2023, reproduced under licence by RARA",
-      "Cartographer: Giles Darkes"
-    ],
+    "attribution": "© <a href='https://www.historictownstrust.uk/'>The Historic Towns Trust</a> 2023, reproduced under licence by RARA, cartographer: Giles Darkes",
     "bounds": [
       [0.138073, 52.210018],
       [0.140431, 52.208740]
@@ -20,10 +17,7 @@
     "description": [
       "Map of Cambridge. Bacon. Sc. 8 ½ in. to 1 mile. c. 1910"
     ],
-    "source": [
-      "Cambridge Antiquarian Society",
-      "https://www.camantsoc.org/17th-century-maps-3/#gid=1&pid=2"
-    ],
+    "attribution": "© <a href='https://www.camantsoc.org/17th-century-maps-3/#gid=1&pid=2'>Cambridge Antiquarian Society</a>",
     "bounds": [
       [0.092716, 52.221383],
       [0.158683, 52.192433]
