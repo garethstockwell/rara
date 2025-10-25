@@ -19,7 +19,7 @@ export function addLayer(map, options) {
         // Add image source
         map.addSource(id, {
           type: 'image',
-          url: '../../' + entry.filename,
+          url: entry.url,
           coordinates: bounds
         });
 

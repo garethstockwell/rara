@@ -4,7 +4,7 @@ export function addLayer(map, options) {
   var id = options.id;
 
   map.on('load', () => {
-    fetch('../../data/' + options.filename)
+    fetch(options.url)
       .then(res => res.json())
       .then(data => {
         map.addSource(id, {

@@ -41,7 +41,7 @@ export function createMap() {
   layer.add(map, line, {
     id: 'boundary',
     text: 'Riverside area boundary',
-    filename: 'boundary.json',
+    url: '/data/boundary.json',
     color: 'black',
     visible: true,
     z_order: z_order,
