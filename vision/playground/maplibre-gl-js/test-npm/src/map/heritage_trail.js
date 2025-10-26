@@ -25,6 +25,7 @@ export function createMap(options) {
     'boundary',
     'heritage_trail',
     'locations_precise',
+    'locations_heritage_trail',
   ]);
 
   map.on('load', () => {
@@ -63,6 +64,17 @@ export function createMap(options) {
     url: '/data/locations_precise.json',
     tags: [],
     color: 'yellow',
+    z_order: z_order,
+    onclick: options.locationOnClick ?? null,
+    visible: options.locationVisible ?? false,
+  });
+
+  layer.add(map, locations, {
+    id: 'locations_heritage_trail',
+    text: 'Locations',
+    url: '/data/locations_heritage_trail.json',
+    tags: ['heritage_trail'],
+    color: 'green',
     z_order: z_order,
     onclick: options.locationOnClick ?? null,
     visible: options.locationVisible ?? false,
