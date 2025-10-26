@@ -12,7 +12,8 @@ export function createMap() {
   const config = {
     style: "https://api.maptiler.com/maps/openstreetmap/style.json?key=zsAKnM69p5uDhfEeaTCu",
     center: [0.144843, 52.212231], // [lng, lat]
-    container: "map"
+    container: "map",
+    attributionControl: false
   };
 
   var map = new maplibregl.Map(config);

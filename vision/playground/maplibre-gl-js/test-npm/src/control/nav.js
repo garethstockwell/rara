@@ -12,6 +12,8 @@ export function add(map, showZoom = true) {
 
   map.addControl(new maplibregl.FullscreenControl());
 
+  map.addControl(new maplibregl.ScaleControl(), 'bottom-right');
+
   function onZoom(e) {
     setTimeout(function() { info.update(map); }, 700);
   }

@@ -3,6 +3,8 @@
 var attributions = [];
 var attributionControl = null;
 
+const position = 'bottom-left';
+
 export function addAttribution(map, attribution, text) {
   if (!attributions.includes(attribution)) {
     attributions.push(attribution);
@@ -17,10 +19,10 @@ export function addAttribution(map, attribution, text) {
     customAttribution: '<br>' + attributions.join('<br>')
   });
 
-  map.addControl(attributionControl, 'bottom-right');
+  map.addControl(attributionControl, position);
 
   // Collapse the control
-  var controlElem = document.getElementsByClassName('maplibregl-ctrl-bottom-right')[0];
+  var controlElem = document.getElementsByClassName('maplibregl-ctrl-' + position)[0];
   var containerElem = controlElem.getElementsByTagName('details')[0];
   containerElem.classList.remove('maplibregl-compact-show');
   containerElem.removeAttribute('open');

@@ -159,3 +159,15 @@ code {
 #commentary-wrap h1 {
   font-size: 24px;
 }
+
+/* controls */
+
+/* Controls are off the bottom of the canvas when not in fullscreen mode */
+
+.maplibregl-ctrl-bottom-left {
+  padding-bottom: 50px;
+}
+
+.maplibregl-ctrl-bottom-right {
+  padding-bottom: 50px;
+}
