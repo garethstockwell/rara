@@ -3,13 +3,14 @@
 import * as info from "./info.js";
 
 export function add(map, showZoom = true) {
-  // Add zoom and rotation controls to the map.
-  const control = map.addControl(new maplibregl.NavigationControl({
+  map.addControl(new maplibregl.NavigationControl({
     visualizePitch: true,
     visualizeRoll: true,
     showZoom: showZoom,
     showCompass: true
   }));
+
+  map.addControl(new maplibregl.FullscreenControl());
 
   function onZoom(e) {
     setTimeout(function() { info.update(map); }, 700);
