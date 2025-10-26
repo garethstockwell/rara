@@ -4,7 +4,7 @@
         {
             "type": "Feature",
             "properties": {
-                "name": "Church of St. Andrew the Less, A1134, Cambridge CB5 8HA - 4 Abbey Road, Cambridge"
+                "name": "Heritage trail"
             },
             "geometry": {
                 "type": "LineString",
@@ -40,21 +40,6 @@
                     [
                         0.13816,
                         52.20882
-                    ]
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "4 Abbey Road, Cambridge - Cellarer's Chequer, Beche Road, Cambridge"
-            },
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
-                        0.13816,
-                        52.20882
                     ],
                     [
                         0.13801,
@@ -71,41 +56,11 @@
                     [
                         0.13927,
                         52.20958
-                    ]
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Cellarer's Chequer, Beche Road, Cambridge - Emailerator, Riverside, Cambridge"
-            },
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
-                        0.13927,
-                        52.20958
                     ],
                     [
                         0.13906,
                         52.21019
                     ],
-                    [
-                        0.13882,
-                        52.21097
-                    ]
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Emailerator, Riverside, Cambridge - Cambridge Museum of Technology, Cheddars Lane, Cambridge"
-            },
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
                     [
                         0.13882,
                         52.21097
@@ -162,21 +117,6 @@
                         0.14269,
                         52.21272
                     ],
-                    [
-                        0.14272,
-                        52.21277
-                    ]
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Cambridge Museum of Technology, Cheddars Lane, Cambridge - The Leper Chapel of Saint Mary Magdalene, Newmarket Road, Cambridge"
-            },
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
                     [
                         0.14272,
                         52.21277
@@ -334,25 +274,6 @@
                         52.21372
                     ],
                     [
-                        0.1524,
-                        52.21398
-                    ]
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "The Leper Chapel of Saint Mary Magdalene, Newmarket Road, Cambridge - 52.209825,0.144454"
-            },
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [
-                    [
-                        0.1524,
-                        52.21398
-                    ],
-                    [
                         0.15228,
                         52.21372
                     ],
@@ -448,97 +369,6 @@
                         0.14439,
                         52.20988
                     ]
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Church of St. Andrew the Less, A1134, Cambridge CB5 8HA"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    0.1397585,
-                    52.2089428
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "4 Abbey Road, Cambridge"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    0.1383602,
-                    52.2088827
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Cellarer's Chequer, Beche Road, Cambridge"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    0.1390585,
-                    52.2095494
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Emailerator, Riverside, Cambridge"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    0.1387641,
-                    52.2109643
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "Cambridge Museum of Technology, Cheddars Lane, Cambridge"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    0.1428582,
-                    52.2127437
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "The Leper Chapel of Saint Mary Magdalene, Newmarket Road, Cambridge"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    0.1526,
-                    52.2139266
-                ]
-            }
-        },
-        {
-            "type": "Feature",
-            "properties": {
-                "name": "52.209825,0.144454"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [
-                    0.144454,
-                    52.209825
                 ]
             }
         }

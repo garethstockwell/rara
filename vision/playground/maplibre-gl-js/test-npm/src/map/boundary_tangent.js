@@ -124,7 +124,7 @@ export function createMap() {
 
   layer.add(map, line, {
     id: 'heritage_trail',
-    text: 'Heritage trail',
+    text: 'Heritage trail line',
     url: '/data/line_heritage_trail.json',
     color: 'green',
     z_order: z_order,

@@ -51,7 +51,7 @@ export function createMap(options) {
 
   layer.add(map, line, {
     id: 'heritage_trail',
-    text: 'Heritage trail',
+    text: 'Heritage trail line',
     url: '/data/line_heritage_trail.json',
     color: 'green',
     z_order: z_order,
@@ -66,18 +66,18 @@ export function createMap(options) {
     color: 'yellow',
     z_order: z_order,
     onclick: options.locationOnClick ?? null,
-    visible: options.locationVisible ?? false,
+    visible: false,
   });
 
   layer.add(map, locations, {
     id: 'locations_heritage_trail',
-    text: 'Locations',
+    text: 'Heritage trail locations',
     url: '/data/locations_heritage_trail.json',
     tags: ['heritage_trail'],
     color: 'green',
     z_order: z_order,
     onclick: options.locationOnClick ?? null,
-    visible: options.locationVisible ?? false,
+    visible: true,
   });
 
   nav.add(map);

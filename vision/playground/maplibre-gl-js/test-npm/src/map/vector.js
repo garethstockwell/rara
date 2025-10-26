@@ -26,8 +26,9 @@ export function createMap(options) {
     'barnwell_priory',
     'boundary',
     'heritage_trail',
-    'historical',
-    'contemporary',
+    'locations_historical',
+    'locations_contemporary',
+    'locations_heritage_trail',
   ]);
 
   map.on('load', () => {
@@ -53,7 +54,7 @@ export function createMap(options) {
 
   layer.add(map, line, {
     id: 'heritage_trail',
-    text: 'Heritage trail',
+    text: 'Heritage trail line',
     url: '/data/line_heritage_trail.json',
     color: 'green',
     z_order: z_order,
@@ -61,7 +62,7 @@ export function createMap(options) {
   });
 
   layer.add(map, locations, {
-    id: 'historical',
+    id: 'locations_historical',
     text: 'Historical locations',
     url: '/data/locations_precise.json',
     tags: ['historical'],
@@ -72,7 +73,7 @@ export function createMap(options) {
   });
 
   layer.add(map, locations, {
-    id: 'contemporary',
+    id: 'locations_contemporary',
     text: 'Contemporary locations',
     url: '/data/locations_precise.json',
     tags: ['contemporary'],
@@ -80,6 +81,17 @@ export function createMap(options) {
     z_order: z_order,
     onclick: options.locationOnClick ?? null,
     visible: options.locationVisible ?? false,
+  });
+
+  layer.add(map, locations, {
+    id: 'locations_heritage_trail',
+    text: 'Heritage trail locations',
+    url: '/data/locations_heritage_trail.json',
+    tags: ['heritage_trail'],
+    color: 'green',
+    z_order: z_order,
+    onclick: options.locationOnClick ?? null,
+    visible: false,
   });
 
   layer.add(map, overlay, {
