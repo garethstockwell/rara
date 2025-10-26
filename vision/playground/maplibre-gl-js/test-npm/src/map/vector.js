@@ -22,9 +22,9 @@ export function createMap() {
   const z_order = layer.zOrder([
     'g4_bac_cam',
     'barnwell_priory',
+    'boundary',
     'historical',
     'contemporary',
-    'boundary'
   ]);
 
   map.on('load', () => {
