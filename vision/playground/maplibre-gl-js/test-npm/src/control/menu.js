@@ -12,6 +12,10 @@ export function hide() {
   menu().hidden = true;
 }
 
+function toggleVisible() {
+  menu().hidden = !menu().hidden;
+}
+
 export function add(id, text, onclick, active, color) {
   const link = document.createElement('a');
   link.id = 'menu_' + id;

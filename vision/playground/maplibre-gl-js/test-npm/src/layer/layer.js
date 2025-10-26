@@ -27,7 +27,7 @@ export function add(map, module, options) {
     e.preventDefault();
     e.stopPropagation();
 
-    this.classid = toggleVisible(map, id) ? 'active' : '';
+    this.className = toggleVisible(map, id) ? 'active' : '';
   };
 
   menu.add(options.id, options.text, toggle, options.visible, options.color);
