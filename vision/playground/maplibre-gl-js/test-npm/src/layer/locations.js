@@ -47,10 +47,14 @@ export function addLayer(map, options) {
     const image = await map.loadImage('../../assets/pin-' + options.color + '.png');
     map.addImage(id, image.data);
 
-    fetch('../../data/locations.json')
+    fetch(options.url)
       .then(res => res.json())
       .then(data => {
-        var items = data.filter(item => item.era == options.era);
+        var items = data;
+        
+        if (options.tags) {
+          items = items.filter(item => options.tags.every((x) => item.tags.includes(x)));
+        }
 
         items.forEach(item => {
           addPopup(item);

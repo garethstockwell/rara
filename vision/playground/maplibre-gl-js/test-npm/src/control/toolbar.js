@@ -13,11 +13,12 @@ function add(name, text, active) {
 export function createToolbar(name) {
   new Map([
     ['vector', 'Vector'],
-    ['raster', 'Raster'],
     ['locations', 'Locations'],
+    ['heritage_trail', 'Heritage trail'],
     ['boundary_tangent', 'Boundary tangent'],
     ['boundary_radius', 'Boundary radius'],
     ['globe', 'Globe'],
+    ['raster', 'Raster'],
   ]).forEach(function(value, key) {
     add(key, value, key == name)
   });

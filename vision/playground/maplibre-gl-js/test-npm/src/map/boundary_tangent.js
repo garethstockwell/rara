@@ -71,6 +71,7 @@ export function createMap() {
     'g4_bac_cam',
     'barnwell_priory',
     'boundary',
+    'heritage_trail',
     'historical',
     'contemporary',
     'point',
@@ -108,33 +109,48 @@ export function createMap() {
     text: '3D buildings',
     color: '#aaaaaa',
     z_order: z_order,
+    visible: true,
   });
 
   layer.add(map, line, {
     id: 'boundary',
     text: 'Riverside area boundary',
-    url: '/data/boundary.json',
+    url: '/data/line_boundary.json',
     color: 'black',
     z_order: z_order,
     callback: init,
+    visible: true,
+  });
+
+  layer.add(map, line, {
+    id: 'heritage_trail',
+    text: 'Heritage trail',
+    url: '/data/line_heritage_trail.json',
+    color: 'green',
+    z_order: z_order,
+    visible: false,
   });
 
   layer.add(map, locations, {
     id: 'historical',
     text: 'Historical locations',
-    era: 'historical',
+    url: '/data/locations_precise.json',
+    tags: ['historical'],
     color: 'yellow',
     staticPopups: true,
     z_order: z_order,
+    visible: true,
   });
 
   layer.add(map, locations, {
     id: 'contemporary',
     text: 'Contemporary locations',
-    era: 'contemporary',
+    url: '/data/locations_precise.json',
+    tags: ['contemporary'],
     color: 'red',
     staticPopups: true,
     z_order: z_order,
+    visible: true,
   });
 
   layer.add(map, overlay, {
@@ -142,6 +158,7 @@ export function createMap() {
     text: 'Barnwell Priory (historical)',
     color: 'orange',
     z_order: z_order,
+    visible: false,
   });
 
   layer.add(map, overlay, {
@@ -150,6 +167,7 @@ export function createMap() {
     opacity: 0.75,
     visible: false,
     z_order: z_order,
+    visible: false,
   });
 
   nav.add(map, false);

@@ -1,4 +1,4 @@
-// Render a flat map
+// Render a map of the heritage trail
 
 import * as info from "../control/info.js";
 import * as nav from "../control/nav.js";
@@ -8,31 +8,13 @@ import * as line from "../layer/line.js";
 import * as locations from "../layer/locations.js";
 import * as overlay from "../layer/overlay.js";
 
-export function createMap() {
+export function createMap(options) {
+  options = options ?? {};
+
   const config = {
-    style: {
-    "version": 8,
-    "sources": {
-      "osm": {
-      "type": "raster",
-      "tiles": [
-        "https://tile.openstreetmap.org/{z}/{x}/{y}.png"  // OpenStreetMap Tile URL
-      ],
-      "tileSize": 256
-      }
-    },
-    "layers": [
-      {
-      "id": "osm-layer",
-      "type": "raster",
-      "source": "osm",
-      "minzoom": 0,
-      }
-    ]
-    },
+    style: "https://api.maptiler.com/maps/openstreetmap/style.json?key=zsAKnM69p5uDhfEeaTCu",
     center: [0.144843, 52.212231], // [lng, lat]
     zoom: 15,
-    maxZoom: 18,
     container: "map",
     attributionControl: false
   };
@@ -40,12 +22,9 @@ export function createMap() {
   var map = new maplibregl.Map(config);
 
   const z_order = layer.zOrder([
-    'g4_bac_cam',
-    'barnwell_priory',
     'boundary',
     'heritage_trail',
-    'historical',
-    'contemporary',
+    'locations_precise',
   ]);
 
   map.on('load', () => {
@@ -66,7 +45,7 @@ export function createMap() {
     url: '/data/line_boundary.json',
     color: 'black',
     z_order: z_order,
-    visible: true,
+    visible: false,
   });
 
   layer.add(map, line, {
@@ -75,43 +54,18 @@ export function createMap() {
     url: '/data/line_heritage_trail.json',
     color: 'green',
     z_order: z_order,
-    visible: false,
+    visible: true,
   });
 
   layer.add(map, locations, {
-    id: 'historical',
-    text: 'Historical locations',
+    id: 'locations_precise',
+    text: 'Precise locations',
     url: '/data/locations_precise.json',
-    tags: ['historical'],
+    tags: [],
     color: 'yellow',
     z_order: z_order,
-    visible: false,
-  });
-
-  layer.add(map, locations, {
-    id: 'contemporary',
-    text: 'Contemporary locations',
-    url: '/data/locations_precise.json',
-    tags: ['contemporary'],
-    color: 'red',
-    z_order: z_order,
-    visible: false,
-  });
-
-  layer.add(map, overlay, {
-    id: 'barnwell_priory',
-    text: 'Barnwell Priory (historical)',
-    color: 'orange',
-    z_order: z_order,
-    visible: false,
-  });
-
-  layer.add(map, overlay, {
-    id: 'g4_bac_cam',
-    text: 'Map circa 1910',
-    opacity: 0.75,
-    z_order: z_order,
-    visible: false,
+    onclick: options.locationOnClick ?? null,
+    visible: options.locationVisible ?? false,
   });
 
   nav.add(map);
