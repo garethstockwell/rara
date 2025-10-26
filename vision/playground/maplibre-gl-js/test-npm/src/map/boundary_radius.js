@@ -92,7 +92,7 @@ export function createMap() {
     text: 'Historical locations',
     era: 'historical',
     color: 'yellow',
-    static_popups: true,
+    staticPopups: true,
     z_order: z_order,
   });
 
@@ -101,7 +101,7 @@ export function createMap() {
     text: 'Contemporary locations',
     era: 'contemporary',
     color: 'red',
-    static_popups: true,
+    staticPopups: true,
     z_order: z_order,
   });
 

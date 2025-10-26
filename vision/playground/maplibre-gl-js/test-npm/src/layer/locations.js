@@ -1,6 +1,46 @@
 // Add a map layer which shows locations
 
+var _map = null;
+
+// Dictionary of popups, indexed by location id
+const popups = {};
+
+function createPopupEntry(id) {
+  const entry = {
+    popup: null,
+    visible: false
+  };
+  popups[id] = entry;
+  return entry;
+}
+
+function addPopup(location) {
+  const entry = popups[location.id] ?? createPopupEntry(location.id);
+
+  entry.popup = new maplibregl.Popup({
+    closeButton: false,
+    closeOnClick: false
+  });
+
+  entry.popup
+    .setLngLat(location.coordinates)
+    .setHTML(location.title)
+    .addTo(_map);
+
+  setPopupVisibility(location.id, entry.visible);
+}
+
+export function setPopupVisibility(id, visible) {
+  const entry = popups[id] ?? createPopupEntry(id);
+  entry.visible = visible;
+  if (entry.popup) {
+    entry.popup.getElement().style.visibility = visible ? 'visible' : 'hidden';
+  }
+}
+
 export function addLayer(map, options) {
+  _map = map;
+
   map.on('load', async () => {
     var id = options.id;
 
@@ -12,6 +52,13 @@ export function addLayer(map, options) {
       .then(data => {
         var items = data.filter(item => item.era == options.era);
 
+        items.forEach(item => {
+          addPopup(item);
+          if (options.staticPopups) {
+            setPopupVisibility(item.id, true);
+          }
+        });
+
         map.addSource(id, {
           'type': 'geojson',
           'data': {
@@ -19,8 +66,7 @@ export function addLayer(map, options) {
             'features': items.map(item => ({
               'type': 'Feature',
               'properties': {
-                  'id': item.id,
-                  'description': '<strong>' + item.title + '</strong><p>' + item.description + '</p>'
+                  'id': item.id
               },
               'geometry': {
                 'type': 'Point',
@@ -30,7 +76,6 @@ export function addLayer(map, options) {
           }
         });
 
-        // Add a layer showing the places.
         map.addLayer({
           'id': id,
           'type': 'symbol',
@@ -43,26 +88,10 @@ export function addLayer(map, options) {
           }
         }, options.z_order ? options.z_order.myPosition(id) : null);
 
-        if (options.static_popups) {
-          // Display all popups
-          for (var i = 0; i < items.length; i++) {
-            const popup = new maplibregl.Popup({
-              closeButton: false,
-              closeOnClick: false
-            });
-
-            var item = items[i];
-            popup.setLngLat(item.coordinates).setHTML(item.title).addTo(map);
-          }
-        } else {
-          // Create a popup, but don't add it to the map yet.
-          const popup = new maplibregl.Popup({
-            closeButton: false,
-            closeOnClick: false
-          });
-
+        if (!options.staticPopups) {
           // Make sure to detect marker change for overlapping markers
           // and use mousemove instead of mouseenter event
+          let currentFeatureId = undefined;
           let currentFeatureCoordinates = undefined;
           map.on('mousemove', id, (e) => {
             const featureCoordinates = e.features[0].geometry.coordinates.toString();
@@ -73,7 +102,6 @@ export function addLayer(map, options) {
               map.getCanvas().style.cursor = 'pointer';
 
               const coordinates = e.features[0].geometry.coordinates.slice();
-              const description = e.features[0].properties.description;
 
               // Ensure that if the map is zoomed out such that multiple
               // copies of the feature are visible, the popup appears
@@ -82,21 +110,27 @@ export function addLayer(map, options) {
                 coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
               }
 
-              // Populate the popup and set its coordinates
-              // based on the feature found.
-              popup.setLngLat(coordinates).setHTML(description).addTo(map);
+              if (currentFeatureId) {
+                setPopupVisibility(currentFeatureId, false);
+              }
+
+              currentFeatureId = e.features[0].properties.id;
+              setPopupVisibility(currentFeatureId, true);
             }
           });
 
           map.on('mouseleave', id, () => {
-              currentFeatureCoordinates = undefined;
-              map.getCanvas().style.cursor = '';
-              popup.remove();
+            map.getCanvas().style.cursor = '';
+            setPopupVisibility(currentFeatureId, false);
+            currentFeatureId = undefined;
+            currentFeatureCoordinates = undefined;
           });
         }
 
         if (options.onclick) {
-          map.on('click', id, (e) => { options.onclick(e.features[0].properties.id); });
+          map.on('click', id, (e) => {
+            options.onclick(e.features[0].properties.id);
+          });
         }
       }
     );
