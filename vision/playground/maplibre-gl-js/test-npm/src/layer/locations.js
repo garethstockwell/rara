@@ -1,9 +1,9 @@
 // Add a map layer which shows locations
 
 export function addLayer(map, options) {
-  var id = options.id;
-
   map.on('load', async () => {
+    var id = options.id;
+
     const image = await map.loadImage('../../assets/pin-' + options.color + '.png');
     map.addImage(id, image.data);
 
@@ -19,6 +19,7 @@ export function addLayer(map, options) {
             'features': items.map(item => ({
               'type': 'Feature',
               'properties': {
+                  'id': item.id,
                   'description': '<strong>' + item.title + '</strong><p>' + item.description + '</p>'
               },
               'geometry': {
@@ -94,8 +95,8 @@ export function addLayer(map, options) {
           });
         }
 
-        if (options.callback) {
-          options.callback(['locations', id]);
+        if (options.onclick) {
+          map.on('click', id, (e) => { options.onclick(e.features[0].properties.id); });
         }
       }
     );

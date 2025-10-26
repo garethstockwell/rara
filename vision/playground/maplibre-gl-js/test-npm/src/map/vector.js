@@ -8,7 +8,9 @@ import * as line from "../layer/line.js";
 import * as locations from "../layer/locations.js";
 import * as overlay from "../layer/overlay.js";
 
-export function createMap() {
+export function createMap(options) {
+  options = options ?? {};
+
   const config = {
     style: "https://api.maptiler.com/maps/openstreetmap/style.json?key=zsAKnM69p5uDhfEeaTCu",
     center: [0.144843, 52.212231], // [lng, lat]
@@ -54,6 +56,7 @@ export function createMap() {
     era: 'historical',
     color: 'yellow',
     z_order: z_order,
+    onclick: options.locationOnClick ?? null,
   });
 
   layer.add(map, locations, {
@@ -62,6 +65,7 @@ export function createMap() {
     era: 'contemporary',
     color: 'red',
     z_order: z_order,
+    onclick: options.locationOnClick ?? null,
   });
 
   layer.add(map, overlay, {
