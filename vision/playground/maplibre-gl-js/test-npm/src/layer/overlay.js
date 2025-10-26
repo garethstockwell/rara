@@ -9,7 +9,7 @@ export function addLayer(map, options) {
     fetch('../../data/overlays.json')
       .then(res => res.json())
       .then(data => {
-        const entry = data.find(item => item.id === id);
+        const entry = data.overlays.find(item => item.id === id);
 
         const bounds = [
           entry.bounds[0],
@@ -39,7 +39,10 @@ export function addLayer(map, options) {
         }, options.z_order ? options.z_order.myPosition(id) : null);
 
         if (entry.attribution) {
-          attribution.addAttribution(map, options.text, entry.attribution);
+          var attrib = data.attributions[entry.attribution]
+          if (attrib) {
+            attribution.addAttribution(map, attrib, options.text);
+          }
         }
       });
 

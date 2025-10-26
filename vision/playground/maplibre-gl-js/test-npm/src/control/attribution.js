@@ -3,8 +3,10 @@
 var attributions = [];
 var attributionControl = null;
 
-export function addAttribution(map, text, attribution) {
-  attributions.push([text, attribution]);
+export function addAttribution(map, attribution, text) {
+  if (!attributions.includes(attribution)) {
+    attributions.push(attribution);
+  }
 
   if (attributionControl) {
     map.removeControl(attributionControl);
@@ -12,7 +14,7 @@ export function addAttribution(map, text, attribution) {
 
   attributionControl = new maplibregl.AttributionControl({
     compact: true,
-    customAttribution: 'Attributions:<br><ul>' + attributions.map((x) => '<li>' + x[0] + ': ' + x[1] + '</li>').join('') + '</ul>'
+    customAttribution: '<br>' + attributions.join('<br>')
   });
 
   map.addControl(attributionControl, 'bottom-right');
