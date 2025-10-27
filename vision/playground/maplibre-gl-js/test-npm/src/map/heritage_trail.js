@@ -34,8 +34,7 @@ export function createMap(options) {
   const z_order = layer.zOrder([
     'boundary',
     'heritage_trail',
-    'locations_precise',
-    'locations_heritage_trail',
+    'locations',
     'point',
   ]);
 
@@ -99,10 +98,9 @@ export function createMap(options) {
   });
 
   layer.add(map, locations, {
-    id: 'locations_heritage_trail',
+    id: 'locations',
     text: 'Heritage trail locations',
-    url: '/data/locations_heritage_trail.json',
-    tags: ['heritage_trail'],
+    url: '/data/locations.json',
     color: 'green',
     z_order: z_order,
     onclick: options.locationOnClick ?? null,

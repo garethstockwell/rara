@@ -91,7 +91,7 @@ export function createMap() {
   layer.add(map, locations, {
     id: 'historical',
     text: 'Historical locations',
-    url: '/data/locations_precise.json',
+    url: '/data/locations.json',
     tags: ['historical'],
     color: 'yellow',
     staticPopups: true,
@@ -102,7 +102,7 @@ export function createMap() {
   layer.add(map, locations, {
     id: 'contemporary',
     text: 'Contemporary locations',
-    url: '/data/locations_precise.json',
+    url: '/data/locations.json',
     tags: ['contemporary'],
     color: 'red',
     staticPopups: true,
