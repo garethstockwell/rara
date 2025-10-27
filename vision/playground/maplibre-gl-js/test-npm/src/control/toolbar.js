@@ -15,8 +15,8 @@ export function createToolbar(name) {
     ['vector', 'Vector'],
     ['locations', 'Locations'],
     ['heritage_trail', 'Heritage trail'],
-    ['boundary_tangent', 'Boundary tangent'],
     ['boundary_radius', 'Boundary radius'],
+    ['boundary_tangent', 'Boundary tangent'],
     ['globe', 'Globe'],
     ['raster', 'Raster'],
   ]).forEach(function(value, key) {

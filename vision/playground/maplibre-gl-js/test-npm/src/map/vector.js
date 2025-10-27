@@ -83,17 +83,6 @@ export function createMap(options) {
     visible: options.locationVisible ?? false,
   });
 
-  layer.add(map, locations, {
-    id: 'locations_heritage_trail',
-    text: 'Heritage trail locations',
-    url: '/data/locations_heritage_trail.json',
-    tags: ['heritage_trail'],
-    color: 'green',
-    z_order: z_order,
-    onclick: options.locationOnClick ?? null,
-    visible: false,
-  });
-
   layer.add(map, overlay, {
     id: 'barnwell_priory',
     text: 'Barnwell Priory (historical)',
