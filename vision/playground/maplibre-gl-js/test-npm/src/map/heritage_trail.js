@@ -3,10 +3,20 @@
 import * as info from "../control/info.js";
 import * as nav from "../control/nav.js";
 import * as buildings from "../layer/buildings.js";
+import * as fly_line from "../fly_line.js";
 import * as layer from "../layer/layer.js";
 import * as line from "../layer/line.js";
 import * as locations from "../layer/locations.js";
-import * as overlay from "../layer/overlay.js";
+
+var route = null;
+
+export function fly(fromId, toId) {
+  console.log("Fly from", fromId, "to", toId);
+  const fromCoord = locations.getLocationCoordinates(fromId);
+  const toCoord = locations.getLocationCoordinates(toId);
+  console.log("Fly from", fromCoord, "to", toCoord);
+  route.fly(fromCoord, toCoord, 2000);
+}
 
 export function createMap(options) {
   options = options ?? {};
@@ -26,10 +36,34 @@ export function createMap(options) {
     'heritage_trail',
     'locations_precise',
     'locations_heritage_trail',
+    'point',
   ]);
 
   map.on('load', () => {
     z_order.load(map)
+
+    map.addSource("point", {
+      type: "geojson",
+      data: {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "Point",
+          coordinates: [0.0, 0.0]
+        }
+      }
+    });
+
+    map.addLayer({
+      id: "point",
+      source: "point",
+      type: "circle",
+      paint: {
+        "circle-radius": 10,
+        "circle-color": '#ff0000',
+        "circle-stroke-width": 2,
+        "circle-stroke-color": 'white' }
+    }, z_order.myPosition('point'));
   });
 
   layer.add(map, buildings, {
@@ -37,7 +71,7 @@ export function createMap(options) {
     text: '3D buildings',
     color: '#aaaaaa',
     z_order: z_order,
-    visible: false
+    visible: true
   });
 
   layer.add(map, line, {
@@ -55,18 +89,13 @@ export function createMap(options) {
     url: '/data/line_heritage_trail.json',
     color: 'green',
     z_order: z_order,
+    callback: (_arguments) => {
+      route = fly_line.createRoute(map, {
+        lineId: 'heritage_trail',
+        altitude: 200
+      });
+    },
     visible: true,
-  });
-
-  layer.add(map, locations, {
-    id: 'locations_precise',
-    text: 'Precise locations',
-    url: '/data/locations_precise.json',
-    tags: [],
-    color: 'yellow',
-    z_order: z_order,
-    onclick: options.locationOnClick ?? null,
-    visible: false,
   });
 
   layer.add(map, locations, {

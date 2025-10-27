@@ -2,20 +2,23 @@
 
 var _map = null;
 
-// Dictionary of popups, indexed by location id
-const popups = {};
+// Dictionary of locations, indexed by location id
+const locations = {};
 
-function createPopupEntry(id) {
+function createLocation(id) {
   const entry = {
+    coordinates: null,
     popup: null,
     visible: false
   };
-  popups[id] = entry;
+  locations[id] = entry;
   return entry;
 }
 
 function addPopup(location) {
-  const entry = popups[location.id] ?? createPopupEntry(location.id);
+  const entry = locations[location.id] ?? createLocation(location.id);
+
+  entry.coordinates = location.coordinates;
 
   entry.popup = new maplibregl.Popup({
     closeButton: false,
@@ -31,11 +34,19 @@ function addPopup(location) {
 }
 
 export function setPopupVisibility(id, visible) {
-  const entry = popups[id] ?? createPopupEntry(id);
+  const entry = locations[id] ?? createLocation(id);
   entry.visible = visible;
   if (entry.popup) {
     entry.popup.getElement().style.visibility = visible ? 'visible' : 'hidden';
   }
+}
+
+export function getLocationCoordinates(id) {
+  const entry = locations[id];
+  if (entry) {
+    return entry.coordinates;
+  }
+  console.log("Error: couldn't find location", id);
 }
 
 export function addLayer(map, options) {
