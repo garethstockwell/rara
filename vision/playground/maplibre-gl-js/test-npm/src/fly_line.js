@@ -20,7 +20,7 @@ export function createRoute(map, options) {
     line.getData().then((data) => {
       console.log("Route loaded");
 
-      var coordinates = data["features"][0]["geometry"]["coordinates"];
+      var coordinates = data.features[0].geometry.coordinates;
       route = turf.lineString(coordinates);
 
       // calculate camera startpoint

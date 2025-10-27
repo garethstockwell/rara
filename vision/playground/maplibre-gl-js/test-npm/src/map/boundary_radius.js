@@ -51,10 +51,10 @@ export function createMap() {
   }
 
   map.on('load', async () => {
-    fetch('../../data/line_boundary_smooth.json')
+    fetch('/data/line_boundary_smooth.json')
       .then(res => res.json())
       .then(data => {
-        var coordinates = data["features"][0]["geometry"]["coordinates"];
+        var coordinates = data.features[0].geometry.coordinates;
         route = turf.lineString(coordinates);
         animate();
       });

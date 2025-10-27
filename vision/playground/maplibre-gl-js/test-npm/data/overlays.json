@@ -3,30 +3,49 @@
     "camantsoc": "© <a href='https://www.camantsoc.org/'>Cambridge Antiquarian Society</a>",
     "htt": "© <a href='https://www.historictownstrust.uk/'>The Historic Towns Trust</a> 2023, reproduced under licence by RARA, cartographer: Giles Darkes"
   },
-  "overlays": [
-    {
-      "id": "barnwell_priory",
-      "url": "/assets/barnwell_priory.png",
-      "description": [
-        "Footprint of Barnwell Priory"
-      ],
-      "attribution": "htt",
-      "bounds": [
-        [0.138073, 52.210018],
-        [0.140431, 52.208740]
-      ]
-    },
-    {
-      "id": "g4_bac_cam",
-      "url": "/assets/G4-Bac-Cam.jpg",
-      "description": [
-        "Map of Cambridge. Bacon. Sc. 8 ½ in. to 1 mile. c. 1910"
-      ],
-      "attribution": "camantsoc",
-      "bounds": [
-        [0.092716, 52.221383],
-        [0.158683, 52.192433]
-      ]
-    }
-  ]
+  "overlays": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "id": "barnwell_priory",
+          "url": "/assets/barnwell_priory.png",
+          "description": [
+            "Footprint of Barnwell Priory"
+          ],
+          "attribution": "htt"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+              [0.138073, 52.210018],
+              [0.140431, 52.210018],
+              [0.140431, 52.208740],
+              [0.138073, 52.208740]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "id": "g4_bac_cam",
+          "url": "/assets/G4-Bac-Cam.jpg",
+          "description": [
+            "Map of Cambridge. Bacon. Sc. 8 ½ in. to 1 mile. c. 1910"
+          ],
+          "attribution": "camantsoc"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [0.092716, 52.221383],
+            [0.158683, 52.221383],
+            [0.158683, 52.192433],
+            [0.092716, 52.192433]
+          ]
+        }
+      }
+    ]
+  }
 }

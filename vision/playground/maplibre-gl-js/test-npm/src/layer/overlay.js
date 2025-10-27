@@ -6,23 +6,16 @@ export function addLayer(map, options) {
   var id = options.id;
 
   map.on('load', () => {
-    fetch('../../data/overlays.json')
+    fetch('/data/overlays.json')
       .then(res => res.json())
       .then(data => {
-        const entry = data.overlays.find(item => item.id === id);
-
-        const bounds = [
-          entry.bounds[0],
-          [entry.bounds[1][0], entry.bounds[0][1]],
-          entry.bounds[1],
-          [entry.bounds[0][0], entry.bounds[1][1]],
-        ]
+        const entry = data.overlays.features.find(item => item.properties.id === id);
 
         // Add image source
         map.addSource(id, {
           type: 'image',
-          url: entry.url,
-          coordinates: bounds
+          url: entry.properties.url,
+          coordinates: entry.geometry.coordinates
         });
 
         // Add raster layer using that source
@@ -38,8 +31,8 @@ export function addLayer(map, options) {
           }
         }, options.z_order ? options.z_order.myPosition(id) : null);
 
-        if (entry.attribution) {
-          var attrib = data.attributions[entry.attribution]
+        if (entry.properties.attribution) {
+          var attrib = data.attributions[entry.properties.attribution]
           if (attrib) {
             attribution.addAttribution(map, attrib, options.text);
           }
