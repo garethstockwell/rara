@@ -16,9 +16,9 @@ function createLocation(id) {
 }
 
 function addPopup(location) {
-  const entry = locations[location.id] ?? createLocation(location.id);
+  const entry = locations[location.properties.id] ?? createLocation(location.properties.id);
 
-  entry.coordinates = location.coordinates;
+  entry.coordinates = location.geometry.coordinates;
 
   entry.popup = new maplibregl.Popup({
     closeButton: false,
@@ -26,11 +26,11 @@ function addPopup(location) {
   });
 
   entry.popup
-    .setLngLat(location.coordinates)
-    .setHTML(location.title)
+    .setLngLat(entry.coordinates)
+    .setHTML(location.properties.title)
     .addTo(_map);
 
-  setPopupVisibility(location.id, entry.visible);
+  setPopupVisibility(location.properties.id, entry.visible);
 }
 
 export function setPopupVisibility(id, visible) {
@@ -60,35 +60,23 @@ export function addLayer(map, options) {
 
     fetch(options.url)
       .then(res => res.json())
-      .then(data => {
-        var items = data;
-        
+      .then(data => {   
         if (options.tags) {
-          items = items.filter(item => options.tags.every((x) => item.tags.includes(x)));
+          data.features = data.features.filter(
+            feature => options.tags.every((x) => feature.properties.tags.includes(x))
+          );
         }
 
-        items.forEach(item => {
-          addPopup(item);
+        data.features.forEach(feature => {
+          addPopup(feature);
           if (options.staticPopups) {
-            setPopupVisibility(item.id, true);
+            setPopupVisibility(feature.properties.id, true);
           }
         });
 
         map.addSource(id, {
           'type': 'geojson',
-          'data': {
-            'type': 'FeatureCollection',
-            'features': items.map(item => ({
-              'type': 'Feature',
-              'properties': {
-                  'id': item.id
-              },
-              'geometry': {
-                'type': 'Point',
-                'coordinates': item.coordinates
-              }
-            }))
-          }
+          'data': data
         });
 
         map.addLayer({

@@ -1,106 +1,226 @@
-[
-  {
-    "id": "stourbridge_common",
-    "title": "Stourbridge Common",
-    "coordinates": [0.150095, 52.217236],
-    "tags": [
-      "historical"
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "stourbridge_common",
+                "title": "Stourbridge Common",
+                "tags": [
+                    "historical"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.150095,
+                    52.217236
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "st_andrew_the_less",
+                "title": "St Andrew the Less",
+                "tags": [
+                    "historical"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.139667,
+                    52.208968
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "leper_chapel",
+                "title": "Leper Chapel",
+                "tags": [
+                    "historical"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.152569,
+                    52.21392
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "cellarers_chequer",
+                "title": "Cellarer's Chequer",
+                "tags": [
+                    "historical"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.139045,
+                    52.209589
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "abbey_house",
+                "title": "Abbey House",
+                "tags": [
+                    "historical"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.138523,
+                    52.209092
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "cmot",
+                "title": "Cambridge Museum of Technology",
+                "tags": [
+                    "historical"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.14366,
+                    52.212458
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "emailerator",
+                "title": "Dinky Doors Emailerator",
+                "tags": [
+                    "contemporary"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.138785,
+                    52.210923
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "war_memorial",
+                "title": "Cambridge Gas Company War Memorial",
+                "tags": [
+                    "contemporary"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.144123,
+                    52.210016
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "flying_saucer",
+                "title": "Dinky Doors Flying Saucer",
+                "tags": [
+                    "contemporary"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.142605,
+                    52.212513
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "equiano_bridge",
+                "title": "Equiano Bridge",
+                "tags": [
+                    "contemporary"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.142986,
+                    52.213628
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "engineers_house",
+                "title": "Engineer's House",
+                "tags": [
+                    "contemporary"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.142851,
+                    52.212454
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "kerb_kollective",
+                "title": "Kerb Kollective",
+                "tags": [
+                    "contemporary"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.143076,
+                    52.212559
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "logans_meadow",
+                "title": "Logan's Meadow Nature Reserve",
+                "tags": [
+                    "contemporary"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.141562,
+                    52.213629
+                ]
+            }
+        }
     ]
-  },
-  {
-    "id": "st_andrew_the_less",
-    "title": "St Andrew the Less",
-    "coordinates": [0.139667, 52.208968],
-    "tags": [
-      "historical"
-    ]
-  },
-  {
-    "id": "leper_chapel",
-    "title": "Leper Chapel",
-    "coordinates": [0.152569, 52.213920],
-    "tags": [
-      "historical"
-    ]
-  },
-  {
-    "id": "cellarers_chequer",
-    "title": "Cellarer's Chequer",
-    "coordinates": [0.139045, 52.209589],
-    "tags": [
-      "historical"
-    ]
-  },
-  {
-    "id": "abbey_house",
-    "title": "Abbey House",
-    "coordinates": [0.138523, 52.209092],
-    "tags": [
-      "historical"
-    ]
-  },
-  {
-    "id": "cmot",
-    "title": "Cambridge Museum of Technology",
-    "coordinates": [0.143660, 52.212458],
-    "tags": [
-      "historical"
-    ]
-  },
-  {
-    "id": "emailerator",
-    "title": "Dinky Doors Emailerator",
-    "coordinates": [0.138785, 52.210923],
-    "tags": [
-      "contemporary"
-    ]
-  },
-  {
-    "id": "war_memorial",
-    "title": "Cambridge Gas Company War Memorial",
-    "coordinates": [0.144123, 52.210016],
-    "tags": [
-      "contemporary"
-    ]
-  },
-  {
-    "id": "flying_saucer",
-    "title": "Dinky Doors Flying Saucer",
-    "coordinates": [0.142605, 52.212513],
-    "tags": [
-      "contemporary"
-    ]
-  },
-  {
-    "id": "equiano_bridge",
-    "title": "Equiano Bridge",
-    "coordinates": [0.142986, 52.213628],
-    "tags": [
-      "contemporary"
-    ]
-  },
-  {
-    "id": "engineers_house",
-    "title": "Engineer's House",
-    "coordinates": [0.142851, 52.212454],
-    "tags": [
-      "contemporary"
-    ]
-  },
-  {
-    "id": "kerb_kollective",
-    "title": "Kerb Kollective",
-    "coordinates": [0.143076, 52.212559],
-    "tags": [
-      "contemporary"
-    ]
-  },
-  {
-    "id": "logans_meadow",
-    "title": "Logan's Meadow Nature Reserve",
-    "coordinates": [0.141562, 52.213629],
-    "tags": [
-      "contemporary"
-    ]
-  }
-]
+}
