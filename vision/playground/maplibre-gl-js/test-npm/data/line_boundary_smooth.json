@@ -1,12 +1,11 @@
 {
     "type": "FeatureCollection",
-    "name": "tracks",
+    "name": "line_boundary_smooth",
     "features": [
         {
             "type": "Feature",
             "properties": {
-                "name": "Track 1",
-                "desc": "Statistics computed from imported data<br><br>Distance: 1.6 miles"
+                "name": "Riverside area boundary (smooth)"
             },
             "geometry": {
                 "type": "LineString",
