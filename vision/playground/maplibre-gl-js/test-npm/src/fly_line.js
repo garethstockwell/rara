@@ -30,7 +30,7 @@ export function createRoute(map, options) {
       let a = maplibregl.MercatorCoordinate.fromLngLat(coordinates[0]);
       let b = maplibregl.MercatorCoordinate.fromLngLat(turf.along(route, turf.lineDistance(route) / 4).geometry.coordinates);
       let dx = b.x - a.x, dy = b.y - a.y;
-      camera.distance = Math.hypot(dx, dy);
+      camera.distance = options.distance ?? Math.hypot(dx, dy);
       camera.coord = new maplibregl.MercatorCoordinate(a.x - dx, a.y - dy);
 
       // FIXME! when using flyTo the positioning is not correct

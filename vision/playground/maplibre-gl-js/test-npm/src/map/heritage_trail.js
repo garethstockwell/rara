@@ -91,7 +91,8 @@ export function createMap(options) {
     callback: (_arguments) => {
       route = fly_line.createRoute(map, {
         lineId: 'heritage_trail',
-        altitude: 200
+        altitude: 200,
+        distance: 500
       });
     },
     visible: true,
