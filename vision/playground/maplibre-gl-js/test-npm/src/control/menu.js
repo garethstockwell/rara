@@ -19,7 +19,7 @@ function toggleVisible() {
 export function add(id, text, onclick, active, color) {
   const link = document.createElement('a');
   link.id = 'menu_' + id;
-  link.layer_id = id;
+  link.layerId = id;
   link.href = '#';
   link.textContent = text;
   link.className = active ? 'active' : '';

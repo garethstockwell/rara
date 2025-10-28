@@ -34,7 +34,7 @@ export function createMap(options) {
 
   var map = new maplibregl.Map(config);
 
-  const z_order = layer.zOrder([
+  const zOrder = layer.zOrder([
     'boundary',
     'heritage_trail',
     'locations',
@@ -42,7 +42,7 @@ export function createMap(options) {
   ]);
 
   map.on('load', () => {
-    z_order.load(map)
+    zOrder.load(map)
 
     map.addSource("point", {
       type: "geojson",
@@ -65,14 +65,14 @@ export function createMap(options) {
         "circle-color": '#ff0000',
         "circle-stroke-width": 2,
         "circle-stroke-color": 'white' }
-    }, z_order.myPosition('point'));
+    }, zOrder.myPosition('point'));
   });
 
   layer.add(map, buildings, {
     id: '3d_buildings',
     text: '3D buildings',
     color: '#aaaaaa',
-    z_order: z_order,
+    zOrder: zOrder,
     visible: true
   });
 
@@ -81,7 +81,7 @@ export function createMap(options) {
     text: 'Riverside area boundary',
     url: '/data/line_boundary.json',
     color: 'black',
-    z_order: z_order,
+    zOrder: zOrder,
     visible: false,
   });
 
@@ -90,7 +90,7 @@ export function createMap(options) {
     text: 'Heritage trail line',
     url: '/data/line_heritage_trail.json',
     color: 'green',
-    z_order: z_order,
+    zOrder: zOrder,
     callback: (_arguments) => {
       _route = route.createRoute(map, {
         lineId: 'heritage_trail',
@@ -106,7 +106,7 @@ export function createMap(options) {
     text: 'Heritage trail locations',
     url: '/data/locations.json',
     color: 'green',
-    z_order: z_order,
+    zOrder: zOrder,
     onclick: options.locationOnClick ?? null,
     visible: true,
   });

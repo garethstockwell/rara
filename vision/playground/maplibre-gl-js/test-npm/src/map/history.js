@@ -22,14 +22,14 @@ export function createMap(options) {
 
   var map = new maplibregl.Map(config);
 
-  const z_order = layer.zOrder([
+  const zOrder = layer.zOrder([
     'g4_bac_cam',
     'barnwell_priory',
     'boundary',
   ]);
 
   map.on('load', () => {
-    z_order.load(map)
+    zOrder.load(map)
   });
 
   layer.add(map, line, {
@@ -37,7 +37,7 @@ export function createMap(options) {
     text: 'Riverside area boundary',
     url: '/data/line_boundary.json',
     color: 'black',
-    z_order: z_order,
+    zOrder: zOrder,
     visible: true,
   });
 
@@ -45,7 +45,7 @@ export function createMap(options) {
     id: 'barnwell_priory',
     text: 'Barnwell Priory (historical)',
     color: 'orange',
-    z_order: z_order,
+    zOrder: zOrder,
     visible: false,
     addToMenu: false,
     callback: options.callback,
@@ -55,7 +55,7 @@ export function createMap(options) {
     id: 'g4_bac_cam',
     text: 'Map circa 1910',
     opacity: 0.75,
-    z_order: z_order,
+    zOrder: zOrder,
     visible: false,
     addToMenu: false,
     callback: options.callback,

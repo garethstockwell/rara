@@ -21,7 +21,7 @@ export function createMap(options) {
 
   var map = new maplibregl.Map(config);
 
-  const z_order = layer.zOrder([
+  const zOrder = layer.zOrder([
     'g4_bac_cam',
     'barnwell_priory',
     'boundary',
@@ -31,14 +31,14 @@ export function createMap(options) {
   ]);
 
   map.on('load', () => {
-    z_order.load(map)
+    zOrder.load(map)
   });
 
   layer.add(map, buildings, {
     id: '3d_buildings',
     text: '3D buildings',
     color: '#aaaaaa',
-    z_order: z_order,
+    zOrder: zOrder,
     visible: false
   });
 
@@ -47,7 +47,7 @@ export function createMap(options) {
     text: 'Riverside area boundary',
     url: '/data/line_boundary.json',
     color: 'black',
-    z_order: z_order,
+    zOrder: zOrder,
     visible: true,
   });
 
@@ -56,7 +56,7 @@ export function createMap(options) {
     text: 'Heritage trail line',
     url: '/data/line_heritage_trail.json',
     color: 'green',
-    z_order: z_order,
+    zOrder: zOrder,
     visible: false,
   });
 
@@ -66,7 +66,7 @@ export function createMap(options) {
     url: '/data/locations.json',
     tags: ['historical'],
     color: 'yellow',
-    z_order: z_order,
+    zOrder: zOrder,
     onclick: options.locationOnClick ?? null,
     visible: options.locationVisible ?? false,
   });
@@ -77,7 +77,7 @@ export function createMap(options) {
     url: '/data/locations.json',
     tags: ['contemporary'],
     color: 'red',
-    z_order: z_order,
+    zOrder: zOrder,
     onclick: options.locationOnClick ?? null,
     visible: options.locationVisible ?? false,
   });
@@ -86,7 +86,7 @@ export function createMap(options) {
     id: 'barnwell_priory',
     text: 'Barnwell Priory (historical)',
     color: 'orange',
-    z_order: z_order,
+    zOrder: zOrder,
     visible: false,
   });
 
@@ -94,7 +94,7 @@ export function createMap(options) {
     id: 'g4_bac_cam',
     text: 'Map circa 1910',
     opacity: 0.75,
-    z_order: z_order,
+    zOrder: zOrder,
     visible: false,
   });
 

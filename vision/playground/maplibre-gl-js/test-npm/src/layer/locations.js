@@ -89,7 +89,7 @@ export function addLayer(map, options) {
             'icon-allow-overlap': true,
             'visibility': options.visible ? 'visible' : 'none'
           }
-        }, options.z_order ? options.z_order.myPosition(id) : null);
+        }, options.zOrder ? options.zOrder.myPosition(id) : null);
 
         if (!options.staticPopups) {
           // Make sure to detect marker change for overlapping markers

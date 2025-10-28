@@ -59,7 +59,7 @@ export function add(map, module, options) {
   module.addLayer(map, options);
 
   function toggle (e) {
-    const id = this.layer_id;
+    const id = this.layerId;
     e.preventDefault();
     e.stopPropagation();
 
