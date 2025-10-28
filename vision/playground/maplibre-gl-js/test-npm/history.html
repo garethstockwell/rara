@@ -11,10 +11,8 @@
       import { createToolbar } from "./src/control/toolbar.js";
       createToolbar('history');
 
-      import { createMap } from "./src/map/history.js";
+      import { createMap, setUp } from "./src/map/history.js";
       const map = createMap();
-
-      import { setUp } from "./src/page/history.js";
       setUp(map);
     </script>
   </head>

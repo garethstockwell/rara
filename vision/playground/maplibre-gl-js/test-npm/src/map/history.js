@@ -3,6 +3,7 @@
 import * as info from "../control/info.js";
 import * as nav from "../control/nav.js";
 import * as buildings from "../layer/buildings.js";
+import * as commentary from "../logic/commentary.js"
 import * as layer from "../layer/layer.js";
 import * as line from "../layer/line.js";
 import * as locations from "../layer/locations.js";
@@ -64,4 +65,26 @@ export function createMap(options) {
   info.setUp(map);
 
   return map;
+}
+
+export function setUp(map) {
+  // Map from era to layer
+  const eraToLayer = {
+    "roman": "barnwell_priory",
+    "early_modern": "g4_bac_cam",
+  };
+
+  return commentary.setUp({
+    onUpdate: function(oldId, newId) {
+      console.log('history.onUpdate id', oldId, newId);
+
+      const oldLayer = eraToLayer[oldId];
+      const newLayer = eraToLayer[newId];
+
+      console.log('history.onUpdate layer', oldLayer, newLayer);
+
+      layer.setLayerVisibility(map, oldLayer, false);
+      layer.setLayerVisibility(map, newLayer, true);
+    }
+  })
 }

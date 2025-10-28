@@ -2,6 +2,7 @@
 
 import * as info from "../control/info.js";
 import * as nav from "../control/nav.js";
+import * as commentary from "../logic/commentary.js"
 import * as buildings from "../layer/buildings.js";
 import * as route from "../logic/route.js";
 import * as layer from "../layer/layer.js";
@@ -114,4 +115,14 @@ export function createMap(options) {
   info.setUp(map);
 
   return map;
+}
+
+export function setUp() {
+  commentary.setUp({
+    onUpdate: function(oldId, newId) {
+      locations.setPopupVisibility(oldId, false);
+      locations.setPopupVisibility(newId, false);
+      fly(oldId, newId);
+    }
+  })
 }

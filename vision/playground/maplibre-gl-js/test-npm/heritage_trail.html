@@ -11,12 +11,10 @@
       import { createToolbar } from "./src/control/toolbar.js";
       createToolbar('heritage_trail');
 
-      import { createMap } from "./src/map/heritage_trail.js";
-      const map = createMap({
+      import { createMap, setUp } from "./src/map/heritage_trail.js";
+      createMap({
         locationVisible: true,
       });
-
-      import { setUp } from "./src/page/heritage_trail.js";
       setUp();
     </script>
   </head>
