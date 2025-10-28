@@ -14,6 +14,7 @@ export function createRoute(map, options) {
   let startDistance = null;
   let stopDistance = null;
   let reachedStopDistance = true;
+  let direction = null;
 
   function init() {
     var line = map.getSource(options.lineId);
@@ -48,6 +49,7 @@ export function createRoute(map, options) {
     startDistance = 0;
     stopDistance = null;
     reachedStopDistance = false;
+    direction = 1;
 
     if (startCoord) {
       console.log("Start coordinates:", startCoord);
@@ -65,6 +67,10 @@ export function createRoute(map, options) {
       console.log("Stop distance (km):", stopDistance);
     }
 
+    if (stopDistance && (stopDistance < startDistance)) {
+      direction = -1;
+    }
+
     startTime = Date.now();
 
     advance();
@@ -78,7 +84,7 @@ export function createRoute(map, options) {
     const now = Date.now();
 
     let elapsedTime = (now - startTime);
-    let currentDistance = startDistance + (elapsedTime * speed);
+    let currentDistance = startDistance + (elapsedTime * speed * direction);
 
     if (!stopDistance) {
       let totalDistance = turf.lineDistance(route);
@@ -102,7 +108,14 @@ export function createRoute(map, options) {
     // FIXME! when using easeTo the positioning is not correct
     map.jumpTo(map.calculateCameraOptionsFromTo(camera.coord.toLngLat(), camera.altitude, lngLat));
 
-    if (stopDistance !== null && currentDistance >= stopDistance) {
+    // Determine whether stop point has been reached
+    if (stopDistance !== null && ((
+        direction > 0 &&
+        currentDistance >= stopDistance
+      ) || (
+        direction < 0 &&
+        currentDistance <= stopDistance
+      ))) {
       reachedStopDistance = true;
       console.log("Stopped at distance:", stopDistance);
       return;
