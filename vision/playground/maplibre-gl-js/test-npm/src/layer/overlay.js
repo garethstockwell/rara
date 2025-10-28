@@ -37,10 +37,10 @@ export function addLayer(map, options) {
             attribution.addAttribution(map, attrib, options.text);
           }
         }
-      });
 
-    if (options.callback) {
-      options.callback(['overlay', id]);
-    }
+        if (options.callback) {
+          options.callback(['overlay', id]);
+        }
+      });
   });
 }

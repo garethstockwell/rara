@@ -25,21 +25,10 @@ export function createMap(options) {
     'g4_bac_cam',
     'barnwell_priory',
     'boundary',
-    'heritage_trail',
-    'locations_historical',
-    'locations_contemporary',
   ]);
 
   map.on('load', () => {
     z_order.load(map)
-  });
-
-  layer.add(map, buildings, {
-    id: '3d_buildings',
-    text: '3D buildings',
-    color: '#aaaaaa',
-    z_order: z_order,
-    visible: false
   });
 
   layer.add(map, line, {
@@ -51,43 +40,14 @@ export function createMap(options) {
     visible: true,
   });
 
-  layer.add(map, line, {
-    id: 'heritage_trail',
-    text: 'Heritage trail line',
-    url: '/data/line_heritage_trail.json',
-    color: 'green',
-    z_order: z_order,
-    visible: false,
-  });
-
-  layer.add(map, locations, {
-    id: 'locations_historical',
-    text: 'Historical locations',
-    url: '/data/locations.json',
-    tags: ['historical'],
-    color: 'yellow',
-    z_order: z_order,
-    onclick: options.locationOnClick ?? null,
-    visible: options.locationVisible ?? false,
-  });
-
-  layer.add(map, locations, {
-    id: 'locations_contemporary',
-    text: 'Contemporary locations',
-    url: '/data/locations.json',
-    tags: ['contemporary'],
-    color: 'red',
-    z_order: z_order,
-    onclick: options.locationOnClick ?? null,
-    visible: options.locationVisible ?? false,
-  });
-
   layer.add(map, overlay, {
     id: 'barnwell_priory',
     text: 'Barnwell Priory (historical)',
     color: 'orange',
     z_order: z_order,
     visible: false,
+    addToMenu: false,
+    callback: options.callback,
   });
 
   layer.add(map, overlay, {
@@ -96,6 +56,8 @@ export function createMap(options) {
     opacity: 0.75,
     z_order: z_order,
     visible: false,
+    addToMenu: false,
+    callback: options.callback,
   });
 
   nav.add(map);

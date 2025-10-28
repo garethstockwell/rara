@@ -3,7 +3,7 @@
 import * as info from "../control/info.js";
 import * as nav from "../control/nav.js";
 import * as buildings from "../layer/buildings.js";
-import * as fly_line from "../fly_line.js";
+import * as route from "../logic/route.js";
 import * as layer from "../layer/layer.js";
 import * as line from "../layer/line.js";
 import * as locations from "../layer/locations.js";
@@ -71,7 +71,7 @@ export function createMap() {
     color: 'black',
     z_order: z_order,
     callback: (_arguments) => {
-      fly_line.createRoute(map, {
+      route.createRoute(map, {
         lineId: 'boundary',
         autoStart: true,
       });

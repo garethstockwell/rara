@@ -14,6 +14,7 @@ export function createToolbar(name) {
   new Map([
     ['vector', 'Vector'],
     ['locations', 'Locations'],
+    ['history', 'History'],
     ['heritage_trail', 'Heritage trail'],
     ['boundary_radius', 'Boundary radius'],
     ['boundary_tangent', 'Boundary tangent'],

@@ -3,19 +3,21 @@
 import * as info from "../control/info.js";
 import * as nav from "../control/nav.js";
 import * as buildings from "../layer/buildings.js";
-import * as fly_line from "../fly_line.js";
+import * as route from "../logic/route.js";
 import * as layer from "../layer/layer.js";
 import * as line from "../layer/line.js";
 import * as locations from "../layer/locations.js";
 
-var route = null;
+var _route = null;
 
 export function fly(fromId, toId) {
   console.log("Fly from", fromId, "to", toId);
   const fromCoord = locations.getLocationCoordinates(fromId);
   const toCoord = locations.getLocationCoordinates(toId);
   console.log("Fly from", fromCoord, "to", toCoord);
-  route.fly(fromCoord, toCoord, 2000);
+  if (_route) {
+    _route.fly(fromCoord, toCoord, 2000);
+  }
 }
 
 export function createMap(options) {
@@ -89,7 +91,7 @@ export function createMap(options) {
     color: 'green',
     z_order: z_order,
     callback: (_arguments) => {
-      route = fly_line.createRoute(map, {
+      _route = route.createRoute(map, {
         lineId: 'heritage_trail',
         altitude: 200,
         distance: 500

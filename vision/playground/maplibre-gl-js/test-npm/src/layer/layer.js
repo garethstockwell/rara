@@ -2,23 +2,59 @@
 
 import * as menu from "../control/menu.js";
 
+// Dictionary of layers, indexed by id
+const layers = {};
+
+function createLayer(id) {
+  const entry = {
+    visible: false
+  };
+  layers[id] = entry;
+  return entry;
+}
+
+export function setLayerVisibility(map, id, visible) {
+  console.log("setLayerVisibility", id, visible);
+
+  const entry = layers[id] ?? createLayer(id);
+  entry.visible = visible;
+
+  if (map.getLayer(id)) {
+    map.setLayoutProperty(id, 'visibility', entry.visible ? 'visible' : 'none');
+  }
+}
+
+function onLoad(map, id, callback) {
+  console.log('layer.onLoad', id);
+
+  const entry = layers[id] ?? createLayer(id);
+  map.setLayoutProperty(id, 'visibility', entry.visible ? 'visible' : 'none');
+
+  if (callback) {
+    callback(id);
+  }
+}
+
 function toggleVisible(map, id) {
   const visibility = map.getLayoutProperty(
     id,
     'visibility'
   );
 
-  if (visibility === 'visible') {
-    map.setLayoutProperty(id, 'visibility', 'none');
-  } else {
-    map.setLayoutProperty(id, 'visibility', 'visible');
-  }
+  setLayerVisibility(map, id, visibility !== 'visible');
 
   return visibility != 'visible';
 }
 
 export function add(map, module, options) {
   options.visible = options.visible ?? true;
+  createLayer(options.id);
+  layers[options.id].visible = options.visible;
+
+  const callback = options.callback;
+  options.callback = (id) => {
+    onLoad(map, options.id, callback);
+  };
 
   module.addLayer(map, options);
 
@@ -30,7 +66,10 @@ export function add(map, module, options) {
     this.className = toggleVisible(map, id) ? 'active' : '';
   };
 
-  menu.add(options.id, options.text, toggle, options.visible, options.color);
+  const addToMenu = options.addToMenu ?? true;
+  if (addToMenu) {
+    menu.add(options.id, options.text, toggle, options.visible, options.color);
+  }
 }
 
 // Module which fixes z-orders of Map layers
