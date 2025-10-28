@@ -29,7 +29,7 @@ export function addOverlayLayer(map, options) {
           layout: {
             visibility: options.visible ? 'visible' : 'none'
           }
-        }, options.zOrder ? options.zOrder.myPosition(id) : null);
+        }, options.zOrder ? options.zOrder.getPosition(id) : null);
 
         if (entry.properties.attribution) {
           var attrib = data.attributions[entry.properties.attribution]

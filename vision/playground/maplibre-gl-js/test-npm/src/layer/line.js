@@ -25,7 +25,7 @@ export function addLineLayer(map, options) {
             'line-color': options.color,
             'line-width': 6
           }
-        }, options.zOrder ? options.zOrder.myPosition(id) : null);
+        }, options.zOrder ? options.zOrder.getPosition(id) : null);
 
         if (options.callback) {
           options.callback(['line', id]);

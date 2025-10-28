@@ -1,18 +1,23 @@
 // Render a globe map
 
-import { setUpInfo } from "../control/info.js";
-import { addNavigationControl } from "../control/nav.js";
+import { Map } from "../component/map.js";
 
+/**
+ * Create the map
+ * @returns Map
+ */
 export function createMap() {
-  const map = new maplibregl.Map({
-    container: 'map', // container id
-    style: 'https://demotiles.maplibre.org/globe.json', // style URL
-    center: [0.144843, 52.212231], // [lng, lat]
-    zoom: 1 // starting zoom
-  });
+  const config = {
+    style: "https://demotiles.maplibre.org/globe.json",
+    center: [0.144843, 52.212231],
+    zoom: 1,
+    container: "map",
+    attributionControl: false
+  };
 
-  addNavigationControl(map);
-  setUpInfo(map);
+  var map = new Map({
+    config: config,
+  });
 
   return map;
 }

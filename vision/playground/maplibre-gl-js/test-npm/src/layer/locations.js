@@ -1,76 +1,32 @@
 // Add a map layer which shows locations
 
-var _map = null;
-
-// Dictionary of locations, indexed by location id
-const locations = {};
-
-function createLocation(id) {
-  const entry = {
-    coordinates: null,
-    popup: null,
-    visible: false
-  };
-  locations[id] = entry;
-  return entry;
-}
-
-function addPopup(location) {
-  const entry = locations[location.properties.id] ?? createLocation(location.properties.id);
-
-  entry.coordinates = location.geometry.coordinates;
-
-  entry.popup = new maplibregl.Popup({
-    closeButton: false,
-    closeOnClick: false
-  });
-
-  entry.popup
-    .setLngLat(entry.coordinates)
-    .setHTML(location.properties.title)
-    .addTo(_map);
-
-  setPopupVisibility(location.properties.id, entry.visible);
-}
-
-export function setPopupVisibility(id, visible) {
-  const entry = locations[id] ?? createLocation(id);
-  entry.visible = visible;
-  if (entry.popup) {
-    entry.popup.getElement().style.visibility = visible ? 'visible' : 'hidden';
-  }
-}
-
-export function getLocationCoordinates(id) {
-  const entry = locations[id];
-  if (entry) {
-    return entry.coordinates;
-  }
-  console.log("Error: couldn't find location", id);
-}
-
-export function addLocationsLayer(map, options) {
-  _map = map;
-
+/**
+ * Create the map
+ * @param {Object} args              The arguments
+ */
+export function addLocationsLayer(map, args) {
   map.on('load', async () => {
-    var id = options.id;
+    var id = args.id;
 
-    const image = await map.loadImage('../../assets/pin-' + options.color + '.png');
+    const popups = map.appData.popups;
+
+    const image = await map.loadImage('../../assets/pin-' + args.color + '.png');
     map.addImage(id, image.data);
 
-    fetch(options.url)
+    fetch(args.url)
       .then(res => res.json())
       .then(data => {   
-        if (options.tags) {
+        if (args.tags) {
           data.features = data.features.filter(
-            feature => options.tags.every((x) => feature.properties.tags.includes(x))
+            feature => args.tags.every((x) => feature.properties.tags.includes(x))
           );
         }
 
         data.features.forEach(feature => {
-          addPopup(feature);
-          if (options.staticPopups) {
-            setPopupVisibility(feature.properties.id, true);
+          const popup = popups.getPopup(feature.properties.id);
+          popup.setLocation(feature.geometry.coordinates, feature.properties.title);
+          if (args.staticPopups) {
+            popup.visible = true;
           }
         });
 
@@ -87,11 +43,11 @@ export function addLocationsLayer(map, options) {
             'icon-image': id,
             'icon-size': 1.0,
             'icon-allow-overlap': true,
-            'visibility': options.visible ? 'visible' : 'none'
+            'visibility': args.visible ? 'visible' : 'none'
           }
-        }, options.zOrder ? options.zOrder.myPosition(id) : null);
+        }, args.zOrder ? args.zOrder.getPosition(id) : null);
 
-        if (!options.staticPopups) {
+        if (!args.staticPopups) {
           // Make sure to detect marker change for overlapping markers
           // and use mousemove instead of mouseenter event
           let currentFeatureId = undefined;
@@ -114,25 +70,25 @@ export function addLocationsLayer(map, options) {
               }
 
               if (currentFeatureId) {
-                setPopupVisibility(currentFeatureId, false);
+                popups.getPopup(currentFeatureId).visible = false;
               }
 
               currentFeatureId = e.features[0].properties.id;
-              setPopupVisibility(currentFeatureId, true);
+              popups.getPopup(currentFeatureId).visible = true;
             }
           });
 
           map.on('mouseleave', id, () => {
             map.getCanvas().style.cursor = '';
-            setPopupVisibility(currentFeatureId, false);
+            popups.getPopup(currentFeatureId).visible = false;
             currentFeatureId = undefined;
             currentFeatureCoordinates = undefined;
           });
         }
 
-        if (options.onclick) {
+        if (args.onclick) {
           map.on('click', id, (e) => {
-            options.onclick(e.features[0].properties.id);
+            args.onclick(e.features[0].properties.id);
           });
         }
       }

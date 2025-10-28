@@ -30,10 +30,9 @@
       const container = document.querySelector('#commentary-wrap');
       const sections = document.querySelectorAll('.commentary');
 
-      import { setPopupVisibility } from "./src/layer/locations.js";
-
       function onVisibilityChange(el, isVisible) {
-        setPopupVisibility(el.id, isVisible);
+        console.log("onVisibilityChange", el, isVisible);
+        map.appData.popups.getPopup(el.id).visible = isVisible;
       }
 
       const observer = new IntersectionObserver(

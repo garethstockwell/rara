@@ -1,37 +1,44 @@
 // Fly around the boundary, with camera pointing along the boundary
 
-import { setUpInfo } from "../control/info.js";
-import { addNavigationControl } from "../control/nav.js";
+import { Map } from "../component/map.js";
+import { Route } from "../component/route.js";
+
 import { addBuildingsLayer } from "../layer/buildings.js";
-import { createRoute } from "../logic/route.js";
-import { addLayer, createZOrder } from "../layer/layer.js";
 import { addLineLayer } from "../layer/line.js";
 import { addLocationsLayer } from "../layer/locations.js";
 import { addOverlayLayer } from "../layer/overlay.js";
 
+/**
+ * Create the map
+ * @returns Map
+ */
 export function createMap() {
   const config = {
     style: "https://api.maptiler.com/maps/openstreetmap/style.json?key=zsAKnM69p5uDhfEeaTCu",
-    center: [0.144843, 52.212231], // [lng, lat]
+    center: [0.144843, 52.212231],
+    zoom: 15,
     container: "map",
     attributionControl: false
   };
 
-  var map = new maplibregl.Map(config);
-
-  const zOrder = createZOrder([
+  const zOrder = [
     'g4_bac_cam',
     'barnwell_priory',
-    'boundary',
     'heritage_trail',
-    'historical',
-    'contemporary',
+    'boundary',
     'point',
-  ]);
+    'locations_historical',
+    'locations_contemporary',
+  ];
+
+  var map = new Map({
+    config: config,
+    zOrder: zOrder
+  });
+
+  let route = null;
 
   map.on('load', () => {
-    zOrder.load(map)
-
     map.addSource("point", {
       type: "geojson",
       data: {
@@ -53,82 +60,74 @@ export function createMap() {
         "circle-color": '#ff0000',
         "circle-stroke-width": 2,
         "circle-stroke-color": 'white' }
-    }, zOrder.myPosition('point'));
+    }, map.appData.layers.zOrder.getPosition('point'));
   });
 
-  addLayer(map, addBuildingsLayer, {
+  map.appData.layers.addLayer(addBuildingsLayer, {
     id: '3d_buildings',
     text: '3D buildings',
     color: '#aaaaaa',
-    zOrder: zOrder,
-    visible: true,
+    visible: false
   });
 
-  addLayer(map, addLineLayer, {
+  map.appData.layers.addLayer(addLineLayer, {
     id: 'boundary',
     text: 'Riverside area boundary',
     url: '/data/line_boundary.json',
     color: 'black',
-    zOrder: zOrder,
+    visible: true,
     callback: (_arguments) => {
-      createRoute(map, {
-        lineId: 'boundary',
+      route = new Route({
+        altitude: 200,
         autoStart: true,
+        distance: 500,
+        lineId: 'boundary',
+        map: map,
       });
     },
-    visible: true,
   });
 
-  addLayer(map, addLineLayer, {
+  map.appData.layers.addLayer(addLineLayer, {
     id: 'heritage_trail',
     text: 'Heritage trail line',
     url: '/data/line_heritage_trail.json',
     color: 'green',
-    zOrder: zOrder,
     visible: false,
   });
 
-  addLayer(map, addLocationsLayer, {
-    id: 'historical',
+  map.appData.layers.addLayer(addLocationsLayer, {
+    id: 'locations_historical',
     text: 'Historical locations',
     url: '/data/locations.json',
     tags: ['historical'],
     color: 'yellow',
-    staticPopups: true,
-    zOrder: zOrder,
     visible: true,
+    staticPopups: true,
   });
 
-  addLayer(map, addLocationsLayer, {
-    id: 'contemporary',
+  map.appData.layers.addLayer(addLocationsLayer, {
+    id: 'locations_contemporary',
     text: 'Contemporary locations',
     url: '/data/locations.json',
     tags: ['contemporary'],
     color: 'red',
-    staticPopups: true,
-    zOrder: zOrder,
     visible: true,
+    staticPopups: true,
   });
 
-  addLayer(map, addOverlayLayer, {
+  map.appData.layers.addLayer(addOverlayLayer, {
     id: 'barnwell_priory',
     text: 'Barnwell Priory (historical)',
     color: 'orange',
-    zOrder: zOrder,
     visible: false,
   });
 
-  addLayer(map, addOverlayLayer, {
+  map.appData.layers.addLayer(addOverlayLayer, {
     id: 'g4_bac_cam',
     text: 'Map circa 1910',
     opacity: 0.75,
     visible: false,
-    zOrder: zOrder,
-    visible: false,
   });
-
-  addNavigationControl(map, false);
-  setUpInfo(map);
 
   return map;
 }

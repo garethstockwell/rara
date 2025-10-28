@@ -1,88 +1,99 @@
-// Render a flat map
+// Render history view
 
-import { setUpInfo } from "../control/info.js";
-import { addNavigationControl } from "../control/nav.js";
-import { setUpCommentary } from "../logic/commentary.js"
-import { addLayer, createZOrder, setLayerVisibility } from "../layer/layer.js";
+import { Commentary } from "../component/commentary.js";
+import { Map } from "../component/map.js";
+
 import { addLineLayer } from "../layer/line.js";
 import { addOverlayLayer } from "../layer/overlay.js";
 
-export function createMap(options) {
-  options = options ?? {};
+/**
+ * Create the map
+ * @param {Object} args The arguments 
+ * @returns Map
+ */
+export function createMap(args) {
+  args = args ?? {};
 
   const config = {
     style: "https://api.maptiler.com/maps/openstreetmap/style.json?key=zsAKnM69p5uDhfEeaTCu",
-    center: [0.144843, 52.212231], // [lng, lat]
+    center: [0.144843, 52.212231],
     zoom: 15,
     container: "map",
     attributionControl: false
   };
 
-  var map = new maplibregl.Map(config);
-
-  const zOrder = createZOrder([
+  const zOrder = [
     'g4_bac_cam',
     'barnwell_priory',
     'boundary',
-  ]);
+  ];
 
-  map.on('load', () => {
-    zOrder.load(map)
+  var map = new Map({
+    config: config,
+    zOrder: zOrder
   });
 
-  addLayer(map, addLineLayer, {
+  map.appData.layers.addLayer(addLineLayer, {
     id: 'boundary',
     text: 'Riverside area boundary',
     url: '/data/line_boundary.json',
     color: 'black',
-    zOrder: zOrder,
     visible: true,
   });
 
-  addLayer(map, addOverlayLayer, {
+  map.appData.layers.addLayer(addOverlayLayer, {
     id: 'barnwell_priory',
     text: 'Barnwell Priory (historical)',
     color: 'orange',
-    zOrder: zOrder,
     visible: false,
     addToMenu: false,
-    callback: options.callback,
   });
 
-  addLayer(map, addOverlayLayer, {
+  map.appData.layers.addLayer(addOverlayLayer, {
     id: 'g4_bac_cam',
     text: 'Map circa 1910',
     opacity: 0.75,
-    zOrder: zOrder,
     visible: false,
     addToMenu: false,
-    callback: options.callback,
   });
 
-  addNavigationControl(map);
-  setUpInfo(map);
+  setUpCommentary(map);
 
   return map;
 }
 
-export function setUp(map) {
+/**
+ * Link commentary panel to map
+ */
+function setUpCommentary(map) {
   // Map from era to layer
   const eraToLayer = {
     "roman": "barnwell_priory",
     "early_modern": "g4_bac_cam",
   };
 
-  return setUpCommentary({
-    onUpdate: function(oldId, newId) {
-      console.log('history.onUpdate id', oldId, newId);
+  const commentary = new Commentary({
+    callback: function(oldId, newId) {
+      console.log(`history.onUpdate id ${oldId} -> ${newId}`);
 
       const oldLayer = eraToLayer[oldId];
       const newLayer = eraToLayer[newId];
 
-      console.log('history.onUpdate layer', oldLayer, newLayer);
+      console.log(`history.onUpdate layer ${oldLayer} -> ${newLayer}`);
 
-      setLayerVisibility(map, oldLayer, false);
-      setLayerVisibility(map, newLayer, true);
+      map.appData.layers.getLayer(oldLayer).visible = false;
+      map.appData.layers.getLayer(newLayer).visible = true;
     }
-  })
+  });
+
+  function loaded(e) {
+    var layerId = eraToLayer[commentary.ids[0]];
+    if (e.isSourceLoaded && e.sourceId == layerId) {
+      console.log(`Source ${e.sourceId} is loaded`);
+      commentary.setIndex(0);
+      map.off('sourcedata', loaded);
+    }
+  }
+
+  map.on('sourcedata', loaded);
 }
