@@ -1,6 +1,6 @@
 // Helper functions for creating a horizontal toolbar
 
-function add(name, text, active) {
+function addToolbarItem(name, text, active) {
   const link = document.createElement('a');
   link.href = name + '.html';
   link.textContent = text;
@@ -21,6 +21,6 @@ export function createToolbar(name) {
     ['globe', 'Globe'],
     ['raster', 'Raster'],
   ]).forEach(function(value, key) {
-    add(key, value, key == name)
+    addToolbarItem(key, value, key == name)
   });
 }

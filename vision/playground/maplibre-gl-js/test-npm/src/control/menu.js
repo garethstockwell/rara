@@ -4,11 +4,11 @@ function menu() {
   return document.getElementById('menu');
 }
 
-export function show() {
+function show() {
   menu().hidden = false;
 }
 
-export function hide() {
+function hide() {
   menu().hidden = true;
 }
 
@@ -16,7 +16,7 @@ function toggleVisible() {
   menu().hidden = !menu().hidden;
 }
 
-export function add(id, text, onclick, active, color) {
+export function addMenuItem(id, text, onclick, active, color) {
   const link = document.createElement('a');
   link.id = 'menu_' + id;
   link.layerId = id;

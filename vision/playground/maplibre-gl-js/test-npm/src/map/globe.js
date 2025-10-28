@@ -1,7 +1,7 @@
 // Render a globe map
 
-import * as info from "../control/info.js";
-import * as nav from "../control/nav.js";
+import { setUpInfo } from "../control/info.js";
+import { addNavigationControl } from "../control/nav.js";
 
 export function createMap() {
   const map = new maplibregl.Map({
@@ -11,8 +11,8 @@ export function createMap() {
     zoom: 1 // starting zoom
   });
 
-  nav.add(map);
-  info.setUp(map);
+  addNavigationControl(map);
+  setUpInfo(map);
 
   return map;
 }

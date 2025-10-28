@@ -1,8 +1,6 @@
 // Control logic for commentary pages
 
-//import * as locations from "../layer/locations.js";
-
-export function setUp(options) {
+export function setUpCommentary(options) {
   const commentaryElements = document.querySelectorAll(".commentary");
   commentaryElements.forEach(el => el.style = 'display: none;');
   const commentaryIds = Array.from(commentaryElements).map(el => el.id);

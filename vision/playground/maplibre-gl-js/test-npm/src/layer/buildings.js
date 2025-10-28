@@ -1,6 +1,6 @@
 // Add 3D buildings
 
-export function addLayer(map, options) {
+export function addBuildingsLayer(map, options) {
   var id = options.id;
 
   map.on('load', () => {

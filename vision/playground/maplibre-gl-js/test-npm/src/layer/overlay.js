@@ -1,8 +1,8 @@
 // Add a map layer which shows an image
 
-import * as attribution from "../control/attribution.js";
+import { addAttribution } from "../control/attribution.js";
 
-export function addLayer(map, options) {
+export function addOverlayLayer(map, options) {
   var id = options.id;
 
   map.on('load', () => {
@@ -34,7 +34,7 @@ export function addLayer(map, options) {
         if (entry.properties.attribution) {
           var attrib = data.attributions[entry.properties.attribution]
           if (attrib) {
-            attribution.addAttribution(map, attrib, options.text);
+            addAttribution(map, attrib, options.text);
           }
         }
 

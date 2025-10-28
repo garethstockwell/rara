@@ -1,6 +1,6 @@
 // Add an overlay which shows coordinates of the mouse pointer
 
-import * as menu from "./menu.js";
+import { addMenuItem } from "./menu.js";
 
 var freeze = false;
 
@@ -12,7 +12,7 @@ function show() {
   info().style.display = 'block';
 }
 
-export function hide() {
+function hide() {
   info().style.display = 'none';
 }
 
@@ -45,12 +45,7 @@ function update(map) {
   }
 }
 
-export function setZoom(value) {
-  zoom = value;
-  update();
-}
-
-export function setUp(map) {
+export function setUpInfo(map) {
   map.on('mousemove', (e) => {
     event = e;
     update(map);
@@ -63,7 +58,7 @@ export function setUp(map) {
     this.className = toggleVisible() ? 'active' : '';
   };
 
-  menu.add('info', 'Debugging', toggle, false);
+  addMenuItem('info', 'Debugging', toggle, false);
 
   const handleKeyDown = (e) => {
     if (e.key === "f") {

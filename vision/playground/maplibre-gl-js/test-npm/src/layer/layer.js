@@ -1,6 +1,6 @@
 // Helpers for adding map layers
 
-import * as menu from "../control/menu.js";
+import { addMenuItem } from "../control/menu.js";
 
 // Dictionary of layers, indexed by id
 const layers = {};
@@ -46,7 +46,7 @@ function toggleVisible(map, id) {
   return visibility != 'visible';
 }
 
-export function add(map, module, options) {
+export function addLayer(map, addLayer, options) {
   options.visible = options.visible ?? true;
   createLayer(options.id);
   layers[options.id].visible = options.visible;
@@ -56,7 +56,7 @@ export function add(map, module, options) {
     onLoad(map, options.id, callback);
   };
 
-  module.addLayer(map, options);
+  addLayer(map, options);
 
   function toggle (e) {
     const id = this.layerId;
@@ -68,13 +68,13 @@ export function add(map, module, options) {
 
   const addToMenu = options.addToMenu ?? true;
   if (addToMenu) {
-    menu.add(options.id, options.text, toggle, options.visible, options.color);
+    addMenuItem(options.id, options.text, toggle, options.visible, options.color);
   }
 }
 
 // Module which fixes z-orders of Map layers
 // Based on https://qubika.com/blog/effectively-manage-layer-order-mapbox-gl-js/
-export function zOrder(ids) {
+export function createZOrder(ids) {
   return {
     order: ids,
 

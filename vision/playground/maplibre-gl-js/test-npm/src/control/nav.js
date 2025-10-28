@@ -1,8 +1,6 @@
 // Navigation controls
 
-import * as info from "./info.js";
-
-export function add(map, showZoom = true) {
+export function addNavigationControl(map, showZoom = true) {
   map.addControl(new maplibregl.NavigationControl({
     visualizePitch: true,
     visualizeRoll: true,

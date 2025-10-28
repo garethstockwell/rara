@@ -49,7 +49,7 @@ export function getLocationCoordinates(id) {
   console.log("Error: couldn't find location", id);
 }
 
-export function addLayer(map, options) {
+export function addLocationsLayer(map, options) {
   _map = map;
 
   map.on('load', async () => {

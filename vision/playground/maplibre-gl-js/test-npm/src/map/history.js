@@ -1,13 +1,11 @@
 // Render a flat map
 
-import * as info from "../control/info.js";
-import * as nav from "../control/nav.js";
-import * as buildings from "../layer/buildings.js";
-import * as commentary from "../logic/commentary.js"
-import * as layer from "../layer/layer.js";
-import * as line from "../layer/line.js";
-import * as locations from "../layer/locations.js";
-import * as overlay from "../layer/overlay.js";
+import { setUpInfo } from "../control/info.js";
+import { addNavigationControl } from "../control/nav.js";
+import { setUpCommentary } from "../logic/commentary.js"
+import { addLayer, createZOrder, setLayerVisibility } from "../layer/layer.js";
+import { addLineLayer } from "../layer/line.js";
+import { addOverlayLayer } from "../layer/overlay.js";
 
 export function createMap(options) {
   options = options ?? {};
@@ -22,7 +20,7 @@ export function createMap(options) {
 
   var map = new maplibregl.Map(config);
 
-  const zOrder = layer.zOrder([
+  const zOrder = createZOrder([
     'g4_bac_cam',
     'barnwell_priory',
     'boundary',
@@ -32,7 +30,7 @@ export function createMap(options) {
     zOrder.load(map)
   });
 
-  layer.add(map, line, {
+  addLayer(map, addLineLayer, {
     id: 'boundary',
     text: 'Riverside area boundary',
     url: '/data/line_boundary.json',
@@ -41,7 +39,7 @@ export function createMap(options) {
     visible: true,
   });
 
-  layer.add(map, overlay, {
+  addLayer(map, addOverlayLayer, {
     id: 'barnwell_priory',
     text: 'Barnwell Priory (historical)',
     color: 'orange',
@@ -51,7 +49,7 @@ export function createMap(options) {
     callback: options.callback,
   });
 
-  layer.add(map, overlay, {
+  addLayer(map, addOverlayLayer, {
     id: 'g4_bac_cam',
     text: 'Map circa 1910',
     opacity: 0.75,
@@ -61,8 +59,8 @@ export function createMap(options) {
     callback: options.callback,
   });
 
-  nav.add(map);
-  info.setUp(map);
+  addNavigationControl(map);
+  setUpInfo(map);
 
   return map;
 }
@@ -74,7 +72,7 @@ export function setUp(map) {
     "early_modern": "g4_bac_cam",
   };
 
-  return commentary.setUp({
+  return setUpCommentary({
     onUpdate: function(oldId, newId) {
       console.log('history.onUpdate id', oldId, newId);
 
@@ -83,8 +81,8 @@ export function setUp(map) {
 
       console.log('history.onUpdate layer', oldLayer, newLayer);
 
-      layer.setLayerVisibility(map, oldLayer, false);
-      layer.setLayerVisibility(map, newLayer, true);
+      setLayerVisibility(map, oldLayer, false);
+      setLayerVisibility(map, newLayer, true);
     }
   })
 }

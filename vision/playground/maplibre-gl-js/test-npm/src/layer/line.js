@@ -1,6 +1,6 @@
 // Add a map layer which shows a line
 
-export function addLayer(map, options) {
+export function addLineLayer(map, options) {
   var id = options.id;
 
   map.on('load', () => {

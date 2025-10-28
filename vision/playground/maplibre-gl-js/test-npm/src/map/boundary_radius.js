@@ -1,12 +1,12 @@
 // Fly around the boundary, with camera pointing to the centre
 
-import * as nav from "../control/nav.js";
-import * as info from "../control/info.js";
-import * as buildings from "../layer/buildings.js";
-import * as layer from "../layer/layer.js";
-import * as line from "../layer/line.js";
-import * as locations from "../layer/locations.js";
-import * as overlay from "../layer/overlay.js";
+import { addNavigationControl } from "../control/nav.js";
+import { setUpInfo } from "../control/info.js";
+import { addBuildingsLayer } from "../layer/buildings.js";
+import { addLayer, createZOrder } from "../layer/layer.js";
+import { addLineLayer } from "../layer/line.js";
+import { addLocationsLayer } from "../layer/locations.js";
+import { addOverlayLayer } from "../layer/overlay.js";
 
 export function createMap() {
   const config = {
@@ -60,7 +60,7 @@ export function createMap() {
       });
   });
 
-  const zOrder = layer.zOrder([
+  const zOrder = createZOrder([
     'g4_bac_cam',
     'barnwell_priory',
     'boundary',
@@ -73,7 +73,7 @@ export function createMap() {
     zOrder.load(map)
   });
 
-  layer.add(map, buildings, {
+  addLayer(map, addBuildingsLayer, {
     id: '3d_buildings',
     text: '3D buildings',
     color: '#aaaaaa',
@@ -81,7 +81,7 @@ export function createMap() {
     visible: true,
   });
 
-  layer.add(map, line, {
+  addLayer(map, addLineLayer, {
     id: 'boundary',
     text: 'Riverside area boundary',
     url: '/data/line_boundary.json',
@@ -90,7 +90,7 @@ export function createMap() {
     visible: true,
   });
 
-  layer.add(map, line, {
+  addLayer(map, addLineLayer, {
     id: 'heritage_trail',
     text: 'Heritage trail line',
     url: '/data/line_heritage_trail.json',
@@ -99,7 +99,7 @@ export function createMap() {
     visible: false,
   });
 
-  layer.add(map, locations, {
+  addLayer(map, addLocationsLayer, {
     id: 'historical',
     text: 'Historical locations',
     url: '/data/locations.json',
@@ -110,7 +110,7 @@ export function createMap() {
     visible: true,
   });
 
-  layer.add(map, locations, {
+  addLayer(map, addLocationsLayer, {
     id: 'contemporary',
     text: 'Contemporary locations',
     url: '/data/locations.json',
@@ -121,7 +121,7 @@ export function createMap() {
     visible: true,
   });
 
-  layer.add(map, overlay, {
+  addLayer(map, addOverlayLayer, {
     id: 'barnwell_priory',
     text: 'Barnwell Priory (historical)',
     color: 'orange',
@@ -129,7 +129,7 @@ export function createMap() {
     visible: false,
   });
 
-  layer.add(map, overlay, {
+  addLayer(map, addOverlayLayer, {
     id: 'g4_bac_cam',
     text: 'Map circa 1910',
     opacity: 0.75,
@@ -137,8 +137,8 @@ export function createMap() {
     visible: false,
   });
 
-  nav.add(map, false);
-  info.setUp(map);
+  addNavigationControl(map, false);
+  setUpInfo(map);
 
   return map;
 }
