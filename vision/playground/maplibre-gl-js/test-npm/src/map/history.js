@@ -23,8 +23,8 @@ export function createMap(args) {
   };
 
   const zOrder = [
+    'g5_8_cam',
     'g4_bac_cam',
-    'barnwell_priory',
     'boundary',
   ];
 
@@ -42,9 +42,9 @@ export function createMap(args) {
   });
 
   map.appData.layers.addLayer(addOverlayLayer, {
-    id: 'barnwell_priory',
-    text: 'Barnwell Priory (historical)',
-    color: 'orange',
+    id: 'g5_8_cam',
+    text: 'Map circa 1836-1838',
+    opacity: 1.00,
     visible: false,
     addToMenu: false,
   });
@@ -52,7 +52,7 @@ export function createMap(args) {
   map.appData.layers.addLayer(addOverlayLayer, {
     id: 'g4_bac_cam',
     text: 'Map circa 1910',
-    opacity: 0.75,
+    opacity: 1.00,
     visible: false,
     addToMenu: false,
   });
@@ -68,8 +68,8 @@ export function createMap(args) {
 function setUpCommentary(map) {
   // Map from era to layer
   const eraToLayer = {
-    "roman": "barnwell_priory",
-    "early_modern": "g4_bac_cam",
+    "c_1836_1838": "g5_8_cam",
+    "c_1910": "g4_bac_cam",
   };
 
   const commentary = new Commentary({

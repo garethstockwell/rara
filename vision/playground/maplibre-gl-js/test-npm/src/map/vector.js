@@ -25,6 +25,7 @@ export function createMap(args) {
 
   const zOrder = [
     'g4_bac_cam',
+    'g5_8_cam',
     'barnwell_priory',
     'boundary',
     'heritage_trail',
@@ -99,10 +100,17 @@ export function createMap(args) {
     });
   }
 
-  if (!args.layers || args.layers.includes('g4_bac_cam')) {
+  if (!args.layers || args.layers.includes('overlays')) {
     map.appData.layers.addLayer(addOverlayLayer, {
       id: 'g4_bac_cam',
       text: 'Map circa 1910',
+      opacity: 0.75,
+      visible: false,
+    });
+
+    map.appData.layers.addLayer(addOverlayLayer, {
+      id: 'g5_8_cam',
+      text: 'Map circa 1836-1838',
       opacity: 0.75,
       visible: false,
     });

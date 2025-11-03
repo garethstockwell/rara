@@ -45,6 +45,28 @@
             [0.092716, 52.192433]
           ]
         }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "id": "g5_8_cam",
+          "url": "/assets/overlays/G5-8-Cam.png",
+          "description": [
+            "Map of Cambridge.",
+            "Plan of town with arms of colleges etc [1836 or 1838?].",
+            "Inset Trinity College. From Moule’s Eng. Topographer or English Counties ???? .W. Schnoll… engr. 19 x 25 cm. (FORDHAM 188)"
+          ],
+          "attribution": "camantsoc"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [0.092716, 52.221383],
+            [0.158683, 52.221383],
+            [0.158683, 52.192433],
+            [0.092716, 52.192433]
+          ]
+        }
       }
     ]
   }
