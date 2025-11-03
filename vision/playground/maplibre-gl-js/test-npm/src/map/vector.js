@@ -13,7 +13,9 @@ import { addOverlayLayer } from "../layer/overlay.js";
  * @returns Map
  */
 export function createMap(args) {
-  args = args ?? {};
+  args = args ?? {
+    overlay_opacity: 1.00,
+  };
 
   const config = {
     style: "https://api.maptiler.com/maps/openstreetmap/style.json?key=zsAKnM69p5uDhfEeaTCu",
@@ -24,8 +26,9 @@ export function createMap(args) {
   };
 
   const zOrder = [
-    'camantsoc_1910',
     'camantsoc_1836_1838',
+    'camantsoc_1910',
+    'camantsoc_1925',
     'barnwell_priory',
     'boundary',
     'heritage_trail',
@@ -102,16 +105,23 @@ export function createMap(args) {
 
   if (!args.layers || args.layers.includes('overlays')) {
     map.appData.layers.addLayer(addOverlayLayer, {
-      id: 'camantsoc_1910',
-      text: 'Map circa 1910',
-      opacity: 1.00,
+      id: 'camantsoc_1836_1838',
+      text: 'Map circa 1836-1838',
+      opacity: args.overlay_opacity,
       visible: false,
     });
 
     map.appData.layers.addLayer(addOverlayLayer, {
-      id: 'camantsoc_1836_1838',
-      text: 'Map circa 1836-1838',
-      opacity: 1.00,
+      id: 'camantsoc_1910',
+      text: 'Map circa 1910',
+      opacity: args.overlay_opacity,
+      visible: false,
+    });
+
+    map.appData.layers.addLayer(addOverlayLayer, {
+      id: 'camantsoc_1925',
+      text: 'Map circa 1925',
+      opacity: args.overlay_opacity,
       visible: false,
     });
   }

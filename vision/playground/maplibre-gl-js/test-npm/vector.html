@@ -12,7 +12,9 @@
       createToolbar('vector');
 
       import { createMap } from "./src/map/vector.js";
-      createMap();
+      createMap({
+        overlay_opacity: 0.75,
+      });
     </script>
   </head>
 
