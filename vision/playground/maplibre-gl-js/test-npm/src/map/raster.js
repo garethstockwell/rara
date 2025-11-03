@@ -49,6 +49,7 @@ export function createMap(args) {
     'boundary',
     'heritage_trail',
     'attractions',
+    'improvements',
   ];
 
   var map = new Map({
@@ -88,6 +89,16 @@ export function createMap(args) {
     onclick: args.locationOnClick ?? null,
     visible: args.locationVisible ?? false,
   });
+
+  map.appData.layers.addLayer(addLocationsLayer, {
+      id: 'improvements',
+      text: 'Improvements',
+      url: '/data/locations.json',
+      tags: ['improvements'],
+      color: 'red',
+      onclick: args.locationOnClick ?? null,
+      visible: args.locationVisible ?? false,
+    });
 
   map.appData.layers.addLayer(addOverlayLayer, {
     id: 'barnwell_priory',

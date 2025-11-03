@@ -26,6 +26,7 @@ export function createMap() {
     'boundary',
     'heritage_trail',
     'attractions',
+    'improvements',
   ];
 
   var map = new Map({
@@ -104,6 +105,16 @@ export function createMap() {
     url: '/data/locations.json',
     tags: ['attractions'],
     color: 'yellow',
+    visible: true,
+    staticPopups: true,
+  });
+
+  map.appData.layers.addLayer(addLocationsLayer, {
+    id: 'improvements',
+    text: 'Improvements',
+    url: '/data/locations.json',
+    tags: ['improvements'],
+    color: 'red',
     visible: true,
     staticPopups: true,
   });

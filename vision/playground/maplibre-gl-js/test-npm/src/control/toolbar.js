@@ -13,6 +13,7 @@ function addToolbarItem(name, text, active) {
 export function createToolbar(name) {
   new Map([
     ['attractions', 'Attractions'],
+    ['improvements', 'Improvements'],
     ['history', 'History'],
     ['heritage_trail', 'Heritage trail'],
     ['boundary_radius', 'Boundary radius'],

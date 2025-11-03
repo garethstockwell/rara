@@ -29,6 +29,7 @@ export function createMap(args) {
     'boundary',
     'heritage_trail',
     'attractions',
+    'improvements',
   ];
 
   var map = new Map({
@@ -72,6 +73,18 @@ export function createMap(args) {
       url: '/data/locations.json',
       tags: ['attractions'],
       color: 'yellow',
+      onclick: args.locationOnClick ?? null,
+      visible: args.locationVisible ?? false,
+    });
+  }
+
+  if (!args.layers || args.layers.includes('improvements')) {
+    map.appData.layers.addLayer(addLocationsLayer, {
+      id: 'improvements',
+      text: 'Improvements',
+      url: '/data/locations.json',
+      tags: ['improvements'],
+      color: 'red',
       onclick: args.locationOnClick ?? null,
       visible: args.locationVisible ?? false,
     });

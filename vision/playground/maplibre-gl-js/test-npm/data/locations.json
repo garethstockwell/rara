@@ -4,6 +4,125 @@
         {
             "type": "Feature",
             "properties": {
+                "id": "riverside_boulevard",
+                "title": "Riverside \"boulevard\"",
+                "tags": [
+                    "improvements"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.141654,
+                    52.211759
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "elizabeth_way_underpass",
+                "title": "Elizabeth Way underpass",
+                "tags": [
+                    "improvements"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.137664,
+                    52.208478
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "elizabeth_way_bridge",
+                "title": "Below Elizabeth Way bridge",
+                "tags": [
+                    "improvements"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.136837,
+                    52.210902
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "stourbridge_common_entrance",
+                "title": "Stourbridge Common entrance",
+                "tags": [
+                    "improvements"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.144514,
+                    52.214651
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "river_festival",
+                "title": "River festival",
+                "tags": [
+                    "improvements"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.145347,
+                    52.216346
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "newmarket_road",
+                "title": "Newmarket Road",
+                "tags": [
+                    "improvements"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.146720,
+                    52.210876
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "mercers_row",
+                "title": "Mercer's Row",
+                "tags": [
+                    "improvements"
+                ]
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0.150873,
+                    52.215441
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
                 "id": "stourbridge_common",
                 "title": "Stourbridge Common",
                 "tags": [
