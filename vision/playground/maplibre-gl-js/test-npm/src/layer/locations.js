@@ -10,7 +10,7 @@ export function addLocationsLayer(map, args) {
 
     const popups = map.appData.popups;
 
-    const image = await map.loadImage('../../assets/pin-' + args.color + '.png');
+    const image = await map.loadImage('/assets/icons/pin-' + args.color + '.png');
     map.addImage(id, image.data);
 
     fetch(args.url)

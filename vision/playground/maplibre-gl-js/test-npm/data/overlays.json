@@ -10,7 +10,7 @@
         "type": "Feature",
         "properties": {
           "id": "barnwell_priory",
-          "url": "/assets/barnwell_priory.png",
+          "url": "/assets/overlays/barnwell_priory.png",
           "description": [
             "Footprint of Barnwell Priory"
           ],
@@ -30,7 +30,7 @@
         "type": "Feature",
         "properties": {
           "id": "g4_bac_cam",
-          "url": "/assets/G4-Bac-Cam.jpg",
+          "url": "/assets/overlays/G4-Bac-Cam.jpg",
           "description": [
             "Map of Cambridge. Bacon. Sc. 8 ½ in. to 1 mile. c. 1910"
           ],

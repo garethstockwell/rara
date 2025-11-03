@@ -55,8 +55,8 @@
         {
             "type": "Feature",
             "properties": {
-                "id": "stourbridge_common_entrance",
-                "title": "Stourbridge Common entrance",
+                "id": "stourbridge_common_approach",
+                "title": "Stourbridge Common approach",
                 "tags": [
                     "improvements"
                 ]
