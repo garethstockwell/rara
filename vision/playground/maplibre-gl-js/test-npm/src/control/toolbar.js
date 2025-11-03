@@ -12,11 +12,11 @@ function addToolbarItem(name, text, active) {
 
 export function createToolbar(name) {
   new Map([
-    ['vector', 'Vector'],
-    ['locations', 'Locations'],
+    ['attractions', 'Attractions'],
     ['history', 'History'],
     ['heritage_trail', 'Heritage trail'],
     ['boundary_radius', 'Boundary radius'],
+    ['vector', 'Vector'],
     ['boundary_tangent', 'Boundary tangent'],
     ['globe', 'Globe'],
     ['raster', 'Raster'],

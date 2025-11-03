@@ -100,6 +100,7 @@ export function createMap(args) {
     id: 'locations',
     text: 'Heritage trail locations',
     url: '/data/locations.json',
+    tags: ['attractions'],
     color: 'green',
     onclick: args.locationOnClick ?? null,
     visible: true,

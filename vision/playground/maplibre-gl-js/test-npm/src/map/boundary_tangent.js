@@ -27,8 +27,7 @@ export function createMap() {
     'heritage_trail',
     'boundary',
     'point',
-    'locations_historical',
-    'locations_contemporary',
+    'attractions',
   ];
 
   var map = new Map({
@@ -96,21 +95,11 @@ export function createMap() {
   });
 
   map.appData.layers.addLayer(addLocationsLayer, {
-    id: 'locations_historical',
-    text: 'Historical locations',
+    id: 'attractions',
+    text: 'Attractions',
     url: '/data/locations.json',
-    tags: ['historical'],
+    tags: ['attractions'],
     color: 'yellow',
-    visible: true,
-    staticPopups: true,
-  });
-
-  map.appData.layers.addLayer(addLocationsLayer, {
-    id: 'locations_contemporary',
-    text: 'Contemporary locations',
-    url: '/data/locations.json',
-    tags: ['contemporary'],
-    color: 'red',
     visible: true,
     staticPopups: true,
   });

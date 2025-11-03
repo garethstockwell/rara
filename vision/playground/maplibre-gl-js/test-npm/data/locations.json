@@ -7,7 +7,7 @@
                 "id": "stourbridge_common",
                 "title": "Stourbridge Common",
                 "tags": [
-                    "historical"
+                    "attractions"
                 ]
             },
             "geometry": {
@@ -24,7 +24,7 @@
                 "id": "st_andrew_the_less",
                 "title": "St Andrew the Less",
                 "tags": [
-                    "historical"
+                    "attractions"
                 ]
             },
             "geometry": {
@@ -41,7 +41,7 @@
                 "id": "leper_chapel",
                 "title": "Leper Chapel",
                 "tags": [
-                    "historical"
+                    "attractions"
                 ]
             },
             "geometry": {
@@ -58,7 +58,7 @@
                 "id": "cellarers_chequer",
                 "title": "Cellarer's Chequer",
                 "tags": [
-                    "historical"
+                    "attractions"
                 ]
             },
             "geometry": {
@@ -75,7 +75,7 @@
                 "id": "abbey_house",
                 "title": "Abbey House",
                 "tags": [
-                    "historical"
+                    "attractions"
                 ]
             },
             "geometry": {
@@ -92,7 +92,7 @@
                 "id": "cmot",
                 "title": "Cambridge Museum of Technology",
                 "tags": [
-                    "historical"
+                    "attractions"
                 ]
             },
             "geometry": {
@@ -109,7 +109,7 @@
                 "id": "emailerator",
                 "title": "Dinky Doors Emailerator",
                 "tags": [
-                    "contemporary"
+                    "attractions"
                 ]
             },
             "geometry": {
@@ -126,7 +126,7 @@
                 "id": "war_memorial",
                 "title": "Cambridge Gas Company War Memorial",
                 "tags": [
-                    "contemporary"
+                    "attractions"
                 ]
             },
             "geometry": {
@@ -143,7 +143,7 @@
                 "id": "flying_saucer",
                 "title": "Dinky Doors Flying Saucer",
                 "tags": [
-                    "contemporary"
+                    "attractions"
                 ]
             },
             "geometry": {
@@ -160,7 +160,7 @@
                 "id": "equiano_bridge",
                 "title": "Equiano Bridge",
                 "tags": [
-                    "contemporary"
+                    "attractions"
                 ]
             },
             "geometry": {
@@ -177,7 +177,7 @@
                 "id": "engineers_house",
                 "title": "Engineer's House",
                 "tags": [
-                    "contemporary"
+                    "attractions"
                 ]
             },
             "geometry": {
@@ -194,7 +194,7 @@
                 "id": "kerb_kollective",
                 "title": "Kerb Kollective",
                 "tags": [
-                    "contemporary"
+                    "attractions"
                 ]
             },
             "geometry": {
@@ -211,7 +211,7 @@
                 "id": "logans_meadow",
                 "title": "Logan's Meadow Nature Reserve",
                 "tags": [
-                    "contemporary"
+                    "attractions"
                 ]
             },
             "geometry": {

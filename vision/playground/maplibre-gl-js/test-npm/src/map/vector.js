@@ -28,8 +28,7 @@ export function createMap(args) {
     'barnwell_priory',
     'boundary',
     'heritage_trail',
-    'locations_historical',
-    'locations_contemporary',
+    'attractions',
   ];
 
   var map = new Map({
@@ -37,62 +36,64 @@ export function createMap(args) {
     zOrder: zOrder
   });
 
-  map.appData.layers.addLayer(addBuildingsLayer, {
-    id: '3d_buildings',
-    text: '3D buildings',
-    color: '#aaaaaa',
-    visible: false
-  });
+  if (!args.layers || args.layers.includes('3d_buildings')) {
+    map.appData.layers.addLayer(addBuildingsLayer, {
+      id: '3d_buildings',
+      text: '3D buildings',
+      color: '#aaaaaa',
+      visible: false
+    });
+  }
 
-  map.appData.layers.addLayer(addLineLayer, {
-    id: 'boundary',
-    text: 'Riverside area boundary',
-    url: '/data/line_boundary.json',
-    color: 'black',
-    visible: true,
-  });
+  if (!args.layers || args.layers.includes('boundary')) {
+    map.appData.layers.addLayer(addLineLayer, {
+      id: 'boundary',
+      text: 'Riverside area boundary',
+      url: '/data/line_boundary.json',
+      color: 'black',
+      visible: true,
+    });
+  }
 
-  map.appData.layers.addLayer(addLineLayer, {
-    id: 'heritage_trail',
-    text: 'Heritage trail line',
-    url: '/data/line_heritage_trail.json',
-    color: 'green',
-    visible: false,
-  });
+  if (!args.layers || args.layers.includes('heritage_trail')) {
+    map.appData.layers.addLayer(addLineLayer, {
+      id: 'heritage_trail',
+      text: 'Heritage trail line',
+      url: '/data/line_heritage_trail.json',
+      color: 'green',
+      visible: false,
+    });
+  }
 
-  map.appData.layers.addLayer(addLocationsLayer, {
-    id: 'locations_historical',
-    text: 'Historical locations',
-    url: '/data/locations.json',
-    tags: ['historical'],
-    color: 'yellow',
-    onclick: args.locationOnClick ?? null,
-    visible: args.locationVisible ?? false,
-  });
+  if (!args.layers || args.layers.includes('attractions')) {
+    map.appData.layers.addLayer(addLocationsLayer, {
+      id: 'attractions',
+      text: 'Attractions',
+      url: '/data/locations.json',
+      tags: ['attractions'],
+      color: 'yellow',
+      onclick: args.locationOnClick ?? null,
+      visible: args.locationVisible ?? false,
+    });
+  }
 
-  map.appData.layers.addLayer(addLocationsLayer, {
-    id: 'locations_contemporary',
-    text: 'Contemporary locations',
-    url: '/data/locations.json',
-    tags: ['contemporary'],
-    color: 'red',
-    onclick: args.locationOnClick ?? null,
-    visible: args.locationVisible ?? false,
-  });
+  if (!args.layers || args.layers.includes('barnwell_priory')) {
+    map.appData.layers.addLayer(addOverlayLayer, {
+      id: 'barnwell_priory',
+      text: 'Barnwell Priory (historical)',
+      color: 'orange',
+      visible: false,
+    });
+  }
 
-  map.appData.layers.addLayer(addOverlayLayer, {
-    id: 'barnwell_priory',
-    text: 'Barnwell Priory (historical)',
-    color: 'orange',
-    visible: false,
-  });
-
-  map.appData.layers.addLayer(addOverlayLayer, {
-    id: 'g4_bac_cam',
-    text: 'Map circa 1910',
-    opacity: 0.75,
-    visible: false,
-  });
+  if (!args.layers || args.layers.includes('g4_bac_cam')) {
+    map.appData.layers.addLayer(addOverlayLayer, {
+      id: 'g4_bac_cam',
+      text: 'Map circa 1910',
+      opacity: 0.75,
+      visible: false,
+    });
+  }
 
   return map;
 }
