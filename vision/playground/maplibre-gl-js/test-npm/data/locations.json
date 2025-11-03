@@ -5,6 +5,7 @@
             "type": "Feature",
             "properties": {
                 "id": "riverside_boulevard",
+                "imageUrl": "/assets/images/boulevard_3.jpg",
                 "title": "Riverside \"boulevard\"",
                 "tags": [
                     "improvements"
@@ -22,6 +23,7 @@
             "type": "Feature",
             "properties": {
                 "id": "elizabeth_way_underpass",
+                "imageUrl": "/assets/images/elizabeth_way_underpass.png",
                 "title": "Elizabeth Way underpass",
                 "tags": [
                     "improvements"
@@ -39,6 +41,7 @@
             "type": "Feature",
             "properties": {
                 "id": "elizabeth_way_bridge",
+                "imageUrl": "/assets/images/elizabeth_way_under_bridge.jpg",
                 "title": "Below Elizabeth Way bridge",
                 "tags": [
                     "improvements"
@@ -56,6 +59,7 @@
             "type": "Feature",
             "properties": {
                 "id": "stourbridge_common_approach",
+                "imageUrl": "/assets/images/stourbridge_common_approach.png",
                 "title": "Stourbridge Common approach",
                 "tags": [
                     "improvements"
@@ -73,6 +77,7 @@
             "type": "Feature",
             "properties": {
                 "id": "river_festival",
+                "imageUrl": "/assets/images/river_festival_3.png",
                 "title": "River festival",
                 "tags": [
                     "improvements"
@@ -90,6 +95,7 @@
             "type": "Feature",
             "properties": {
                 "id": "newmarket_road",
+                "imageUrl": "/assets/images/newmarket_road.png",
                 "title": "Newmarket Road",
                 "tags": [
                     "improvements"
@@ -107,6 +113,7 @@
             "type": "Feature",
             "properties": {
                 "id": "mercers_row",
+                "imageUrl": "/assets/images/mercers_row.png",
                 "title": "Mercer's Row",
                 "tags": [
                     "improvements"
@@ -124,6 +131,7 @@
             "type": "Feature",
             "properties": {
                 "id": "stourbridge_common",
+                "imageUrl": "/assets/images/stourbridge_common.png",
                 "title": "Stourbridge Common",
                 "tags": [
                     "attractions"
@@ -141,6 +149,7 @@
             "type": "Feature",
             "properties": {
                 "id": "st_andrew_the_less",
+                "imageUrl": "/assets/images/st_andrew_the_less.jpg",
                 "title": "St Andrew the Less",
                 "tags": [
                     "attractions"
@@ -158,6 +167,7 @@
             "type": "Feature",
             "properties": {
                 "id": "leper_chapel",
+                "imageUrl": "/assets/images/leper_chapel.png",
                 "title": "Leper Chapel",
                 "tags": [
                     "attractions"
@@ -175,6 +185,7 @@
             "type": "Feature",
             "properties": {
                 "id": "cellarers_chequer",
+                "imageUrl": "/assets/images/cellarers_chequer.png",
                 "title": "Cellarer's Chequer",
                 "tags": [
                     "attractions"
@@ -192,6 +203,7 @@
             "type": "Feature",
             "properties": {
                 "id": "abbey_house",
+                "imageUrl": "/assets/images/abbey_house.jpg",
                 "title": "Abbey House",
                 "tags": [
                     "attractions"
@@ -209,6 +221,7 @@
             "type": "Feature",
             "properties": {
                 "id": "cmot",
+                "imageUrl": "/assets/images/cmot.jpg",
                 "title": "Cambridge Museum of Technology",
                 "tags": [
                     "attractions"
@@ -226,6 +239,7 @@
             "type": "Feature",
             "properties": {
                 "id": "emailerator",
+                "imageUrl": "/assets/images/emailerator.jpg",
                 "title": "Dinky Doors Emailerator",
                 "tags": [
                     "attractions"
@@ -243,6 +257,7 @@
             "type": "Feature",
             "properties": {
                 "id": "war_memorial",
+                "imageUrl": "/assets/images/war_memorial.png",
                 "title": "Cambridge Gas Company War Memorial",
                 "tags": [
                     "attractions"
@@ -260,6 +275,7 @@
             "type": "Feature",
             "properties": {
                 "id": "flying_saucer",
+                "imageUrl": "/assets/images/flying_saucer.jpg",
                 "title": "Dinky Doors Flying Saucer",
                 "tags": [
                     "attractions"
@@ -277,6 +293,7 @@
             "type": "Feature",
             "properties": {
                 "id": "equiano_bridge",
+                "imageUrl": "/assets/images/equiano_bridge.png",
                 "title": "Equiano Bridge",
                 "tags": [
                     "attractions"
@@ -294,6 +311,7 @@
             "type": "Feature",
             "properties": {
                 "id": "engineers_house",
+                "imageUrl": "/assets/images/engineers_house.webp",
                 "title": "Engineer's House",
                 "tags": [
                     "attractions"
@@ -311,6 +329,7 @@
             "type": "Feature",
             "properties": {
                 "id": "kerb_kollective",
+                "imageUrl": "/assets/images/kerb_kollective.png",
                 "title": "Kerb Kollective",
                 "tags": [
                     "attractions"
@@ -328,6 +347,7 @@
             "type": "Feature",
             "properties": {
                 "id": "logans_meadow",
+                "imageUrl": "/assets/images/logans_meadow.png",
                 "title": "Logan's Meadow Nature Reserve",
                 "tags": [
                     "attractions"

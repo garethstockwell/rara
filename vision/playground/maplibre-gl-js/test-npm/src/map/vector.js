@@ -78,6 +78,8 @@ export function createMap(args) {
       tags: ['attractions'],
       color: 'yellow',
       onclick: args.locationOnClick ?? null,
+      onenter: args.locationOnEnter ?? null,
+      onleave: args.locationOnLeave ?? null,
       visible: args.locationVisible ?? false,
     });
   }
@@ -90,6 +92,8 @@ export function createMap(args) {
       tags: ['improvements'],
       color: 'red',
       onclick: args.locationOnClick ?? null,
+      onenter: args.locationOnEnter ?? null,
+      onleave: args.locationOnLeave ?? null,
       visible: args.locationVisible ?? false,
     });
   }

@@ -38,7 +38,7 @@ export function createMap(args) {
     zOrder: zOrder
   });
 
-  const popups = map.appData.popups;
+  const locations = map.appData.locations;
 
   map.on('load', () => {
     map.addSource("point", {
@@ -112,8 +112,9 @@ export function createMap(args) {
    * @param {string} toId   Destination location identifier
    */
   function fly(fromId, toId) {
-    const fromCoord = popups.getPopup(fromId).coordinates;
-    const toCoord = popups.getPopup(toId).coordinates;
+    console.log(`Fly from ${fromId} to ${toId}`);
+    const fromCoord = locations.getLocation(fromId).data.geometry.coordinates;
+    const toCoord = locations.getLocation(toId).data.geometry.coordinates;
     console.log(`Fly from ${fromId} ${fromCoord} to ${toId} ${toCoord}`);
     if (route) {
       route.fly(fromCoord, toCoord, 2000);
@@ -122,8 +123,26 @@ export function createMap(args) {
 
   const commentary = new Commentary({
     callback: function(oldId, newId) {
-      popups.getPopup(oldId).visible = false;
-      popups.getPopup(newId).visible = true;
+      var hideIds = [oldId];
+      const oldAdditional = document.getElementById(oldId).getAttribute("additionalLocations");
+      if (oldAdditional) {
+        hideIds = hideIds.concat(oldAdditional.split(" "));
+      }
+
+      var showIds = [newId];
+      const newAdditional = document.getElementById(newId).getAttribute("additionalLocations");
+      if (newAdditional) {
+        showIds = showIds.concat(newAdditional.split(" "));
+      }
+
+      for (const id of hideIds) {
+        locations.getLocation(id).popupVisible = false;
+      }
+
+      for (const id of showIds) {
+        locations.getLocation(id).popupVisible = true;
+      }
+
       fly(oldId, newId);
     }
   });

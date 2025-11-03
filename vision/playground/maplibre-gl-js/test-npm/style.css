@@ -66,6 +66,15 @@ code {
   display: flex;
 }
 
+#content .overlay {
+  position: absolute;
+  bottom: 100px;
+  right: 50px;
+  width: 25%;
+  outline: none;
+  border: 0;
+}
+
 /* columns */
 
 .column {
@@ -182,7 +191,6 @@ code {
 .nav :last-child {
   justify-content: flex-end;
 }
-
 
 .nav a {
   border: 0;

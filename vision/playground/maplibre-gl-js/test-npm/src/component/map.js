@@ -3,7 +3,7 @@
 import { Info } from "../component/info.js";
 import { LayerManager } from "../component/layer.js";
 import { Menu } from "../component/menu.js";
-import { PopupManager } from "../component/popup.js";
+import { LocationManager } from "../component/popup.js";
 
 
 function addNavigationControl(map) {
@@ -50,13 +50,13 @@ export function Map(args) {
     zOrder: args.zOrder ?? [],
   });
 
-  const popupManager = new PopupManager({
+  const locationManager = new LocationManager({
     map: map,
   })
   
   map.appData = {
     layers: layerManager,
-    popups: popupManager,
+    locations: locationManager,
   };
 
   addNavigationControl(map);

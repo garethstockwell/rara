@@ -8,7 +8,7 @@ export function addLocationsLayer(map, args) {
   map.on('load', async () => {
     var id = args.id;
 
-    const popups = map.appData.popups;
+    const locations = map.appData.locations;
 
     const image = await map.loadImage('/assets/icons/pin-' + args.color + '.png');
     map.addImage(id, image.data);
@@ -23,10 +23,10 @@ export function addLocationsLayer(map, args) {
         }
 
         data.features.forEach(feature => {
-          const popup = popups.getPopup(feature.properties.id);
-          popup.setLocation(feature.geometry.coordinates, feature.properties.title);
+          const loc = locations.getLocation(feature.properties.id);
+          loc.setData(feature);
           if (args.staticPopups) {
-            popup.visible = true;
+            loc.popupVisible = true;
           }
         });
 
@@ -70,19 +70,31 @@ export function addLocationsLayer(map, args) {
               }
 
               if (currentFeatureId) {
-                popups.getPopup(currentFeatureId).visible = false;
+                locations.getLocation(currentFeatureId).popupVisible = false;
               }
 
               currentFeatureId = e.features[0].properties.id;
-              popups.getPopup(currentFeatureId).visible = true;
+              locations.getLocation(currentFeatureId).popupVisible = true;
+
+              if (args.onenter) {
+                args.onenter(currentFeatureId);
+              }
             }
           });
 
           map.on('mouseleave', id, () => {
+            const featureId = currentFeatureId;
+
+            /*
             map.getCanvas().style.cursor = '';
-            popups.getPopup(currentFeatureId).visible = false;
+            locations.getLocation(currentFeatureId).popupVisible = false;
             currentFeatureId = undefined;
             currentFeatureCoordinates = undefined;
+            */
+
+            if (args.onleave) {
+              args.onleave(featureId);
+            }
           });
         }
 

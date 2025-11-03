@@ -36,7 +36,7 @@
 
       function onVisibilityChange(el, isVisible) {
         console.log("onVisibilityChange", el, isVisible);
-        map.appData.popups.getPopup(el.id).visible = isVisible;
+        map.appData.locations.getLocation(el.id).popupVisible = isVisible;
       }
 
       const observer = new IntersectionObserver(

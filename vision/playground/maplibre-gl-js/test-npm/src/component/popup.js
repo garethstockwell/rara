@@ -1,80 +1,81 @@
-// Popup component
+// Location component
 
 
-class Popup {
+class Location {
   #id;
-  #coordinates;
+  #data;
   #manager;
-  #visible;
   #popup;
+  #popupVisible;
   
   /**
-   * Create a Popup
-   * @param {PopupManager} manager The parent manager
+   * Create a Location
+   * @param {LocationManager} manager The parent manager
    * @param {string}       id      The location ID
-   * @param {boolean}      visible Popup visibility
+   * @param {boolean}      visible Location visibility
    */
   constructor(manager, id, visible) {
-    console.log(`Popup.create id=${id}`)
+    console.log(`Location.create id=${id}`)
     this.#id = id;
-    this.#coordinates = null;
+    this.#data = null;
     this.#manager = manager;
-    this.#visible = false;
+    this.#popup = null;
+    this.#popupVisible = false;
   }
 
-  set visible(visible) {
-    console.log(`Popup.setVisible id=${this.#id} visible=${visible}`);
-    this.#visible = visible;
-    this.#onVisibleChange();
+  get data() {
+    return this.#data;
   }
 
-  get coordinates() {
-    return this.#coordinates;
+  get popupVisible() {
+    return this.#popupVisible;
   }
 
-  get visible() {
-    return this.#visible;
+  set popupVisible(visible) {
+    console.log(`Location.setPopupVisible id=${this.#id} visible=${visible}`);
+    this.#popupVisible = visible;
+    this.#onPopupVisibleChange();
   }
 
-  setLocation(coordinates, text) {
-    console.log(`Popup.setLocation id=${this.#id} coordinates=${coordinates}`);
-    this.#coordinates = coordinates;
+  setData(data) {
+    console.log(`Location.setData id=${this.#id} data=${data}`);
+    this.#data = data;
     this.#popup = new maplibregl.Popup({
       closeButton: false,
       closeOnClick: false
     });
 
     this.#popup
-      .setLngLat(coordinates)
-      .setHTML(text)
+      .setLngLat(data.geometry.coordinates)
+      .setHTML(data.properties.title)
       .addTo(this.#manager.map);
 
-    this.#onVisibleChange();
+    this.#onPopupVisibleChange();
   }
 
-  #onVisibleChange() {
-    console.log(`Popup.onVisibleChange id=${this.#id} visible=${this.visible} popup=${this.#popup}`);
+  #onPopupVisibleChange() {
+    console.log(`Location.onPopupVisibleChange id=${this.#id} visible=${this.popupVisible} popup=${this.#popup}`);
     if (this.#popup) {
-      this.#popup.getElement().style.visibility = this.visible ? 'visible' : 'hidden';
+      this.#popup.getElement().style.visibility = this.popupVisible ? 'visible' : 'hidden';
     }
   }
 }
 
 
 /**
- * Manager of a set of popups
+ * Manager of a set of locations
  */
-export class PopupManager {
-  #popups;
+export class LocationManager {
+  #locations;
   #map;
 
   /**
-   * Create a PopupManager
+   * Create a LocationManager
    * @param {Object}         args        The arguments
    * @param {maplibregl.Map} args.map    The map
    */
   constructor(args) {
-    this.#popups = {};
+    this.#locations = {};
     this.#map = args.map;
   }
 
@@ -87,21 +88,21 @@ export class PopupManager {
   }
 
   /**
-   * Get popup
+   * Get location
    * @param {string} id Location id
-   * @returns {Popup}
+   * @returns {Location}
    */
-  getPopup(id) {
-    if (!(id in this.#popups)) {
-      this.#addPopup(id); 
+  getLocation(id) {
+    if (!(id in this.#locations)) {
+      this.#addLocation(id); 
     }
-    return this.#popups[id];
+    return this.#locations[id];
   }
 
-  #addPopup(id) {
-    console.log("PopupManager.addPopup", id);
-    const popup = new Popup(this, id);
-    this.#popups[id] = popup;
+  #addLocation(id) {
+    console.log("LocationManager.addLocation", id);
+    const popup = new Location(this, id);
+    this.#locations[id] = popup;
     return popup;
   }
 }

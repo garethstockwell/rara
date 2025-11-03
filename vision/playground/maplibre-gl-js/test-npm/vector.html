@@ -11,9 +11,23 @@
       import { createToolbar } from "./src/control/toolbar.js";
       createToolbar('vector');
 
+      const imageElem = document.getElementById("image");
+      var map = null;
+
+      function onMouseEnter(id) {
+        const loc = map.appData.locations.getLocation(id);
+        if (loc && loc.data.properties.imageUrl) {
+          imageElem.src = loc.data.properties.imageUrl;
+        } else {
+          imageElem.src = "";
+        }
+      }
+
       import { createMap } from "./src/map/vector.js";
-      createMap({
+      map = createMap({
         overlay_opacity: 0.75,
+        locationOnEnter: onMouseEnter,
+        locationVisible: true,
       });
     </script>
   </head>
@@ -25,6 +39,7 @@
 
     <div id="content">
       <div id="map" class="map"></div>
+      <img id="image" class="overlay"></img>
     </div>
 
     <pre id="info" style="display: none;"></pre>
