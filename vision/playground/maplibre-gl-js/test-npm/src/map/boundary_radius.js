@@ -21,7 +21,9 @@ export function createMap() {
   };
 
   const zOrder = [
+    'camantsoc_1836_1838',
     'camantsoc_1910',
+    'camantsoc_1925',
     'barnwell_priory',
     'boundary',
     'heritage_trail',
@@ -80,7 +82,7 @@ export function createMap() {
     id: '3d_buildings',
     text: '3D buildings',
     color: '#aaaaaa',
-    visible: false
+    visible: true
   });
 
   map.appData.layers.addLayer(addLineLayer, {
@@ -127,9 +129,23 @@ export function createMap() {
   });
 
   map.appData.layers.addLayer(addOverlayLayer, {
+    id: 'camantsoc_1836_1838',
+    text: 'Map circa 1836-1838',
+    opacity: 1.00,
+    visible: false,
+  });
+
+  map.appData.layers.addLayer(addOverlayLayer, {
     id: 'camantsoc_1910',
     text: 'Map circa 1910',
-    opacity: 0.75,
+    opacity: 1.00,
+    visible: false,
+  });
+
+map.appData.layers.addLayer(addOverlayLayer, {
+    id: 'camantsoc_1925',
+    text: 'Map circa 1925',
+    opacity: 1.00,
     visible: false,
   });
 
