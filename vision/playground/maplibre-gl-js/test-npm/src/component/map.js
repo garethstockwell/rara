@@ -3,7 +3,7 @@
 import { Info } from "../component/info.js";
 import { LayerManager } from "../component/layer.js";
 import { Menu } from "../component/menu.js";
-import { LocationManager } from "../component/popup.js";
+import { LocationManager } from "../component/location.js";
 
 
 function addNavigationControl(map) {
