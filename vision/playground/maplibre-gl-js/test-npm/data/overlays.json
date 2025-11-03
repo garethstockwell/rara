@@ -29,7 +29,7 @@
       {
         "type": "Feature",
         "properties": {
-          "id": "g4_bac_cam",
+          "id": "camantsoc_1910",
           "url": "/assets/overlays/G4-Bac-Cam.jpg",
           "description": [
             "Map of Cambridge. Bacon. Sc. 8 ½ in. to 1 mile. c. 1910"
@@ -49,8 +49,8 @@
       {
         "type": "Feature",
         "properties": {
-          "id": "g5_8_cam",
-          "url": "/assets/overlays/G5-8-Cam.png",
+          "id": "camantsoc_1836_1838",
+          "url": "/assets/overlays/G5-8-Cam.jpg",
           "description": [
             "Map of Cambridge.",
             "Plan of town with arms of colleges etc [1836 or 1838?].",
@@ -61,10 +61,10 @@
         "geometry": {
           "type": "Polygon",
           "coordinates": [
-            [0.092716, 52.221383],
-            [0.158683, 52.221383],
-            [0.158683, 52.192433],
-            [0.092716, 52.192433]
+            [0.104576, 52.216855],
+            [0.146767, 52.216855],
+            [0.146767, 52.194133],
+            [0.104576, 52.194133]
           ]
         }
       }

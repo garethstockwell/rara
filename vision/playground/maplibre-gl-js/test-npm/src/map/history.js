@@ -23,8 +23,8 @@ export function createMap(args) {
   };
 
   const zOrder = [
-    'g5_8_cam',
-    'g4_bac_cam',
+    'camantsoc_1836_1838',
+    'camantsoc_1910',
     'boundary',
   ];
 
@@ -42,7 +42,7 @@ export function createMap(args) {
   });
 
   map.appData.layers.addLayer(addOverlayLayer, {
-    id: 'g5_8_cam',
+    id: 'camantsoc_1836_1838',
     text: 'Map circa 1836-1838',
     opacity: 1.00,
     visible: false,
@@ -50,7 +50,7 @@ export function createMap(args) {
   });
 
   map.appData.layers.addLayer(addOverlayLayer, {
-    id: 'g4_bac_cam',
+    id: 'camantsoc_1910',
     text: 'Map circa 1910',
     opacity: 1.00,
     visible: false,
@@ -68,8 +68,8 @@ export function createMap(args) {
 function setUpCommentary(map) {
   // Map from era to layer
   const eraToLayer = {
-    "c_1836_1838": "g5_8_cam",
-    "c_1910": "g4_bac_cam",
+    "c_1836_1838": "camantsoc_1836_1838",
+    "c_1910": "camantsoc_1910",
   };
 
   const commentary = new Commentary({

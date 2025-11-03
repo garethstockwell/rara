@@ -22,7 +22,7 @@ export function createMap() {
   };
 
   const zOrder = [
-    'g4_bac_cam',
+    'camantsoc_1910',
     'barnwell_priory',
     'heritage_trail',
     'boundary',
@@ -123,7 +123,7 @@ export function createMap() {
   });
 
   map.appData.layers.addLayer(addOverlayLayer, {
-    id: 'g4_bac_cam',
+    id: 'camantsoc_1910',
     text: 'Map circa 1910',
     opacity: 0.75,
     visible: false,
