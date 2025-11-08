@@ -112,10 +112,10 @@ export function createMap(args) {
    * @param {string} toId   Destination location identifier
    */
   function fly(fromId, toId) {
-    console.log(`Fly from ${fromId} to ${toId}`);
+    console.debug(`Fly from ${fromId} to ${toId}`);
     const fromCoord = locations.getLocation(fromId).data.geometry.coordinates;
     const toCoord = locations.getLocation(toId).data.geometry.coordinates;
-    console.log(`Fly from ${fromId} ${fromCoord} to ${toId} ${toCoord}`);
+    console.debug(`Fly from ${fromId} ${fromCoord} to ${toId} ${toCoord}`);
     if (route) {
       route.fly(fromCoord, toCoord, 2000);
     }

@@ -44,7 +44,7 @@ export class Route {
   #init(lineId, autoStart) {
     var line = this.#map.getSource(lineId);
     line.getData().then((data) => {
-      console.log("Route loaded");
+      console.debug("Route loaded");
 
       var coordinates = data.features[0].geometry.coordinates;
       this.#route = turf.lineString(coordinates);
@@ -66,14 +66,14 @@ export class Route {
         coordinates[0]));
 
       if (autoStart) {
-        console.log("Automatically starting");
+        console.debug("Automatically starting");
         this.#start();
       }
     });
   }
 
   #start() {
-    console.log("Route.start");
+    console.debug("Route.start");
 
     this.#startDistance = 0;
     this.#stopDistance = null;
@@ -81,19 +81,19 @@ export class Route {
     this.#direction = 1;
 
     if (this.#startCoord) {
-      console.log("Start coordinates:", this.#startCoord);
+      console.debug("Start coordinates:", this.#startCoord);
       const startPoint = turf.point(this.#startCoord);
       const snappedStartPoint = turf.nearestPointOnLine(this.#route, startPoint);
       this.#startDistance = snappedStartPoint.properties.location;
-      console.log("Start distance (km):", this.#startDistance);
+      console.debug("Start distance (km):", this.#startDistance);
     }
 
     if (this.#stopCoord) {
-      console.log("Stop coordinates:", this.#stopCoord);
+      console.debug("Stop coordinates:", this.#stopCoord);
       const stopPoint = turf.point(this.#stopCoord);
       const snappedStopPoint = turf.nearestPointOnLine(this.#route, stopPoint);
       this.#stopDistance = snappedStopPoint.properties.location;
-      console.log("Stop distance (km):", this.#stopDistance);
+      console.debug("Stop distance (km):", this.#stopDistance);
     }
 
     if (this.#stopDistance && (this.#stopDistance < this.#startDistance)) {
@@ -120,7 +120,7 @@ export class Route {
       currentDistance = currentDistance % totalDistance;
     }
 
-    //console.log('advance currentDistance=', currentDistance, 'stopDistance=', stopDistance);
+    //console.debug('advance currentDistance=', currentDistance, 'stopDistance=', stopDistance);
 
     let lngLat = turf.along(this.#route, currentDistance).geometry.coordinates;
     this.#map.getSource('point').setData({ type: 'Point', coordinates: lngLat });
@@ -149,7 +149,7 @@ export class Route {
         currentDistance <= this.#stopDistance
       ))) {
       this.#reachedStopDistance = true;
-      console.log("Stopped at distance:", this.#stopDistance);
+      console.debug("Stopped at distance:", this.#stopDistance);
       return;
     }
 
@@ -162,7 +162,7 @@ export class Route {
    * @param {[float, float]} stopPos  Stop position, expressed as [lat, lng]
    */
   fly(startPos, stopPos) {
-    console.log('Fly from', startPos, 'to', stopPos);
+    console.debug('Fly from', startPos, 'to', stopPos);
 
     this.#startCoord = startPos;
     this.#stopCoord = stopPos;

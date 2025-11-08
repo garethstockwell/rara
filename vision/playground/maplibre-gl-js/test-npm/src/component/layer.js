@@ -62,7 +62,7 @@ class Layer {
    * @param {boolean}      visible Layer visibility
    */
   constructor(manager, id, visible, callback) {
-    console.log(`Layer.create id=${id} visible=${visible}`)
+    console.debug(`Layer.create id=${id} visible=${visible}`)
     this.#id = id;
     this.#manager = manager;
     this.#visible = visible;
@@ -70,7 +70,7 @@ class Layer {
   }
 
   set visible(visible) {
-    console.log(`Layer.setVisible id=${this.#id} visible=${visible}`);
+    console.debug(`Layer.setVisible id=${this.#id} visible=${visible}`);
     this.#visible = visible;
     this.#onVisibleChange();
   }
@@ -83,7 +83,7 @@ class Layer {
    * Callback when map is loaded
    */
   onLoaded() {
-    console.log(`Layer.onLoaded id=${this.#id} visible=${this.visible} callback=${this.#callback}`);
+    console.debug(`Layer.onLoaded id=${this.#id} visible=${this.visible} callback=${this.#callback}`);
     this.#onVisibleChange();
     if (this.#callback) {
       this.#callback(this.#id);
@@ -95,7 +95,7 @@ class Layer {
    * @returns {boolean} Updated visibility
    */
   toggleVisible() {
-    console.log(`Layer.toggleVisible id=${this.#id} visible=${this.visible}`);
+    console.debug(`Layer.toggleVisible id=${this.#id} visible=${this.visible}`);
 
     this.visible = this.#manager.map.getLayoutProperty(
       this.#id,
@@ -106,7 +106,7 @@ class Layer {
   }
 
   #onVisibleChange() {
-    console.log(`Layer.onVisibleChange id=${this.#id} visible=${this.visible}`);
+    console.debug(`Layer.onVisibleChange id=${this.#id} visible=${this.visible}`);
     this.#manager.map.setLayoutProperty(
         this.#id, 'visibility', this.visible ? 'visible' : 'none');
   }

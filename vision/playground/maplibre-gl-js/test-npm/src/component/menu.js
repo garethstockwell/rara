@@ -54,7 +54,7 @@ export class Menu {
   }
 
   #toggleVisible() {
-    console.log("Menu.toggleVisible");
+    console.debug("Menu.toggleVisible");
     this.#elem.hidden = !this.#elem.hidden;
   }
 }

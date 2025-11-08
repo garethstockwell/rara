@@ -51,7 +51,7 @@ export class Commentary {
     this.#index = index;
     this.#activeId = this.#elemIds[this.#index];
 
-    console.log(`Commentary.setIndex ${index} ${this.#activeId}`);
+    console.debug(`Commentary.setIndex ${index} ${this.#activeId}`);
 
     document.querySelector('#' + oldId).style.display = 'none';
     document.querySelector('#' + this.#activeId).style.display = '';

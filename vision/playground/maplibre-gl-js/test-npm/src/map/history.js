@@ -84,12 +84,12 @@ function setUpCommentary(map) {
 
   const commentary = new Commentary({
     callback: function(oldId, newId) {
-      console.log(`history.onUpdate id ${oldId} -> ${newId}`);
+      console.debug(`history.onUpdate id ${oldId} -> ${newId}`);
 
       const oldLayer = eraToLayer[oldId];
       const newLayer = eraToLayer[newId];
 
-      console.log(`history.onUpdate layer ${oldLayer} -> ${newLayer}`);
+      console.debug(`history.onUpdate layer ${oldLayer} -> ${newLayer}`);
 
       map.appData.layers.getLayer(oldLayer).visible = false;
       map.appData.layers.getLayer(newLayer).visible = true;
@@ -99,7 +99,7 @@ function setUpCommentary(map) {
   function loaded(e) {
     var layerId = eraToLayer[commentary.ids[0]];
     if (e.isSourceLoaded && e.sourceId == layerId) {
-      console.log(`Source ${e.sourceId} is loaded`);
+      console.debug(`Source ${e.sourceId} is loaded`);
       commentary.setIndex(0);
       map.off('sourcedata', loaded);
     }

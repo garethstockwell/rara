@@ -34,7 +34,7 @@ function addNavigationControl(map) {
  * @param {Array<string>} args.zOrder List of layer IDs, lowest to highest
  */
 export function Map(args) {
-  console.log("Map", args);
+  console.debug("Map", args);
 
   const map = new maplibregl.Map(args.config);
 
