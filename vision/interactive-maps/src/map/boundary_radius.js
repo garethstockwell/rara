@@ -13,7 +13,7 @@ import { addOverlayLayer } from "../layer/overlay.js";
  */
 export function createMap() {
   const config = {
-    style: "https://api.maptiler.com/maps/openstreetmap/style.json?key=zsAKnM69p5uDhfEeaTCu",
+    style: "/data/style.json",
     center: [0.144843, 52.212231],
     zoom: 15,
     container: "map",
