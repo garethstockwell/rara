@@ -2,7 +2,7 @@
   "name": "test-npm",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run open",
@@ -18,5 +18,10 @@
   },
   "dependencies": {
     "maplibre-gl": "^5.7.3"
+  },
+  "targets": {
+    "main": {
+      "includeNodeModules": true
+    }
   }
 }

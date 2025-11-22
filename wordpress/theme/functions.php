@@ -8,9 +8,11 @@
  */
 function rara_theme_enqueue_styles() {
   $parent_style = 'astra';
+
   wp_enqueue_style( $parent_style,
     get_template_directory_uri() . '/style.css' );
-  wp_enqueue_style( 'child-style',
+
+    wp_enqueue_style( 'child-style',
     get_stylesheet_directory_uri() . '/style.css',
     array( $parent_style ),
     wp_get_theme()->get('Version')
@@ -39,6 +41,21 @@ function rara_theme_enqueue_maplibregl() {
 }
 
 /*
+ * Enqueue Heritage trail scripts
+ */
+function rara_theme_enqueue_heritage_trail() {
+  wp_enqueue_style( 'heritage-trail',
+    get_stylesheet_directory_uri() . '/explore/heritage-trail/style.css'
+  );
+
+  wp_enqueue_script( 'heritage-trail',
+    get_stylesheet_directory_uri() . '/explore/heritage-trail/map.js',
+    array(),
+    '1.0'
+  );
+}
+
+/*
  * Enqueue custom scripts and styles
  */
 function rara_theme_enqueue_custom() {
@@ -49,6 +66,8 @@ function rara_theme_enqueue_custom() {
 
     if (strpos($slug, 'explore') === 0) {
       rara_theme_enqueue_maplibregl();
+
+      rara_theme_enqueue_heritage_trail();
     }
   }
 }
