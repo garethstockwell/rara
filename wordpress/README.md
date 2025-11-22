@@ -32,7 +32,9 @@ docker compose -f ${RARA_WORDPRESS}/compose.yaml up
 7. Create a user.
 The login details don't matter since this will be overwritten, so username "test" and password "test" are fine.
 
-8. Log in and install "UpdraftPlus: WP Backup & Migration Plugin".
+8. Log in
+- Activate the "RARA" theme.
+- Install "UpdraftPlus: WP Backup & Migration Plugin".
 
 9. Go to the Updraft settings page. Under "Existing backups" you should see one entry, with the following components:
 - Database
