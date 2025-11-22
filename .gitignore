@@ -3,4 +3,6 @@ build
 venv
 SimpInkScr
 logo/output
-*/.parcel-cache
+.parcel-cache
+dist
+
