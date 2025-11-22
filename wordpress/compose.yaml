@@ -25,6 +25,7 @@ services:
       WORDPRESS_DB_PASSWORD: wppassword
     volumes:
       - ${RARA_WEBSITE}/wp-content:/var/www/html/wp-content
+      - theme:/var/www/html/wp-content/themes/rara
     restart: always
 
   phpmyadmin:
