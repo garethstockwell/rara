@@ -51,13 +51,16 @@ export class Commentary {
     this.#index = index;
     this.#activeId = this.#elemIds[this.#index];
 
-    console.debug(`Commentary.setIndex ${index} ${this.#activeId}`);
+    console.debug(`Commentary.setIndex ${oldId} -> ${index} ${this.#activeId}`);
 
-    document.querySelector('#' + oldId).style.display = 'none';
-    document.querySelector('#' + this.#activeId).style.display = '';
+    const oldElem = document.querySelector('#' + oldId);
+    oldElem.style.display = 'none';
+    
+    const newElem = document.querySelector('#' + this.#activeId);
+    newElem.style.display = 'block';
 
     if (this.#index > 0) {
-      this.#prevButtons.forEach(el => el.style.display = '');
+      this.#prevButtons.forEach(el => el.style.display = 'block');
       this.#prevLabels.forEach(el => el.textContent = document.querySelector(
         '#' + this.#elemIds[this.#index - 1]).querySelector('h1').textContent);
     } else {
@@ -65,7 +68,7 @@ export class Commentary {
     }
 
     if (this.#index + 1 < this.#elemIds.length) {
-      this.#nextButtons.forEach(el => el.style.display = '');
+      this.#nextButtons.forEach(el => el.style.display = 'block');
       this.#nextLabels.forEach(el => el.textContent = document.querySelector(
         '#' + this.#elemIds[this.#index + 1]).querySelector('h1').textContent);
     } else {

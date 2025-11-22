@@ -1,12 +1,6 @@
-
-function $parcel$export(e, n, v, s) {
-  Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
-}
-
-$parcel$export(module.exports, "createMap", () => $26cd5bb495b5a8a6$export$d49c9aa30b771d59);
 // Render a map of the heritage trail
 // Commentary component
-class $8abad32eb706c429$export$ae67abe6ac4b2557 {
+class $4086c668fa7aedb0$export$ae67abe6ac4b2557 {
     #elems;
     #elemIds;
     #index;
@@ -46,15 +40,17 @@ class $8abad32eb706c429$export$ae67abe6ac4b2557 {
         const oldId = this.#activeId;
         this.#index = index;
         this.#activeId = this.#elemIds[this.#index];
-        console.debug(`Commentary.setIndex ${index} ${this.#activeId}`);
-        document.querySelector('#' + oldId).style.display = 'none';
-        document.querySelector('#' + this.#activeId).style.display = '';
+        console.debug(`Commentary.setIndex ${oldId} -> ${index} ${this.#activeId}`);
+        const oldElem = document.querySelector('#' + oldId);
+        oldElem.style.display = 'none';
+        const newElem = document.querySelector('#' + this.#activeId);
+        newElem.style.display = 'block';
         if (this.#index > 0) {
-            this.#prevButtons.forEach((el)=>el.style.display = '');
+            this.#prevButtons.forEach((el)=>el.style.display = 'block');
             this.#prevLabels.forEach((el)=>el.textContent = document.querySelector('#' + this.#elemIds[this.#index - 1]).querySelector('h1').textContent);
         } else this.#prevButtons.forEach((el)=>el.style.display = 'none');
         if (this.#index + 1 < this.#elemIds.length) {
-            this.#nextButtons.forEach((el)=>el.style.display = '');
+            this.#nextButtons.forEach((el)=>el.style.display = 'block');
             this.#nextLabels.forEach((el)=>el.textContent = document.querySelector('#' + this.#elemIds[this.#index + 1]).querySelector('h1').textContent);
         } else this.#nextButtons.forEach((el)=>el.style.display = 'none');
         if (this.#callback) this.#callback(oldId, this.#activeId);
@@ -70,7 +66,7 @@ class $8abad32eb706c429$export$ae67abe6ac4b2557 {
 
 // Map component
 // Information panel
-class $774975127c5ddc90$export$c4868e4a24d48fad {
+class $b24693211f676c4c$export$c4868e4a24d48fad {
     #elem;
     #event;
     #freeze;
@@ -84,15 +80,17 @@ class $774975127c5ddc90$export$c4868e4a24d48fad {
         this.#event = null;
         this.#freeze = false;
         this.#map = args.map;
-        const handleKeyDown = (e)=>{
-            if (e.key === "f") this.#freeze = !this.#freeze;
-            if (e.key === "i") this.#toggleVisible();
-        };
-        document.addEventListener('keydown', handleKeyDown, true);
-        this.#map.on('mousemove', (e)=>{
-            this.#event = e;
-            this.#update();
-        });
+        if (this.#elem) {
+            const handleKeyDown = (e)=>{
+                if (e.key === "f") this.#freeze = !this.#freeze;
+                if (e.key === "i") this.#toggleVisible();
+            };
+            document.addEventListener('keydown', handleKeyDown, true);
+            this.#map.on('mousemove', (e)=>{
+                this.#event = e;
+                this.#update();
+            });
+        }
     }
     #toggleVisible() {
         this.#elem.style.display = this.#elem.style.display == 'block' ? 'none' : 'block';
@@ -111,7 +109,7 @@ class $774975127c5ddc90$export$c4868e4a24d48fad {
 /**
  * Class for managing z-order of a stack of layers
  * Based on https://qubika.com/blog/effectively-manage-layer-order-mapbox-gl-js/
- */ class $4234641f89bf805d$var$ZOrder {
+ */ class $a012cbd647ad77b8$var$ZOrder {
     #order;
     /**
    * Create a ZOrder
@@ -145,7 +143,7 @@ class $774975127c5ddc90$export$c4868e4a24d48fad {
 }
 /**
  * Wrapper around a maplibregl Layer
- */ class $4234641f89bf805d$var$Layer {
+ */ class $a012cbd647ad77b8$var$Layer {
     #id;
     #manager;
     #visible;
@@ -190,7 +188,7 @@ class $774975127c5ddc90$export$c4868e4a24d48fad {
         this.#manager.map.setLayoutProperty(this.#id, 'visibility', this.visible ? 'visible' : 'none');
     }
 }
-class $4234641f89bf805d$export$eff87c52915dd7fe {
+class $a012cbd647ad77b8$export$eff87c52915dd7fe {
     #layers;
     #map;
     #menu;
@@ -205,7 +203,7 @@ class $4234641f89bf805d$export$eff87c52915dd7fe {
         this.#layers = {};
         this.#map = args.map;
         this.#menu = args.menu;
-        this.#zOrder = new $4234641f89bf805d$var$ZOrder(args.map, args.zOrder);
+        this.#zOrder = new $a012cbd647ad77b8$var$ZOrder(args.map, args.zOrder);
     }
     /**
    * Get map
@@ -250,7 +248,7 @@ class $4234641f89bf805d$export$eff87c52915dd7fe {
         });
     }
     #addLayer(id, visible, callback) {
-        const layer = new $4234641f89bf805d$var$Layer(this, id, visible, callback);
+        const layer = new $a012cbd647ad77b8$var$Layer(this, id, visible, callback);
         this.#layers[id] = layer;
         return layer;
     }
@@ -258,16 +256,18 @@ class $4234641f89bf805d$export$eff87c52915dd7fe {
 
 
 // Menu component
-class $749e398bedf0cec1$export$d9b273488cd8ce6f {
+class $0b968e67a217797d$export$d9b273488cd8ce6f {
     #elem;
     /**
    * Create a Menu
    */ constructor(){
         this.#elem = document.getElementById('menu');
-        const handleKeyDown = (e)=>{
-            if (e.key === "m") this.#toggleVisible();
-        };
-        document.addEventListener('keydown', handleKeyDown, true);
+        if (this.#elem) {
+            const handleKeyDown = (e)=>{
+                if (e.key === "m") this.#toggleVisible();
+            };
+            document.addEventListener('keydown', handleKeyDown, true);
+        }
     }
     /**
    * Add a menu item
@@ -278,23 +278,25 @@ class $749e398bedf0cec1$export$d9b273488cd8ce6f {
    * @param {boolean}  args.active  Whether item is active
    * @param {string}   args.color   Item color
    */ addItem(args) {
-        const link = document.createElement('a');
-        link.id = 'menu_' + args.id;
-        link.layerId = args.id;
-        link.href = '#';
-        link.textContent = args.text;
-        link.className = args.active ? 'active' : '';
-        link.onclick = (e)=>{
-            e.preventDefault();
-            e.stopPropagation();
-            link.className = args.onclick() ? 'active' : '';
-        };
-        const box = document.createElement('div');
-        box.className = 'box';
-        box.style.backgroundColor = args.color ?? 'transparent';
-        link.appendChild(box);
-        this.#elem.appendChild(link);
-        this.#show();
+        if (this.#elem) {
+            const link = document.createElement('a');
+            link.id = 'menu_' + args.id;
+            link.layerId = args.id;
+            link.href = '#';
+            link.textContent = args.text;
+            link.className = args.active ? 'active' : '';
+            link.onclick = (e)=>{
+                e.preventDefault();
+                e.stopPropagation();
+                link.className = args.onclick() ? 'active' : '';
+            };
+            const box = document.createElement('div');
+            box.className = 'box';
+            box.style.backgroundColor = args.color ?? 'transparent';
+            link.appendChild(box);
+            this.#elem.appendChild(link);
+            this.#show();
+        }
     }
     #show() {
         this.#elem.hidden = false;
@@ -307,7 +309,7 @@ class $749e398bedf0cec1$export$d9b273488cd8ce6f {
 
 
 // Location component
-class $6205b912622558eb$var$Location {
+class $771774f2d80d879b$var$Location {
     #id;
     #data;
     #manager;
@@ -352,7 +354,7 @@ class $6205b912622558eb$var$Location {
         if (this.#popup) this.#popup.getElement().style.visibility = this.popupVisible ? 'visible' : 'hidden';
     }
 }
-class $6205b912622558eb$export$7d80cc25fac290ca {
+class $771774f2d80d879b$export$7d80cc25fac290ca {
     #locations;
     #map;
     /**
@@ -379,14 +381,14 @@ class $6205b912622558eb$export$7d80cc25fac290ca {
     }
     #addLocation(id) {
         console.debug("LocationManager.addLocation", id);
-        const popup = new $6205b912622558eb$var$Location(this, id);
+        const popup = new $771774f2d80d879b$var$Location(this, id);
         this.#locations[id] = popup;
         return popup;
     }
 }
 
 
-function $79e5afcfd1a3e154$var$addNavigationControl(map) {
+function $ee093dd16ebbc3bc$var$addNavigationControl(map) {
     map.addControl(new maplibregl.NavigationControl({
         visualizePitch: true,
         visualizeRoll: true,
@@ -403,32 +405,32 @@ function $79e5afcfd1a3e154$var$addNavigationControl(map) {
     document.getElementsByClassName('maplibregl-ctrl-zoom-in')[0].addEventListener('click', onZoom);
     document.getElementsByClassName('maplibregl-ctrl-zoom-out')[0].addEventListener('click', onZoom);
 }
-function $79e5afcfd1a3e154$export$a5c7b93649eaf8f8(args) {
+function $ee093dd16ebbc3bc$export$a5c7b93649eaf8f8(args) {
     console.debug("Map", args);
     const map = new maplibregl.Map(args.config);
-    const info1 = new (0, $774975127c5ddc90$export$c4868e4a24d48fad)({
+    const info1 = new (0, $b24693211f676c4c$export$c4868e4a24d48fad)({
         map: map
     });
-    const menu = new (0, $749e398bedf0cec1$export$d9b273488cd8ce6f)();
-    const layerManager = new (0, $4234641f89bf805d$export$eff87c52915dd7fe)({
+    const menu = new (0, $0b968e67a217797d$export$d9b273488cd8ce6f)();
+    const layerManager = new (0, $a012cbd647ad77b8$export$eff87c52915dd7fe)({
         map: map,
         menu: menu,
         zOrder: args.zOrder ?? []
     });
-    const locationManager = new (0, $6205b912622558eb$export$7d80cc25fac290ca)({
+    const locationManager = new (0, $771774f2d80d879b$export$7d80cc25fac290ca)({
         map: map
     });
     map.appData = {
         layers: layerManager,
         locations: locationManager
     };
-    $79e5afcfd1a3e154$var$addNavigationControl(map);
+    $ee093dd16ebbc3bc$var$addNavigationControl(map);
     return map;
 }
 
 
 // Component which allows camera to fly along a route
-class $1cf6f7bc53659a8b$export$e7b0ac011bb776c6 {
+class $a34bdb8e45e0ca8e$export$e7b0ac011bb776c6 {
     #camera;
     #distance;
     #map;
@@ -559,7 +561,7 @@ class $1cf6f7bc53659a8b$export$e7b0ac011bb776c6 {
 
 
 // Add 3D buildings
-function $91345faeb91e4dd0$export$6e8a7b6ebe63378e(map, options) {
+function $2acda222c2a7751f$export$6e8a7b6ebe63378e(map, options) {
     var id = options.id;
     map.on('load', ()=>{
         // Insert the layer beneath any symbol layer.
@@ -650,7 +652,7 @@ function $91345faeb91e4dd0$export$6e8a7b6ebe63378e(map, options) {
 
 
 // Add a map layer which shows a line
-function $aa06d2ac9c610281$export$56f19b12e2d54e37(map, options) {
+function $d38c3613fdb3bc22$export$56f19b12e2d54e37(map, options) {
     var id = options.id;
     map.on('load', ()=>{
         fetch(options.url).then((res)=>res.json()).then((data)=>{
@@ -685,7 +687,7 @@ function $aa06d2ac9c610281$export$56f19b12e2d54e37(map, options) {
 /**
  * Create the map
  * @param {Object} args              The arguments
- */ function $8d03da7b295f07d9$export$d3ed3c083b4b95c3(map, args) {
+ */ function $14aeb3418f82918c$export$d3ed3c083b4b95c3(map, args) {
     map.on('load', async ()=>{
         var id = args.id;
         const locations = map.appData.locations;
@@ -753,8 +755,8 @@ function $aa06d2ac9c610281$export$56f19b12e2d54e37(map, options) {
 }
 
 
-var $26cd5bb495b5a8a6$var$route = null;
-function $26cd5bb495b5a8a6$export$d49c9aa30b771d59(args) {
+var $cda4673139222688$var$route = null;
+function $cda4673139222688$export$d49c9aa30b771d59(args) {
     args = args ?? {};
     const config = {
         style: "/data/style.json",
@@ -772,7 +774,7 @@ function $26cd5bb495b5a8a6$export$d49c9aa30b771d59(args) {
         'locations',
         'point'
     ];
-    var map = new (0, $79e5afcfd1a3e154$export$a5c7b93649eaf8f8)({
+    var map = new (0, $ee093dd16ebbc3bc$export$a5c7b93649eaf8f8)({
         config: config,
         zOrder: zOrder
     });
@@ -804,26 +806,26 @@ function $26cd5bb495b5a8a6$export$d49c9aa30b771d59(args) {
             }
         }, map.appData.layers.zOrder.getPosition('point'));
     });
-    map.appData.layers.addLayer((0, $91345faeb91e4dd0$export$6e8a7b6ebe63378e), {
+    map.appData.layers.addLayer((0, $2acda222c2a7751f$export$6e8a7b6ebe63378e), {
         id: '3d_buildings',
         text: '3D buildings',
         color: '#aaaaaa',
         visible: true
     });
-    map.appData.layers.addLayer((0, $aa06d2ac9c610281$export$56f19b12e2d54e37), {
+    map.appData.layers.addLayer((0, $d38c3613fdb3bc22$export$56f19b12e2d54e37), {
         id: 'boundary',
         text: 'Riverside area boundary',
         url: '/data/line_boundary.json',
         color: 'black',
         visible: false
     });
-    map.appData.layers.addLayer((0, $aa06d2ac9c610281$export$56f19b12e2d54e37), {
+    map.appData.layers.addLayer((0, $d38c3613fdb3bc22$export$56f19b12e2d54e37), {
         id: 'heritage_trail',
         text: 'Heritage trail line',
         url: '/data/line_heritage_trail.json',
         color: 'green',
         callback: (_arguments)=>{
-            $26cd5bb495b5a8a6$var$route = new (0, $1cf6f7bc53659a8b$export$e7b0ac011bb776c6)({
+            $cda4673139222688$var$route = new (0, $a34bdb8e45e0ca8e$export$e7b0ac011bb776c6)({
                 altitude: 200,
                 distance: 500,
                 lineId: 'heritage_trail',
@@ -832,7 +834,7 @@ function $26cd5bb495b5a8a6$export$d49c9aa30b771d59(args) {
         },
         visible: true
     });
-    map.appData.layers.addLayer((0, $8d03da7b295f07d9$export$d3ed3c083b4b95c3), {
+    map.appData.layers.addLayer((0, $14aeb3418f82918c$export$d3ed3c083b4b95c3), {
         id: 'locations',
         text: 'Heritage trail locations',
         url: '/data/locations.json',
@@ -849,12 +851,14 @@ function $26cd5bb495b5a8a6$export$d49c9aa30b771d59(args) {
    * @param {string} toId   Destination location identifier
    */ function fly(fromId, toId) {
         console.debug(`Fly from ${fromId} to ${toId}`);
-        const fromCoord = locations.getLocation(fromId).data.geometry.coordinates;
-        const toCoord = locations.getLocation(toId).data.geometry.coordinates;
-        console.debug(`Fly from ${fromId} ${fromCoord} to ${toId} ${toCoord}`);
-        if ($26cd5bb495b5a8a6$var$route) $26cd5bb495b5a8a6$var$route.fly(fromCoord, toCoord, 2000);
+        if (fromId !== toId) {
+            const fromCoord = locations.getLocation(fromId).data.geometry.coordinates;
+            const toCoord = locations.getLocation(toId).data.geometry.coordinates;
+            console.debug(`Fly from ${fromId} ${fromCoord} to ${toId} ${toCoord}`);
+            if ($cda4673139222688$var$route) $cda4673139222688$var$route.fly(fromCoord, toCoord, 2000);
+        }
     }
-    const commentary = new (0, $8abad32eb706c429$export$ae67abe6ac4b2557)({
+    const commentary = new (0, $4086c668fa7aedb0$export$ae67abe6ac4b2557)({
         callback: function(oldId, newId) {
             var hideIds = [
                 oldId
@@ -866,7 +870,9 @@ function $26cd5bb495b5a8a6$export$d49c9aa30b771d59(args) {
             ];
             const newAdditional = document.getElementById(newId).getAttribute("additionalLocations");
             if (newAdditional) showIds = showIds.concat(newAdditional.split(" "));
+            console.debug(`hideIds = ${hideIds}`);
             for (const id of hideIds)locations.getLocation(id).popupVisible = false;
+            console.debug(`showIds = ${showIds}`);
             for (const id of showIds)locations.getLocation(id).popupVisible = true;
             fly(oldId, newId);
         }
@@ -876,4 +882,5 @@ function $26cd5bb495b5a8a6$export$d49c9aa30b771d59(args) {
 }
 
 
-//# sourceMappingURL=index.js.map
+export {$cda4673139222688$export$d49c9aa30b771d59 as createMap};
+//# sourceMappingURL=heritage_trail.js.map

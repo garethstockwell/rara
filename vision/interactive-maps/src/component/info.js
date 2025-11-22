@@ -17,22 +17,24 @@ export class Info {
     this.#freeze = false;
     this.#map = args.map;
 
-    const handleKeyDown = (e) => {
-      if (e.key === "f") {
-        this.#freeze = !this.#freeze;
-      }
+    if (this.#elem) {
+      const handleKeyDown = (e) => {
+        if (e.key === "f") {
+          this.#freeze = !this.#freeze;
+        }
 
-      if (e.key === "i") {
-        this.#toggleVisible();
-      }
-    };
+        if (e.key === "i") {
+          this.#toggleVisible();
+        }
+      };
 
-    document.addEventListener('keydown', handleKeyDown, true);
+      document.addEventListener('keydown', handleKeyDown, true);
 
-    this.#map.on('mousemove', (e) => {
-      this.#event = e;
-      this.#update();
-    });
+      this.#map.on('mousemove', (e) => {
+        this.#event = e;
+        this.#update();
+      });
+    }
   }
 
   #toggleVisible() {

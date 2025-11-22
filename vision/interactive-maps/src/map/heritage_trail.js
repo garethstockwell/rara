@@ -113,11 +113,13 @@ export function createMap(args) {
    */
   function fly(fromId, toId) {
     console.debug(`Fly from ${fromId} to ${toId}`);
-    const fromCoord = locations.getLocation(fromId).data.geometry.coordinates;
-    const toCoord = locations.getLocation(toId).data.geometry.coordinates;
-    console.debug(`Fly from ${fromId} ${fromCoord} to ${toId} ${toCoord}`);
-    if (route) {
-      route.fly(fromCoord, toCoord, 2000);
+    if (fromId !== toId) {
+      const fromCoord = locations.getLocation(fromId).data.geometry.coordinates;
+      const toCoord = locations.getLocation(toId).data.geometry.coordinates;
+      console.debug(`Fly from ${fromId} ${fromCoord} to ${toId} ${toCoord}`);
+      if (route) {
+        route.fly(fromCoord, toCoord, 2000);
+      }
     }
   }
 
@@ -135,10 +137,12 @@ export function createMap(args) {
         showIds = showIds.concat(newAdditional.split(" "));
       }
 
+      console.debug(`hideIds = ${hideIds}`);
       for (const id of hideIds) {
         locations.getLocation(id).popupVisible = false;
       }
 
+      console.debug(`showIds = ${showIds}`);
       for (const id of showIds) {
         locations.getLocation(id).popupVisible = true;
       }

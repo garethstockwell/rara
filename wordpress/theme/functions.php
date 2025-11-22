@@ -51,8 +51,11 @@ function rara_theme_enqueue_heritage_trail() {
   wp_enqueue_script( 'heritage-trail',
     get_stylesheet_directory_uri() . '/explore/heritage-trail/map.js',
     array(),
-    '1.0'
+    '1.0',
+    true
   );
+
+  wp_script_add_data( 'heritage-trail', 'type', 'module' );
 }
 
 /*
@@ -67,7 +70,7 @@ function rara_theme_enqueue_custom() {
     if (strpos($slug, 'explore') === 0) {
       rara_theme_enqueue_maplibregl();
 
-      rara_theme_enqueue_heritage_trail();
+      //rara_theme_enqueue_heritage_trail();
     }
   }
 }
