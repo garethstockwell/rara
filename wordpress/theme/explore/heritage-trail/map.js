@@ -1,4 +1,44 @@
-// Render a map of the heritage trail
+
+function $parcel$export(e, n, v, s) {
+  Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
+}
+
+      var $parcel$global = globalThis;
+    
+var $parcel$modules = {};
+var $parcel$inits = {};
+
+var parcelRequire = $parcel$global["parcelRequire48b6"];
+
+if (parcelRequire == null) {
+  parcelRequire = function(id) {
+    if (id in $parcel$modules) {
+      return $parcel$modules[id].exports;
+    }
+    if (id in $parcel$inits) {
+      var init = $parcel$inits[id];
+      delete $parcel$inits[id];
+      var module = {id: id, exports: {}};
+      $parcel$modules[id] = module;
+      init.call(module.exports, module, module.exports);
+      return module.exports;
+    }
+    var err = new Error("Cannot find module '" + id + "'");
+    err.code = 'MODULE_NOT_FOUND';
+    throw err;
+  };
+
+  parcelRequire.register = function register(id, init) {
+    $parcel$inits[id] = init;
+  };
+
+  $parcel$global["parcelRequire48b6"] = parcelRequire;
+}
+
+var parcelRegister = parcelRequire.register;
+parcelRegister("5xtjF", function(module, exports) {
+
+$parcel$export(module.exports, "Commentary", () => $4086c668fa7aedb0$export$ae67abe6ac4b2557);
 // Commentary component
 class $4086c668fa7aedb0$export$ae67abe6ac4b2557 {
     #elems;
@@ -46,13 +86,13 @@ class $4086c668fa7aedb0$export$ae67abe6ac4b2557 {
         const newElem = document.querySelector('#' + this.#activeId);
         newElem.style.display = 'block';
         if (this.#index > 0) {
-            this.#prevButtons.forEach((el)=>el.style.display = 'block');
+            this.#prevButtons.forEach((el)=>el.style.visibility = 'visible');
             this.#prevLabels.forEach((el)=>el.textContent = document.querySelector('#' + this.#elemIds[this.#index - 1]).querySelector('h1').textContent);
-        } else this.#prevButtons.forEach((el)=>el.style.display = 'none');
+        } else this.#prevButtons.forEach((el)=>el.style.visibility = 'hidden');
         if (this.#index + 1 < this.#elemIds.length) {
-            this.#nextButtons.forEach((el)=>el.style.display = 'block');
+            this.#nextButtons.forEach((el)=>el.style.visibility = 'visible');
             this.#nextLabels.forEach((el)=>el.textContent = document.querySelector('#' + this.#elemIds[this.#index + 1]).querySelector('h1').textContent);
-        } else this.#nextButtons.forEach((el)=>el.style.display = 'none');
+        } else this.#nextButtons.forEach((el)=>el.style.visibility = 'hidden');
         if (this.#callback) this.#callback(oldId, this.#activeId);
     }
     #onPrev() {
@@ -63,8 +103,64 @@ class $4086c668fa7aedb0$export$ae67abe6ac4b2557 {
     }
 }
 
+});
 
+parcelRegister("kr3KQ", function(module, exports) {
+
+$parcel$export(module.exports, "Map", () => $ee093dd16ebbc3bc$export$a5c7b93649eaf8f8);
 // Map component
+
+var $fiXlL = parcelRequire("fiXlL");
+
+var $dK49P = parcelRequire("dK49P");
+
+var $ZGmnb = parcelRequire("ZGmnb");
+
+var $adV9W = parcelRequire("adV9W");
+function $ee093dd16ebbc3bc$var$addNavigationControl(map) {
+    map.addControl(new maplibregl.NavigationControl({
+        visualizePitch: true,
+        visualizeRoll: true,
+        showZoom: true,
+        showCompass: true
+    }));
+    map.addControl(new maplibregl.FullscreenControl());
+    map.addControl(new maplibregl.ScaleControl(), 'bottom-right');
+    function onZoom(e) {
+        setTimeout(function() {
+            info.update(map);
+        }, 700);
+    }
+    document.getElementsByClassName('maplibregl-ctrl-zoom-in')[0].addEventListener('click', onZoom);
+    document.getElementsByClassName('maplibregl-ctrl-zoom-out')[0].addEventListener('click', onZoom);
+}
+function $ee093dd16ebbc3bc$export$a5c7b93649eaf8f8(args) {
+    console.debug("Map", args);
+    const map = new maplibregl.Map(args.config);
+    const info1 = new (0, $fiXlL.Info)({
+        map: map
+    });
+    const menu = new (0, $ZGmnb.Menu)();
+    const layerManager = new (0, $dK49P.LayerManager)({
+        map: map,
+        menu: menu,
+        zOrder: args.zOrder ?? []
+    });
+    const locationManager = new (0, $adV9W.LocationManager)({
+        map: map
+    });
+    map.appData = {
+        layers: layerManager,
+        locations: locationManager
+    };
+    $ee093dd16ebbc3bc$var$addNavigationControl(map);
+    return map;
+}
+
+});
+parcelRegister("fiXlL", function(module, exports) {
+
+$parcel$export(module.exports, "Info", () => $b24693211f676c4c$export$c4868e4a24d48fad);
 // Information panel
 class $b24693211f676c4c$export$c4868e4a24d48fad {
     #elem;
@@ -104,7 +200,11 @@ class $b24693211f676c4c$export$c4868e4a24d48fad {
     }
 }
 
+});
 
+parcelRegister("dK49P", function(module, exports) {
+
+$parcel$export(module.exports, "LayerManager", () => $a012cbd647ad77b8$export$eff87c52915dd7fe);
 // Layer component
 /**
  * Class for managing z-order of a stack of layers
@@ -254,7 +354,11 @@ class $a012cbd647ad77b8$export$eff87c52915dd7fe {
     }
 }
 
+});
 
+parcelRegister("ZGmnb", function(module, exports) {
+
+$parcel$export(module.exports, "Menu", () => $0b968e67a217797d$export$d9b273488cd8ce6f);
 // Menu component
 class $0b968e67a217797d$export$d9b273488cd8ce6f {
     #elem;
@@ -307,7 +411,11 @@ class $0b968e67a217797d$export$d9b273488cd8ce6f {
     }
 }
 
+});
 
+parcelRegister("adV9W", function(module, exports) {
+
+$parcel$export(module.exports, "LocationManager", () => $771774f2d80d879b$export$7d80cc25fac290ca);
 // Location component
 class $771774f2d80d879b$var$Location {
     #id;
@@ -387,48 +495,50 @@ class $771774f2d80d879b$export$7d80cc25fac290ca {
     }
 }
 
+});
 
-function $ee093dd16ebbc3bc$var$addNavigationControl(map) {
-    map.addControl(new maplibregl.NavigationControl({
-        visualizePitch: true,
-        visualizeRoll: true,
-        showZoom: true,
-        showCompass: true
-    }));
-    map.addControl(new maplibregl.FullscreenControl());
-    map.addControl(new maplibregl.ScaleControl(), 'bottom-right');
-    function onZoom(e) {
-        setTimeout(function() {
-            info.update(map);
-        }, 700);
-    }
-    document.getElementsByClassName('maplibregl-ctrl-zoom-in')[0].addEventListener('click', onZoom);
-    document.getElementsByClassName('maplibregl-ctrl-zoom-out')[0].addEventListener('click', onZoom);
-}
-function $ee093dd16ebbc3bc$export$a5c7b93649eaf8f8(args) {
-    console.debug("Map", args);
-    const map = new maplibregl.Map(args.config);
-    const info1 = new (0, $b24693211f676c4c$export$c4868e4a24d48fad)({
-        map: map
+
+parcelRegister("ia3VS", function(module, exports) {
+
+$parcel$export(module.exports, "addLineLayer", () => $d38c3613fdb3bc22$export$56f19b12e2d54e37);
+// Add a map layer which shows a line
+function $d38c3613fdb3bc22$export$56f19b12e2d54e37(map, options) {
+    var id = options.id;
+    map.on('load', ()=>{
+        fetch(options.url).then((res)=>res.json()).then((data)=>{
+            map.addSource(id, {
+                'type': 'geojson',
+                'data': data
+            });
+            map.addLayer({
+                'id': id,
+                'type': 'line',
+                'source': id,
+                'layout': {
+                    'line-join': 'round',
+                    'line-cap': 'round',
+                    'visibility': options.visible ? 'visible' : 'none'
+                },
+                'paint': {
+                    'line-color': options.color,
+                    'line-width': 6
+                }
+            }, options.zOrder ? options.zOrder.getPosition(id) : null);
+            if (options.callback) options.callback([
+                'line',
+                id
+            ]);
+        });
     });
-    const menu = new (0, $0b968e67a217797d$export$d9b273488cd8ce6f)();
-    const layerManager = new (0, $a012cbd647ad77b8$export$eff87c52915dd7fe)({
-        map: map,
-        menu: menu,
-        zOrder: args.zOrder ?? []
-    });
-    const locationManager = new (0, $771774f2d80d879b$export$7d80cc25fac290ca)({
-        map: map
-    });
-    map.appData = {
-        layers: layerManager,
-        locations: locationManager
-    };
-    $ee093dd16ebbc3bc$var$addNavigationControl(map);
-    return map;
 }
 
+});
 
+// Render a map of the heritage trail
+
+var $5xtjF = parcelRequire("5xtjF");
+
+var $kr3KQ = parcelRequire("kr3KQ");
 // Component which allows camera to fly along a route
 class $a34bdb8e45e0ca8e$export$e7b0ac011bb776c6 {
     #camera;
@@ -651,38 +761,8 @@ function $2acda222c2a7751f$export$6e8a7b6ebe63378e(map, options) {
 }
 
 
-// Add a map layer which shows a line
-function $d38c3613fdb3bc22$export$56f19b12e2d54e37(map, options) {
-    var id = options.id;
-    map.on('load', ()=>{
-        fetch(options.url).then((res)=>res.json()).then((data)=>{
-            map.addSource(id, {
-                'type': 'geojson',
-                'data': data
-            });
-            map.addLayer({
-                'id': id,
-                'type': 'line',
-                'source': id,
-                'layout': {
-                    'line-join': 'round',
-                    'line-cap': 'round',
-                    'visibility': options.visible ? 'visible' : 'none'
-                },
-                'paint': {
-                    'line-color': options.color,
-                    'line-width': 6
-                }
-            }, options.zOrder ? options.zOrder.getPosition(id) : null);
-            if (options.callback) options.callback([
-                'line',
-                id
-            ]);
-        });
-    });
-}
 
-
+var $ia3VS = parcelRequire("ia3VS");
 // Add a map layer which shows locations
 /**
  * Create the map
@@ -774,7 +854,7 @@ function $cda4673139222688$export$d49c9aa30b771d59(args) {
         'locations',
         'point'
     ];
-    var map = new (0, $ee093dd16ebbc3bc$export$a5c7b93649eaf8f8)({
+    var map = new (0, $kr3KQ.Map)({
         config: config,
         zOrder: zOrder
     });
@@ -812,14 +892,14 @@ function $cda4673139222688$export$d49c9aa30b771d59(args) {
         color: '#aaaaaa',
         visible: true
     });
-    map.appData.layers.addLayer((0, $d38c3613fdb3bc22$export$56f19b12e2d54e37), {
+    map.appData.layers.addLayer((0, $ia3VS.addLineLayer), {
         id: 'boundary',
         text: 'Riverside area boundary',
         url: '/data/line_boundary.json',
         color: 'black',
         visible: false
     });
-    map.appData.layers.addLayer((0, $d38c3613fdb3bc22$export$56f19b12e2d54e37), {
+    map.appData.layers.addLayer((0, $ia3VS.addLineLayer), {
         id: 'heritage_trail',
         text: 'Heritage trail line',
         url: '/data/line_heritage_trail.json',
@@ -858,7 +938,7 @@ function $cda4673139222688$export$d49c9aa30b771d59(args) {
             if ($cda4673139222688$var$route) $cda4673139222688$var$route.fly(fromCoord, toCoord, 2000);
         }
     }
-    const commentary = new (0, $4086c668fa7aedb0$export$ae67abe6ac4b2557)({
+    const commentary = new (0, $5xtjF.Commentary)({
         callback: function(oldId, newId) {
             var hideIds = [
                 oldId

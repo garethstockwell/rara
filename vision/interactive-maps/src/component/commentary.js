@@ -60,19 +60,19 @@ export class Commentary {
     newElem.style.display = 'block';
 
     if (this.#index > 0) {
-      this.#prevButtons.forEach(el => el.style.display = 'block');
+      this.#prevButtons.forEach(el => el.style.visibility = 'visible');
       this.#prevLabels.forEach(el => el.textContent = document.querySelector(
         '#' + this.#elemIds[this.#index - 1]).querySelector('h1').textContent);
     } else {
-      this.#prevButtons.forEach(el => el.style.display = 'none');
+      this.#prevButtons.forEach(el => el.style.visibility = 'hidden');
     }
 
     if (this.#index + 1 < this.#elemIds.length) {
-      this.#nextButtons.forEach(el => el.style.display = 'block');
+      this.#nextButtons.forEach(el => el.style.visibility = 'visible');
       this.#nextLabels.forEach(el => el.textContent = document.querySelector(
         '#' + this.#elemIds[this.#index + 1]).querySelector('h1').textContent);
     } else {
-      this.#nextButtons.forEach(el => el.style.display = 'none');
+      this.#nextButtons.forEach(el => el.style.visibility = 'hidden');
     }
 
     if (this.#callback) {

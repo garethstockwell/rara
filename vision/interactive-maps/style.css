@@ -99,8 +99,12 @@ code {
   position: absolute;
   z-index: 1;
   width: 40%;
-  height: 10%;
+  height: 15%;
   bottom: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .map .map-nav::before {
@@ -119,10 +123,11 @@ code {
 .map .map-nav .label {
   color: white;
   font-size: x-large;
+  text-align: center;
 }
 
 .map .map-nav img {
-  height: 75%;
+  height: 65%;
 }
 
 .map .left {
