@@ -3,6 +3,9 @@
  * RARA functions and definitions
  */
 
+define('WP_HOME', 'http://192.168.8.128:8000');
+define('WP_SITEURL', 'http://192.168.8.128:8000');
+
 /*
  * Enqueue parent and child theme styles
  */
